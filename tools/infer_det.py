@@ -154,21 +154,34 @@ def remove_mark(str):
             new_str = new_str + i
     return new_str
         
-def same_row_or_under(box1, box2):
-    if (min(box1[3]<box2[3]) - max(box1[1], box2[1]))/(box1[3]-box1[1]) > 0.4 or box2[1]>box1[3]:
-        return True
-    else:
-        return False
 
-def same_row(key1, dic):
+def Key(x):
+    return x[0]
+def same_rows(key1, dic):
+    box1 = dic[key1]
+    lst = []
+    min_dis = 1000
+    for key2 in dic:
+        if key1 == key2:
+            continue
+        box2 = dic[key2]
+        
+        if abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2) < min_dis:
+            min_dis = box2[3] - box2[1]
+            key_same = key2 
+    
+    return key_same
+
+def under_rows(key1, dic):
     box1 = dic[key1]
     lst = []
     for key2 in dic:
         box2 = dic[key2]
-        if (min(box1[3]<box2[3]) - max(box1[1], box2[1]))/(box1[3]-box1[1]) > 0.4:
+        if (box1[3]<box2[3]):
             lst.append(box2)
-    return lst 
-            
+    lst.sort(key=Key)
+
+    return lst        
 
 def main():
     config = program.load_config(FLAGS.config)
@@ -267,30 +280,34 @@ def main():
 
     logger.info("Begining ocr..")
 
-    config = Cfg.load_config_from_name('vgg_transformer')
-    config['weights'] = './weights/transformerocr.pth'
+    config_ocr = Cfg.load_config_from_name('vgg_transformer')
+    config_ocr['weights'] = './weights/transformerocr.pth'
     #config['weights'] = 'https://drive.google.com/uc?id=13327Y1tz1ohsm5YZMyXVMPIOjoOA0OaA'
-    config['cnn']['pretrained']=False
-    config['device'] = 'cpu'
-    config['predictor']['beamsearch']=False
+    config_ocr['cnn']['pretrained']=False
+    config_ocr['device'] = 'cpu'
+    config_ocr['predictor']['beamsearch']=False
 
-    detector = Predictor(config)
+    detector = Predictor(config_ocr)
 
     dic = {}
 
     for box in dt_boxes:
-        box = box.astype(np.int32).reshape((-1, 1, 2))        
+        box = box.astype(np.int32).reshape((-1, 1, 2)) 
         
         crop, box_rec = crop_image(copy_img, box)
-        
+
         # Convert cv2 format to PIL
         crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
         im_pil = Image.fromarray(crop)
         pred = detector.predict(im_pil)
+        
+        if dic is not None:
+            for key in dic:
+                if pred == key:
+                    pred = pred + ' '
+        
         dic[pred] = box_rec 
-        # print(pred)        
-        # cv2.imshow('', crop)
-        # cv2.waitKey(0)
+    print(dic)    
     
     # remove wrong box
     for key in dic:
@@ -309,10 +326,14 @@ def main():
     for key in dic:
         if dic[key][2]-dic[key][0] < birth_w*0.4 or dic[key][3]-dic[key][1]<birth_h*7/9:
             list_key_remove.append(key)
+
+   
     # address
 
     for key in list_key_remove:
         del dic[key]
+    
+    #print(dic)
 
     for key1 in dic:
         no_mark_str = remove_mark(key1)
@@ -320,28 +341,23 @@ def main():
         if no_mark_str.find('Noi DKHK thuong tru')!=-1:
             address_lst = []
             pos = no_mark_str.find('Noi DKHK thuong tru')
-            address_str = key1[pos+19:]
-
-            same = same_row(key1, dic)
-            print(same)
-            #under = under_row(key1, dic)
-
-
-
+            address_str = key1[pos+20:]
             
+            same = ''
+            if len(address_str) == 0:
 
-
-
-
-
-
-
-        
-
-
-
-
-
+                same = same_rows(key1, dic)
+                address_str = address_str + same + ', '
+            else:
+                address_str = address_str + ', '
+            
+            under = under_rows(key1, dic)
+            for box_under in under:
+                for key in dic:
+                    if box_under == dic[key]:
+                        address_str = address_str + key
+            
+            print('Address: ', address_str)           
 
 
 if __name__ == '__main__':
