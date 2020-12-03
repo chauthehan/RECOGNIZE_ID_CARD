@@ -224,6 +224,24 @@ def top_left(dic):
                     top_left_key = key1 if box1[1]<box2[1] else key2
     return top_left_key   
 
+def process(key):
+    birth = ''
+    for char in key:
+        if char>='0' and char<='9':
+            birth = birth + char 
+    
+    final_birth = ''
+    i = -1
+    while True:
+        i = i+1
+        final_birth = final_birth+birth[i]
+        if i in {1, 3}:
+            final_birth = final_birth + '-'
+        if i==len(birth)-1:
+            break 
+    return final_birth
+        
+
 def main():
     config = program.load_config(FLAGS.config)
     program.merge_config(FLAGS.opt)
@@ -331,6 +349,7 @@ def main():
     detector = Predictor(config_ocr)
 
     dic = {}
+    dic_o = {}
 
     for box in dt_boxes:
         box = box.astype(np.int32).reshape((-1, 1, 2)) 
@@ -347,7 +366,8 @@ def main():
                 if pred == key:
                     pred = pred + ' '
         
-        dic[pred] = box_rec 
+        dic[pred] = box_rec
+        dic_o[pred] = box
     #print(dic)    
 
     final_dic = {
@@ -368,6 +388,7 @@ def main():
             #     check = True
         if count in {7, 8}: #and check:
             # get the birth box
+            
             final_dic['Birth'] = key
             birth_box = dic[key]
             # get the size of birth box
@@ -399,6 +420,7 @@ def main():
         no_mark_str = remove_mark(key1)
 
         if no_mark_str.find('Noi DKHK thuong tru')!=-1:
+            address_box = dic[key1]
             list_key_remove.append(key1)
             
             pos = no_mark_str.find('Noi DKHK thuong tru')
@@ -442,8 +464,28 @@ def main():
             if count >= 3:
                 if dic[key][1] > bottom:
                     bottom = dic[key][1]
-                    name = remove_low_char(key)
-    final_dic['Name'] = name
+                    name = key
+    name_box = dic[name]
+    
+    if (abs(name_box[0] - address_box[0]) < (birth_box[2]-birth_box[0])*1/4) and (abs(birth_box[1] - name_box[3])>(birth_box[3]-birth_box[1])):
+            
+        # Cut head of box name base on the length of box birth
+        name_o_box = dic_o[name]
+        name_o_box[0][0][0] = name_o_box[0][0][0] + (birth_box[2]-birth_box[0])*2/3
+        name_o_box[3][0][0] = name_o_box[3][0][0] + (birth_box[2]-birth_box[0])*2/3
+        
+        # OCR again with new box
+        crop, box_rec = crop_image(copy_img, name_o_box)
+
+        # Convert cv2 format to PIL
+        crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+        im_pil = Image.fromarray(crop)
+        pred = detector.predict(im_pil)
+        dic[pred] = box_rec 
+
+        final_dic['Name'] = pred
+    else:
+        final_dic['Name'] = name
     
     # ---------HOMETOWN-----------
 
@@ -488,7 +530,7 @@ def main():
 
     print('Id number: ', final_dic['Id'])
     print('Name: ', final_dic['Name'])
-    print('Date of birth: ', final_dic['Birth'])
+    print('Date of birth: ', process(final_dic['Birth']))
     print('Hometown: ', final_dic['Hometown'])
     print('Address: ', final_dic['Address'])
 
