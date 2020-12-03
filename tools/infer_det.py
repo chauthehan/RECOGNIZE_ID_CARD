@@ -107,7 +107,6 @@ def crop_image(I, box):
 
     return finalImage, [minX, minY, maxX, maxY]
 
-
 def draw_det_res(dt_boxes, config, img, img_name):
     if len(dt_boxes) > 0:
         src_im = img
@@ -121,7 +120,6 @@ def draw_det_res(dt_boxes, config, img, img_name):
         save_path = os.path.join(save_det_path, os.path.basename(img_name))
         cv2.imwrite(save_path, src_im)
         logger.info("The detected Image saved in {}".format(save_path))
-
 
 def remove_mark(str):
     new_str = ''
@@ -150,13 +148,17 @@ def remove_mark(str):
             new_str = new_str + 'D'
         elif i == 'đ':
             new_str = new_str + 'd'
+        elif i in ['ý', 'ỳ', 'ỹ', 'ỷ', 'ỵ']:
+            new_str = new_str + 'y'
+        elif i in ['Ý', 'Ỳ', 'Ỹ', 'Ỷ', 'Ỵ']:
+            new_str = new_str + 'Y'
         else:
             new_str = new_str + i
     return new_str
         
-
 def Key(x):
     return x[0]
+
 def same_rows(key1, dic):
     box1 = dic[key1]
     lst = []
@@ -177,11 +179,50 @@ def under_rows(key1, dic):
     lst = []
     for key2 in dic:
         box2 = dic[key2]
+        if box2[0] < box1[0]-(box1[3]-box1[1]):
+            continue
+       
         if (box1[3]<box2[3]):
             lst.append(box2)
     lst.sort(key=Key)
 
     return lst        
+
+def remove_char(key):
+    id = ''
+    for i in key:
+        if i>='0' and i<='9':
+            id = id+i
+    return id
+
+def remove_low_char(key):
+    mark_pos = 0
+    key_no_mark = remove_mark(key)
+    for i, char in enumerate(key_no_mark):
+        if not (char>='A' and char<='Y' or char==' '):
+            mark_pos = i
+    if mark_pos != 0:
+        return key[mark_pos+1:]
+    else:
+        return key[mark_pos:]
+
+def top_left(dic):
+    if len(dic) == 1:
+        for key in dic:
+            return key
+        
+    for key1 in dic:
+        for key2 in dic:
+            box1 = dic[key1]
+            box2 = dic[key2]
+            if key1 != key2:
+                if box1[0] < box2[0]:
+                    top_left_key = key1 
+                elif box1[0] > box2[0]:
+                    top_left_key = key2
+                else:
+                    top_left_key = key1 if box1[1]<box2[1] else key2
+    return top_left_key   
 
 def main():
     config = program.load_config(FLAGS.config)
@@ -307,39 +348,59 @@ def main():
                     pred = pred + ' '
         
         dic[pred] = box_rec 
-    print(dic)    
-    
+    #print(dic)    
+
+    final_dic = {
+        'Id': '',
+        'Name': '',
+        'Birth': '',
+        'Hometown': '',
+        'Address': ''}  
+
     # remove wrong box
     for key in dic:
         count = 0
-        check = False
+        # check = False
         for i in key:
             if i >= '0' and i <= '9':
                 count = count+1
-            if i == '-':
-                check = True
-        if count in {7, 8} and check:
+            # if i == '-':
+            #     check = True
+        if count in {7, 8}: #and check:
+            # get the birth box
+            final_dic['Birth'] = key
+            birth_box = dic[key]
+            # get the size of birth box
             birth_w = dic[key][2]-dic[key][0]
-            birth_h = dic[key][3]-dic[key][1] 
-
+            birth_h = dic[key][3]-dic[key][1]
+        if count > 8:
+            # get the id box
+            #id_box = dic[key]
+            # remove unrelated character
+            key = remove_char(key)
+            final_dic['Id'] = key
+    # if the size of a box is smaller than some thresh, than delete it
     list_key_remove = []
     for key in dic:
         if dic[key][2]-dic[key][0] < birth_w*0.4 or dic[key][3]-dic[key][1]<birth_h*7/9:
             list_key_remove.append(key)
 
-   
-    # address
+    # ------------ADDRESS------------
 
     for key in list_key_remove:
         del dic[key]
     
-    #print(dic)
+    print(dic)
+    print('-------------')
+
+    list_key_remove = []
 
     for key1 in dic:
         no_mark_str = remove_mark(key1)
 
         if no_mark_str.find('Noi DKHK thuong tru')!=-1:
-            address_lst = []
+            list_key_remove.append(key1)
+            
             pos = no_mark_str.find('Noi DKHK thuong tru')
             address_str = key1[pos+20:]
             
@@ -348,18 +409,90 @@ def main():
 
                 same = same_rows(key1, dic)
                 address_str = address_str + same + ', '
+
+                list_key_remove.append(same)
             else:
                 address_str = address_str + ', '
             
             under = under_rows(key1, dic)
+
             for box_under in under:
                 for key in dic:
-                    if box_under == dic[key]:
+                    if box_under == dic[key] and key != same:
                         address_str = address_str + key
-            
-            print('Address: ', address_str)           
+                        list_key_remove.append(key)
 
+            final_dic['Address'] = address_str
+    
+    #delete box has been already done
+    for key in list_key_remove:
+        del dic[key]
 
+    # ----------NAME-----------
+    # if the box has more than 3 upper character, than it must be the box name
+
+    bottom = 0
+    for key in dic:
+        if dic[key][1] < birth_box[1]:
+            count = 0
+            key_no_mark = remove_mark(key)
+            for i in key_no_mark:
+                if i>='A' and i<='Y':
+                    count += 1
+            if count >= 3:
+                if dic[key][1] > bottom:
+                    bottom = dic[key][1]
+                    name = remove_low_char(key)
+    final_dic['Name'] = name
+    
+    # ---------HOMETOWN-----------
+
+    #delete box has been already done
+    list_key_remove = []
+    sinhngay = same_rows(final_dic['Birth'], dic)
+    del dic[sinhngay]
+
+    for key in dic:
+        if dic[key][1] < birth_box[1]:
+            list_key_remove.append(key)
+    for key in list_key_remove:
+        del dic[key]
+    del dic[final_dic['Birth']]
+
+    hometown = ''
+    count = 0
+    
+    nguyenquan = top_left(dic)
+    pos = remove_mark(nguyenquan).find('Nguyen quan')
+    hometown = nguyenquan[pos+12:]
+    
+    same = ''
+    if len(hometown) == 0:
+
+        same = same_rows(nguyenquan, dic)
+        hometown = hometown + same + ', '
+  
+    else:
+        hometown = hometown + ', '
+    
+    under = under_rows(nguyenquan, dic)
+
+    for box_under in under:
+        for key in dic:
+            if box_under == dic[key] and key != same:
+                hometown = hometown + key
+    
+
+    final_dic['Hometown'] = hometown   
+    #---------------------------------
+
+    print('Id number: ', final_dic['Id'])
+    print('Name: ', final_dic['Name'])
+    print('Date of birth: ', final_dic['Birth'])
+    print('Hometown: ', final_dic['Hometown'])
+    print('Address: ', final_dic['Address'])
+
+    logger.info('Done!')
 if __name__ == '__main__':
     enable_static_mode()
     parser = program.ArgsParser()
