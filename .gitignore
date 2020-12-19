@@ -1,3 +1,5 @@
 det_r50_vd_east/
 output/det_db/
 weights/
+*.pyc
+my_weights/

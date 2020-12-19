@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+#python3 tools/infer_det.py -c configs/det/det_r18_vd_db_v1.1.yml -o Global.checkpoints="./output/det_db/best_accuracy" PostProcess.box_thresh=0.1 PostProcess.unclip_ratio=1.5 Global.infer_img="/home/han/Downloads/Telegram Desktop/110x.jpg"
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -161,7 +162,6 @@ def Key(x):
 
 def same_rows(key1, dic):
     box1 = dic[key1]
-    lst = []
     min_dis = 1000
     for key2 in dic:
         if key1 == key2:
@@ -169,7 +169,7 @@ def same_rows(key1, dic):
         box2 = dic[key2]
         
         if abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2) < min_dis:
-            min_dis = box2[3] - box2[1]
+            min_dis = abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2)
             key_same = key2 
     
     return key_same
@@ -205,26 +205,9 @@ def remove_low_char(key):
         return key[mark_pos+1:]
     else:
         return key[mark_pos:]
+   
 
-def top_left(dic):
-    if len(dic) == 1:
-        for key in dic:
-            return key
-        
-    for key1 in dic:
-        for key2 in dic:
-            box1 = dic[key1]
-            box2 = dic[key2]
-            if key1 != key2:
-                if box1[0] < box2[0]:
-                    top_left_key = key1 
-                elif box1[0] > box2[0]:
-                    top_left_key = key2
-                else:
-                    top_left_key = key1 if box1[1]<box2[1] else key2
-    return top_left_key   
-
-def process(key):
+def process_birth(key):
     birth = ''
     for char in key:
         if char>='0' and char<='9':
@@ -241,6 +224,63 @@ def process(key):
             break 
     return final_birth
         
+def finalize(key):
+    if key == '':
+        return ''
+    key_no_mark = remove_mark(key)
+    i = -1
+    while True:
+        i = i+1
+
+        char = key_no_mark[i]
+        
+        if not (('a'<=char and 'y'>=char) or ('A'<=char and 'Y'>=char)or ('0'<=char and '9'>=char)):
+
+            key = key[:i] + key[i+1:]
+            key_no_mark = remove_mark(key)
+            i = i-1
+        else:
+            break
+
+    if key == '':
+        return ''
+
+    i = len(key)
+    key_no_mark = remove_mark(key)
+    while True:
+        i = i-1
+        char = key_no_mark[i]
+        if not (('a'<=char and 'y'>=char) or ('A'<=char and 'Y'>=char)or ('0'<=char and '9'>=char)):
+            key = key[:i]
+        else:
+            break 
+        if i==0:
+            break    
+    i = 0
+    while True:
+        if key[i]==',' and key[i+1]==',':
+            key = key[:i] + key[i+1:]
+            i = i-1
+        i=i+1
+        if i == len(key):
+            break 
+    
+    return key 
+
+def count_num_in_key(key):
+    count = 0
+    # check = False
+    for i in key:
+        if i >= '0' and i <= '9':
+            count = count+1
+    return count
+
+def count_upper_in_key(key):
+    count = 0
+    for i in key:
+        if i>='A' and i<='Y':
+            count += 1
+    return count
 
 def main():
     config = program.load_config(FLAGS.config)
@@ -370,171 +410,419 @@ def main():
         dic_o[pred] = box
     #print(dic)    
 
+
     final_dic = {
         'Id': '',
         'Name': '',
         'Birth': '',
+        'Sex' : '',
         'Hometown': '',
-        'Address': ''}  
+        'Date of expired': '',
+        'Address': ''} 
 
-    # remove wrong box
+    # check if the image is ID card or Citizen Card
+    count_date = 0
+    can_cuoc = 0
     for key in dic:
-        count = 0
-        # check = False
-        for i in key:
-            if i >= '0' and i <= '9':
-                count = count+1
-            # if i == '-':
-            #     check = True
-        if count in {7, 8}: #and check:
-            # get the birth box
-            
-            final_dic['Birth'] = key
-            birth_box = dic[key]
-            # get the size of birth box
-            birth_w = dic[key][2]-dic[key][0]
-            birth_h = dic[key][3]-dic[key][1]
-        if count > 8:
-            # get the id box
-            #id_box = dic[key]
-            # remove unrelated character
-            key = remove_char(key)
-            final_dic['Id'] = key
-    # if the size of a box is smaller than some thresh, than delete it
-    list_key_remove = []
-    for key in dic:
-        if dic[key][2]-dic[key][0] < birth_w*0.4 or dic[key][3]-dic[key][1]<birth_h*7/9:
-            list_key_remove.append(key)
+        count = count_num_in_key(key)
+        if count in {7, 8}:
+            count_date += 1
+        no_mark = remove_mark(key)
 
-    # ------------ADDRESS------------
-
-    for key in list_key_remove:
-        del dic[key]
-    
-    print(dic)
-    print('-------------')
-
-    list_key_remove = []
-
-    for key1 in dic:
-        no_mark_str = remove_mark(key1)
-
-        if no_mark_str.find('Noi DKHK thuong tru')!=-1:
-            address_box = dic[key1]
-            list_key_remove.append(key1)
-            
-            pos = no_mark_str.find('Noi DKHK thuong tru')
-            address_str = key1[pos+20:]
-            
-            same = ''
-            if len(address_str) == 0:
-
-                same = same_rows(key1, dic)
-                address_str = address_str + same + ', '
-
-                list_key_remove.append(same)
-            else:
-                address_str = address_str + ', '
-            
-            under = under_rows(key1, dic)
-
-            for box_under in under:
-                for key in dic:
-                    if box_under == dic[key] and key != same:
-                        address_str = address_str + key
-                        list_key_remove.append(key)
-
-            final_dic['Address'] = address_str
-    
-    #delete box has been already done
-    for key in list_key_remove:
-        del dic[key]
-
-    # ----------NAME-----------
-    # if the box has more than 3 upper character, than it must be the box name
-
-    bottom = 0
-    for key in dic:
-        if dic[key][1] < birth_box[1]:
-            count = 0
-            key_no_mark = remove_mark(key)
-            for i in key_no_mark:
-                if i>='A' and i<='Y':
-                    count += 1
-            if count >= 3:
-                if dic[key][1] > bottom:
-                    bottom = dic[key][1]
-                    name = key
-    name_box = dic[name]
-    
-    if (abs(name_box[0] - address_box[0]) < (birth_box[2]-birth_box[0])*1/4) and (abs(birth_box[1] - name_box[3])>(birth_box[3]-birth_box[1])):
-            
-        # Cut head of box name base on the length of box birth
-        name_o_box = dic_o[name]
-        name_o_box[0][0][0] = name_o_box[0][0][0] + (birth_box[2]-birth_box[0])*2/3
-        name_o_box[3][0][0] = name_o_box[3][0][0] + (birth_box[2]-birth_box[0])*2/3
+        if no_mark == 'CAN CUOC CONG DAN':
+            can_cuoc += 1
         
-        # OCR again with new box
-        crop, box_rec = crop_image(copy_img, name_o_box)
-
-        # Convert cv2 format to PIL
-        crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-        im_pil = Image.fromarray(crop)
-        pred = detector.predict(im_pil)
-        dic[pred] = box_rec 
-
-        final_dic['Name'] = pred
-    else:
-        final_dic['Name'] = name
+    # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
+        
+    if count_date ==  2 or can_cuoc==1:
     
-    # ---------HOMETOWN-----------
-
-    #delete box has been already done
-    list_key_remove = []
-    sinhngay = same_rows(final_dic['Birth'], dic)
-    del dic[sinhngay]
-
-    for key in dic:
-        if dic[key][1] < birth_box[1]:
-            list_key_remove.append(key)
-    for key in list_key_remove:
-        del dic[key]
-    del dic[final_dic['Birth']]
-
-    hometown = ''
-    count = 0
-    
-    nguyenquan = top_left(dic)
-    pos = remove_mark(nguyenquan).find('Nguyen quan')
-    hometown = nguyenquan[pos+12:]
-    
-    same = ''
-    if len(hometown) == 0:
-
-        same = same_rows(nguyenquan, dic)
-        hometown = hometown + same + ', '
-  
-    else:
-        hometown = hometown + ', '
-    
-    under = under_rows(nguyenquan, dic)
-
-    for box_under in under:
+    #-------------ID, Birth, ex---------------------
+        list_key_remove = []
+        birth_ex = [] 
         for key in dic:
-            if box_under == dic[key] and key != same:
-                hometown = hometown + key
-    
+            if count_num_in_key(key) in {7,8}:
+                birth_ex.append(key)
+                list_key_remove.append(key)
+            #                  and dic[key][2]>int(src_img.shape[1]/2):
+                
+            #     key_no_mark = remove_char(key)
+            #     key_no_mark = process_birth(key_no_mark)
+            #     final_dic['Birth'] = key_no_mark
+            #     birth_box = dic[key]
+            #     list_key_remove.append(key)
+            #     continue
+            # if count_num_in_key(key) in {7,8} and dic[key][0]<int(src_img.shape[1]/2):
+            #     #print(key)
+            #     key_no_mark = remove_char(key)
+            #     #print(key())
+            #     key_no_mark = process_birth(key_no_mark) 
+            #     #print(key)
+            #     final_dic['Date of expired'] = key_no_mark
+            #     ex_box = dic[key]
+            #     list_key_remove.append(key)
+            if count_num_in_key(key) > 8:
+                key_no_mark = remove_char(key)
+                final_dic['Id'] = key_no_mark 
+                list_key_remove.append(key)
+        
+        copy_birth_ex = []
+        copy_birth_ex.append(birth_ex[0])
+        copy_birth_ex.append(birth_ex[1])
 
-    final_dic['Hometown'] = hometown   
+        birth_ex[0] = remove_char(birth_ex[0])
+        birth_ex[0] = process_birth(birth_ex[0])
+        birth_ex[1] = remove_char(birth_ex[1])
+        birth_ex[1] = process_birth(birth_ex[1])
+
+        if dic[copy_birth_ex[0]][0] < dic[copy_birth_ex[1]][1]:
+            final_dic['Date of expired'] = birth_ex[0]
+            final_dic['Birth'] = birth_ex[1]
+            birth_box = dic[copy_birth_ex[1]]
+        else:
+            final_dic['Date of expired'] = birth_ex[1]
+            final_dic['Birth'] = birth_ex[0]
+            birth_box = dic[copy_birth_ex[0]]   
+
+    #-------------------NAME---------------------
+        bottom = 0
+        for key in dic:
+            if dic[key][1] < birth_box[1]:
+                
+                key_no_mark = remove_mark(key)
+                count = count_upper_in_key(key_no_mark)
+
+                if count >= 3:
+                    if dic[key][1] > bottom:
+                        bottom = dic[key][1]
+                        name = key
+        final_dic['Name'] = name
+        name_box = dic[name]
+        list_key_remove.append(name)
+
+        for key in list_key_remove:
+            del dic[key]
+
+    #-------------------Address---------------------
+        list_key_remove = []
+
+        for key1 in dic:
+            # if box has at least 3 word in Noi DKHK thuong tru, 
+            # than it must be address box
+            no_mark_str = remove_mark(key1)
+            count = 0
+            list_pos = []
+            mark = True
+            if no_mark_str.find('Noi') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('Noi'))
+            if no_mark_str.find('thuong') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('thuong'))
+            if no_mark_str.find('tru') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('tru'))
+            
+            for i in range(len(list_pos)-1):
+                if list_pos[i]>list_pos[i+1]:
+                    mark = False 
+
+            if count in {2, 3} and mark:
+                address_box = dic[key1]
+                list_key_remove.append(key1)
+                
+                
+                pos = no_mark_str.find('Noi thuong tru')
+                address_str = key1[pos+15:]
+                
+                same = ''
+                if len(address_str) == 0:
+
+                    same = same_rows(key1, dic)
+
+                    address_str = address_str + same + ', '
+
+                    list_key_remove.append(same)
+                else:
+                    address_str = address_str + ', '
+                
+                under = under_rows(key1, dic)
+
+                for box_under in under:
+                    for key in dic:
+                        if box_under == dic[key] and key != same:
+                            address_str = address_str + key
+                            list_key_remove.append(key)
+
+                final_dic['Address'] = address_str
+        
+        #delete box has been already done
+        for key in list_key_remove:
+            del dic[key]      
+
+     #----------------------------------------------------------   
+    #-------------------Hometown---------------------
+        list_key_remove = []
+
+        for key1 in dic:
+            # if box has at least 3 word in Noi DKHK thuong tru, 
+            # than it must be address box
+            no_mark_str = remove_mark(key1)
+            count = 0
+            list_pos = []
+            mark = True
+            if no_mark_str.find('Que') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('Que'))
+            if no_mark_str.find('quan') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('quan'))
+            
+            for i in range(len(list_pos)-1):
+                if list_pos[i]>list_pos[i+1]:
+                    mark = False 
+
+            if count in {1, 2} and mark:
+                address_box = dic[key1]
+                list_key_remove.append(key1)
+                
+                
+                pos = no_mark_str.find('Que quan')
+                hometown = key1[pos+10:]
+                
+                same = ''
+                if len(hometown) == 0:
+
+                    same = same_rows(key1, dic)
+
+                    hometown = hometown + same + ', '
+
+                    list_key_remove.append(same)
+                else:
+                    hometown = hometown + ', '
+                
+                under = under_rows(key1, dic)
+
+                for box_under in under:
+                    for key in dic:
+                        if box_under == dic[key] and key != same:
+                            hometown = hometown + key
+                            list_key_remove.append(key)
+
+                final_dic['Hometown'] = hometown 
+        
+        #delete box has been already done
+        for key in list_key_remove:
+            del dic[key]
+     #----------------------------------------------------------   
+        list_key_remove = []
+        for key in dic:
+            if birth_box[1] > dic[key][1]:
+                list_key_remove.append(key)
+        for key in list_key_remove:
+            del dic[key]
+        
+        for key in dic:
+            key_no_mark = remove_mark(key)
+
+            if key_no_mark.find('Nu') != -1:
+                final_dic['Sex'] = 'Nữ'
+        if final_dic['Sex'] == '':
+            final_dic['Sex'] = 'Nam'
+    else:
+        
+    
+        #---------------ID, Birth--------------------
+        for key in dic:
+            count = count_num_in_key(key)
+            if count in {7, 8}: #and check:
+                # get the birth box
+                
+                final_dic['Birth'] = key
+                birth_box = dic[key]
+                # get the size of birth box
+                birth_w = dic[key][2]-dic[key][0]
+                birth_h = dic[key][3]-dic[key][1]
+            if count > 8:
+                # get the id box
+                #id_box = dic[key]
+                # remove unrelated character
+                key = remove_char(key)
+                final_dic['Id'] = key
+        # if the size of a box is smaller than some thresh, than delete it
+
+        #--------------Remove wrong box-----------------
+
+        print('BEFORE ' ,dic)
+        list_key_remove = []
+        for key in dic:
+            if dic[key][2]-dic[key][0] < birth_w*0.4 or dic[key][3]-dic[key][1]<birth_h*13/18:
+                list_key_remove.append(key)
+        for key in list_key_remove:
+            del dic[key]
+        
+        print('AFTER ', dic)
+        print('-------------')
+
+        # ------------ADDRESS----------------------
+
+        list_key_remove = []
+
+        for key1 in dic:
+            # if box has at least 3 word in Noi DKHK thuong tru, 
+            # than it must be address box
+            no_mark_str = remove_mark(key1)
+            count = 0
+            list_pos = []
+            mark = True
+            if no_mark_str.find('Noi') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('Noi'))
+            if no_mark_str.find('DKHK') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('DKHK'))
+            if no_mark_str.find('thuong') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('thuong'))
+            if no_mark_str.find('tru') != -1:
+                count = count + 1
+                list_pos.append(no_mark_str.find('tru'))
+            
+            for i in range(len(list_pos)-1):
+                if list_pos[i]>list_pos[i+1]:
+                    mark = False 
+
+            if count in {3, 4} and mark:
+                address_box = dic[key1]
+                list_key_remove.append(key1)
+                
+                
+                pos = no_mark_str.find('Noi DKHK thuong tru')
+                address_str = key1[pos+20:]
+                
+                same = ''
+                if len(address_str) == 0:
+
+                    same = same_rows(key1, dic)
+
+                    address_str = address_str + same + ', '
+
+                    list_key_remove.append(same)
+                else:
+                    address_str = address_str + ', '
+                
+                under = under_rows(key1, dic)
+
+                for box_under in under:
+                    for key in dic:
+                        if box_under == dic[key] and key != same:
+                            address_str = address_str + key
+                            list_key_remove.append(key)
+
+                final_dic['Address'] = address_str
+        
+        #delete box has been already done
+        for key in list_key_remove:
+            del dic[key]
+
+        # ----------NAME-----------
+        # if the box has more than 3 upper character, than it must be the box name
+
+        bottom = 0
+        for key in dic:
+            if dic[key][1] < birth_box[1]:
+                
+                key_no_mark = remove_mark(key)
+                count = count_upper_in_key(key_no_mark)
+
+                if count >= 3:
+                    if dic[key][1] > bottom:
+                        bottom = dic[key][1]
+                        name = key
+        name_box = dic[name]
+        
+        if (abs(name_box[0] - address_box[0]) < (birth_box[2]-birth_box[0])*1/4) and (abs(birth_box[1] - name_box[3])>(birth_box[3]-birth_box[1])*4/5):
+                
+            # Cut head of box name base on the length of box birth
+            name_o_box = dic_o[name]
+            name_o_box[0][0][0] = name_o_box[0][0][0] + (birth_box[2]-birth_box[0])*2/3
+            name_o_box[3][0][0] = name_o_box[3][0][0] + (birth_box[2]-birth_box[0])*2/3
+            
+            # OCR again with new box
+            crop, box_rec = crop_image(copy_img, name_o_box)
+
+            # Convert cv2 format to PIL
+            crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
+            im_pil = Image.fromarray(crop)
+            pred = detector.predict(im_pil)
+            dic[pred] = box_rec 
+
+            final_dic['Name'] = pred
+        else:
+            final_dic['Name'] = name
+        
+
+
+        #delete box has been already done
+        list_key_remove = []
+        sinhngay = same_rows(final_dic['Birth'], dic)
+        del dic[sinhngay]
+
+        for key in dic:
+            if dic[key][1] < birth_box[1]:
+                list_key_remove.append(key)
+        for key in list_key_remove:
+            del dic[key]
+        del dic[final_dic['Birth']]
+
+        # ---------HOMETOWN-----------
+        hometown = ''
+        count = 0
+        print('FINAL', dic)
+        for key in dic:
+            key_no_mark = remove_mark(key)
+            if key_no_mark.find('Nguyen quan') != -1:
+                nguyenquan = key
+        
+        pos = remove_mark(nguyenquan).find('Nguyen quan')
+        hometown = nguyenquan[pos+12:]
+        
+        same = ''
+        if len(hometown) == 0:
+
+            same = same_rows(nguyenquan, dic)
+            print('same', same)
+            hometown = hometown + same + ', '
+    
+        else:
+            hometown = hometown + ', '
+        
+        under = under_rows(nguyenquan, dic)
+
+        for box_under in under:
+            for key in dic:
+                if box_under == dic[key] and key != same:
+                    print('........', key)
+
+                    hometown = hometown + key
+        
+
+        final_dic['Hometown'] = hometown   
+        final_dic['Birth'] = process_birth(final_dic['Birth'])
     #---------------------------------
 
-    print('Id number: ', final_dic['Id'])
-    print('Name: ', final_dic['Name'])
-    print('Date of birth: ', process(final_dic['Birth']))
-    print('Hometown: ', final_dic['Hometown'])
-    print('Address: ', final_dic['Address'])
 
+    print('-------------------------------------')
+    print('Id number: ', finalize(final_dic['Id']))
+    print('Name: ', finalize(final_dic['Name']))
+    print('Date of birth: ', finalize(final_dic['Birth']))
+    print('Hometown: ', finalize(final_dic['Hometown']))
+    print('Address: ', finalize(final_dic['Address']))
+    print('Date of expired: ', finalize(final_dic['Date of expired']))
+    print('Sex: ', finalize(final_dic['Sex']))
+    print('-------------------------------------')
     logger.info('Done!')
+
+    
 if __name__ == '__main__':
     enable_static_mode()
     parser = program.ArgsParser()
