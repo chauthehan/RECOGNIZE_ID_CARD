@@ -144,12 +144,15 @@ class EvalTestReader(object):
                     img_list.append(img_path)
         else:
             img_path = self.params['infer_img']
-            img_list = get_image_file_list(img_path)
-
+            #img_list = get_image_file_list(img_path)
+            img_list = [img_path]
         def batch_iter_reader():
             batch_outs = []
             for img_path in img_list:
+                #print(';;;;;;;;;;;;', img_path)
                 img = cv2.imread(img_path)
+                # cv2.imshow('',img)
+                # cv2.waitKey(0)
                 if img is None:
                     logger.info("{} does not exist!".format(img_path))
                     continue

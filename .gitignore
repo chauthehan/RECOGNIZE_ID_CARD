@@ -3,3 +3,4 @@ output/det_db/
 weights/
 *.pyc
 my_weights/
+*.pth
