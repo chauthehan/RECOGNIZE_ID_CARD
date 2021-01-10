@@ -47,7 +47,7 @@ from ppocr.utils.utility import create_module, get_image_file_list
 import program
 from ppocr.utils.save_load import init_model
 from ppocr.data.reader_main import reader_main
-from tools.process_text import *
+from tools.utils import *
 import cv2
 
 from ppocr.utils.utility import initial_logger
@@ -61,6 +61,7 @@ import imutils
 
 from vietocr.tool.predictor import Predictor
 from vietocr.tool.config import Cfg
+import random
 
 def draw_det_res(dt_boxes, config, img, img_name):
     if len(dt_boxes) > 0:
@@ -167,10 +168,7 @@ def main():
 
     img_path = config['Global'].get('infer_img')
 
-    dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)  
-
-    #cut_img_path = cut_roi(dt_boxes, copy_img)
-    #dt_boxes, copy_img = paddle(cut_img_path, config, exe, eval_prog, eval_fetch_list)  
+    dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
 
     logger.info("Detect success!")
 
@@ -183,34 +181,9 @@ def main():
     config_ocr['predictor']['beamsearch']=False
 
     detector = Predictor(config_ocr)
-
-    dic = {}
-    dic_o = {}
-    dic_s = {}
-    import random
-
-    for i, box in enumerate(dt_boxes):
-        box = box.astype(np.int32).reshape((-1, 1, 2))
-       
-        crop = four_point_transform(copy_img, box)
-        #box_rec = crop_image(copy_img, box)
-        # Convert cv2 format to PIL
-        crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-        
-        im_pil = Image.fromarray(crop)
-        pred = detector.predict(im_pil)     
-        if dic is not None:
-            for key in dic:
-                if pred == key:
-                    pred = pred + ' '       
-        
-        print(pred)
-        dic[pred] = i
-        dic_o[pred] = box
-        #dic_s[pred] = crop.shape[0] * crop.shape[1]
     
-    #print(dic_o)
-    #exit()
+    dic, dic_o, _ = OCR_text(2,dt_boxes, copy_img, detector)        
+    
     final_dic = {
         'Id': '',
         'Name': '',
@@ -278,7 +251,7 @@ def main():
             if dic[key][1] < birth_box[1]:
                 
                 key_no_mark = remove_mark(key)
-                count = count_upper_in_key(key_no_mark)
+                count = count_upper_consecutive(key_no_mark)
 
                 if count >= 3:
                     if dic[key][1] > bottom:
@@ -423,41 +396,43 @@ def main():
 
         dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
         
-        # OCR again 
-        dic = {}
-        dic_o = {}
-        dic_s = {}
-        
-        for i, box in enumerate(dt_boxes):
-            box = box.astype(np.int32).reshape((-1, 1, 2))
-        
-            crop = four_point_transform(copy_img, box)
-            box_rec = crop_image(copy_img, box)
-            # Convert cv2 format to PIL
-            crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-            #crop = imutils.resize(crop, height=32)
-            
-            cv2.imwrite('box/{}.jpg'.format(i),crop)
-            
-            im_pil = Image.fromarray(crop)
-            pred = detector.predict(im_pil)     
-            if dic is not None:
-                for key in dic:
-                    if pred == key:
-                        pred = pred + ' '       
-            
-            print(pred)
-            dic[pred] = box_rec
-            dic_o[pred] = box
-            dic_s[pred] = crop.shape[0] * crop.shape[1]
+        # OCR again         
+        dic, dic_o, dic_s = OCR_text(1, dt_boxes, copy_img, detector) 
 
-        #---------------ID, Birth--------------------
+        #---------------ID--------------------
         dic_s_birth = 0
         birth_key = ''
+
+        bot = 9999
+        for key in dic:
+            key_no_mark = remove_mark(key)
+            key_no_mark = str.lower(key_no_mark)
+            if dic[key][1]<bot and key_no_mark.find('so') == 0:
+                bot = dic[key][1]
+                so = dic[key]
+                key_so = key
+        
+        dic_num = {}
+        for key in dic:
+            count = count_num_in_key(key)
+            if count >=4:
+                dic_num[key] = dic[key]
+
+        if len(remove_char(key_so))>=4:
+            final_dic['Id'] = remove_char(key_so)
+        else:
+            dis = 9999
+            for key in dic_num:
+                if abs(dic_num[key][1]-so[1]) < dis:
+                    dis = abs(dic_num[key][1]-so[1])
+                    key_id = key
+            final_dic['Id'] = remove_char(key_id)
+
+        #---------------BIRTH--------------------
         for key in dic:
             #print(key)
             count = count_num_in_key(key)
-            if count  == 8: #and check:
+            if count == 8 and key.find('-')!=-1: #and check:
                 # get the birth box
                 birth_key = key
                 final_dic['Birth'] = process_birth(key)
@@ -474,13 +449,7 @@ def main():
                 # get the size of birth box
                 dic_s_birth = dic_s[key]*2
 
-            if count >= 9:
-                # remove unrelated character
-                key = remove_char(key)
-                key = key[-9:]
-                final_dic['Id'] = key
-
-            if count == 7:
+            if count == 7 and key.find('-')!=-1:
                 birth_key = key
                 k = remove_mark(key)
                 k = remove_char_birth(k)
@@ -489,22 +458,54 @@ def main():
                 # get the size of birth box
                 dic_s_birth = dic_s[key]
 
+        #--------------Remove wrong box-----------------
+
+        #print('BEFORE ' ,dic)
+
+        print(dic_s)
+        list_key_remove = []
+        for key in dic:
+            if dic_s[key] < int(dic_s_birth/2.15):
+                list_key_remove.append(key)
+            if dic[key][0] < so[0] - (birth_box[2]-birth_box[0]):
+                list_key_remove.append(key)
+        
+        set_remove = set(list_key_remove)
+        list_key_remove = list(set_remove)
+        
+        #print('REMOVE', list_key_remove)
+        for key in list_key_remove:
+            if key == '':
+                continue
+            else:
+                del dic[key]
+        
+        #print('AFTER ', dic)
+        print('-------------')
+
+
         # if the size of a box is smaller than some thresh, than delete it
         # ----------NAME-----------
-        # if the box has more than 3 upper character, than it must be the box name
+        # if the box has more than 2 consecutive upper character, than it must be the box name
         
-
+        dic_name = {}
         bottom = 0
         for key in dic:
-            if dic[key][1] < birth_box[1]:
-                
-                key_no_mark = remove_mark(key)
-                count = count_upper_in_key(key_no_mark)
+            if dic[key][1] < birth_box[1] and dic[key][1] > so[1]:
 
-                if count >= 3:
-                    if dic[key][1] > bottom:
-                        bottom = dic[key][1]
-                        name = key
+                key_no_mark = remove_mark(key)
+                count = count_upper_consecutive(key_no_mark)
+                if count >= 2:
+                    dic_name[key] = dic[key]
+        
+        lst_name = []
+        for key in dic_name:
+            lst_name.append(key)
+        if len(lst_name)==1:
+            name = lst_name[0]
+        else:
+            #name appears on 2 lines
+            name = lst_name[1] + ' ' + lst_name[0]
 
         name_no_mark = remove_mark(name)
         for j, i in enumerate(name_no_mark[1:]):
@@ -526,23 +527,8 @@ def main():
             del dic[key]
         del dic[birth_key]
 
-        #--------------Remove wrong box-----------------
 
-        #print('BEFORE ' ,dic)
-
-        print(dic_s)
-        list_key_remove = []
-        for key in dic:
-            if dic_s[key] < int(dic_s_birth/2.15):
-                list_key_remove.append(key)
-        #print('REMOVE', list_key_remove)
-        for key in list_key_remove:
-            del dic[key]
-        
-        #print('AFTER ', dic)
-        print('-------------')
-
-        # ---------HOMETOWN-----------
+        # ---------HOMETOWN, ADDRESS-----------
 
         hometown = ''
         nguyenquan = ''
@@ -624,7 +610,7 @@ def main():
 
         if len(keys_above_dkhk) != 0:
             hometown2 = sort_key_left2right(keys_above_dkhk)
-            hometown = hometown + ', '+hometown2
+            hometown = hometown + ' '+hometown2
                 
 
         for key in keys_above_dkhk:
@@ -638,7 +624,7 @@ def main():
 
         if len(dic) != 0:
             address2 = sort_key_left2right(dic)
-            address = address + ', ' + address2     
+            address = address + ' ' + address2     
 
 
         final_dic['Address'] = address
