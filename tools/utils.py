@@ -2,7 +2,9 @@ import os
 import numpy as np
 import cv2
 import math 
+import imutils
 from PIL import Image
+from infer_det import textbox
 
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered
@@ -112,7 +114,7 @@ def crop_image(I, box):
 
     return [minX, minY, maxX, maxY]
 
-def remove_mark(str):
+def remove_accent(str):
     new_str = ''
     for i in str:
         if i in ['á', 'à', 'ạ', 'ã', 'ả', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'ă', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ']:
@@ -150,19 +152,20 @@ def remove_mark(str):
 def Key(x):
     return x[0]
 
-def box_nearest(key1, dic):
-    box1 = dic[key1]
+def box_nearest(obj, list_text_box2):
+
+    box1 = obj.two_points
     min_dis = 1000
-    for key2 in dic:
-        if key1 == key2:
+    for objj in list_text_box2:
+        if obj.key == objj.key:
             continue
-        box2 = dic[key2]
+        box2 = objj.two_points
         
         if abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2) < min_dis:
             min_dis = abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2)
-            key_same = key2 
+            return_obj = objj 
     
-    return key_same
+    return return_obj
 
 def under_rows(key1, dic):
     box1 = dic[key1]
@@ -201,7 +204,7 @@ def remove_char(key):
 def remove_low_char(key):
 
     mark_pos = 0
-    key_no_mark = remove_mark(key)
+    key_no_mark = remove_accent(key)
     for i, char in enumerate(key_no_mark):
         if not (char>='A' and char<='Y' or char==' '):
             mark_pos = i
@@ -238,7 +241,7 @@ def process_birth(key):
 def finalize(key):
     if key == '':
         return ''
-    key_no_mark = remove_mark(key)
+    key_no_mark = remove_accent(key)
     i = -1
     while True:
         i = i+1
@@ -248,7 +251,7 @@ def finalize(key):
         if not (('a'<=char and 'y'>=char) or ('A'<=char and 'Y'>=char)or ('0'<=char and '9'>=char)):
 
             key = key[:i] + key[i+1:]
-            key_no_mark = remove_mark(key)
+            key_no_mark = remove_accent(key)
             i = i-1
         else:
             break
@@ -257,7 +260,7 @@ def finalize(key):
         return ''
 
     i = len(key)
-    key_no_mark = remove_mark(key)
+    key_no_mark = remove_accent(key)
     while True:
         i = i-1
         char = key_no_mark[i]
@@ -304,7 +307,6 @@ def count_upper_consecutive(key):
                 count_max = count
             count = 0
         i = i + 1
-
 
 def remove_first_lower(key):
     final = ''
@@ -375,18 +377,18 @@ def remove_last_char(pred):
             pred = pred[:-1]
     return pred 
 
-def sort_key_left2right(dic):
+def sort_key_left2right(lst):
     string = ''
 
-    if len(dic) == 1:
-        for key in dic:
-            string = key
+    if len(lst) == 1:
+        for obj in lst:
+            string = obj.key
     else:
-        for i, key in enumerate(dic):
+        for i, obj in enumerate(lst):
             if i == 0:
-                a = key
+                a = obj.key
             else:
-                b = key    
+                b = obj.key    
         string = a + b
 
     return string
@@ -400,26 +402,27 @@ def score_conghoa(key):
             s = s+1
     return s
 
-def cut_roi(dic, copy_img, dic_o):
+def cut_roi(list_text_box, copy_img):
 
     max1 = 0
     max2 = 0
 
-    for key in dic:
-        key_no_mark = remove_mark(key)
-        sc_dkhk = score_dkhk(key_no_mark)
-        sc_conghoa = score_conghoa(key_no_mark)      
+    for obj in list_text_box:
+        text = obj.key
+        text_no_accent = remove_accent(text)
+        sc_dkhk = score_dkhk(text_no_accent)
+        sc_conghoa = score_conghoa(text_no_accent)      
 
         #print(key,' ' ,sc_dkhk)
         #print(key,' ', sc_conghoa)  
     
         if sc_dkhk > max1:
             max1 = sc_dkhk
-            box_dkhk = dic_o[key]
+            box_dkhk = obj.four_points
             #print('1', key)
         if sc_conghoa > max2:
             max2 = sc_conghoa
-            box_conghoa = dic_o[key]
+            box_conghoa = obj.four_points
             #print('2', key)
 
     width_conghoa = box_conghoa[1][0][0] - box_conghoa[0][0][0]
@@ -430,12 +433,10 @@ def cut_roi(dic, copy_img, dic_o):
     botleft = [max(int(box_dkhk[3][0][0] - width_conghoa/3), 0), min(int(box_dkhk[3][0][1] + height_conghoa*2.5), copy_img.shape[0])]
     botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
 
-
     #copy_img = cv2.circle(copy_img,(topleft[0], topleft[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(topright[0], topright[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(botleft[0], botleft[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(botright[0], botright[1]), 5, (0,255,0), -1)
-
 
     box = [[topleft], [topright], [botright], [botleft]]
     #print('box', box)
@@ -446,17 +447,19 @@ def cut_roi(dic, copy_img, dic_o):
     save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
     cv2.imwrite('out.jpg', save_img)
 
-import imutils
 def OCR_text(i, dt_boxes, copy_img, detector):
-    dic = {}
-    dic_o = {}
-    dic_s = {}
+    # dic = {}
+    # dic_o = {}
+    # dic_s = {}
+    list_text_box = []
+
     for j, box in enumerate(dt_boxes):
+        
         box = box.astype(np.int32).reshape((-1, 1, 2))
         
         
         crop = four_point_transform(copy_img, box)
-        crop = imutils.resize(crop, height=32)
+        #crop = imutils.resize(crop, height=32)
         cv2.imwrite('box{}/{}.jpg'.format(i, j), crop)
         box_rec = crop_image(copy_img, box)
         # Convert cv2 format to PIL
@@ -466,17 +469,164 @@ def OCR_text(i, dt_boxes, copy_img, detector):
         
         im_pil = Image.fromarray(crop)
         pred = detector.predict(im_pil)     
-        if dic is not None:
-            for key in dic:
-                if pred == key:
-                    pred = pred + ' '       
+        if list_text_box is not None:
+            for text in list_text_box:
+                if pred == text.key:
+                    pred = pred + ' '
+
+        print(pred)    
         
-        print(pred)
-        dic[pred] = box_rec
-        dic_o[pred] = box
-        dic_s[pred] = crop.shape[0] * crop.shape[1]
+        size = crop.shape[0] * crop.shape[1]
+        obj = textbox(pred, box_rec, box, size)
 
-    return dic, dic_o, dic_s
+        list_text_box.append(obj)
+        # dic[pred] = box_rec
+        # dic_o[pred] = box
+        # dic_s[pred] = crop.shape[0] * crop.shape[1]
 
+    return list_text_box
 
+def score_of_cc_or_cmnd(list_test_box1):
+    score = 0
+
+    for obj in list_test_box1:
+        text = obj.key
+        no_accent = remove_accent(text)
+
+        if no_accent.find('Quoc tich') != -1:
+            score += 1
+        if no_accent.find('Viet Nam') != -1:
+            score += 1
+        if no_accent.find('Ho va ten') != -1:
+            score += 1
+        if no_accent.find('Gioi tinh') != -1:
+            score += 1
+        if no_accent.find('Noi thuong tru') != -1:
+            score += 1
+        if no_accent.find('Co gia tri den') != -1:
+            score += 1
+    return score
+
+def score_expired(key):
+    s = 0
+    for i in {'Co', 'o ', ' g', 'gi', 'ia', 'a ', ' t', 'tr', 'ri',' d', 'de', 'en', 'n:'}:
+        if key.find(i) != -1:
+            s = s+1
+    for i in {'Co ', 'o g', ' gi', 'gia', 'ia ', 'a t', ' tr', 'tri', 'ri ', 'i d', ' de','den','en:'}:
+        if key.find(i) != -1:
+            s = s+3
+    return s
+
+def cut_roi_cc(list_text_box, copy_img):
+
+    max1 = 0
+    max2 = 0
+
+    for obj in list_text_box:
+        text = obj.key
+        text_no_accent = remove_accent(text)
+        sc_dkhk = score_expired(text_no_accent)
+        sc_conghoa = score_conghoa(text_no_accent)      
+
+        #print(key,' ' ,sc_dkhk)
+        #print(key,' ', sc_conghoa)  
+    
+        if sc_dkhk > max1:
+            max1 = sc_dkhk
+            box_dkhk = obj.four_points
+            #print('1', key)
+        if sc_conghoa > max2:
+            max2 = sc_conghoa
+            box_conghoa = obj.four_points
+            #print('2', key)
+
+    width_conghoa = box_conghoa[1][0][0] - box_conghoa[0][0][0]
+    height_conghoa = box_conghoa[3][0][1] - box_conghoa[0][0][1]
+
+    topleft = [max(int(box_dkhk[3][0][0]), 0), max(int(box_conghoa[0][0][1] - height_conghoa/2),0)]
+    topright = [min(int(box_conghoa[1][0][0] + width_conghoa/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height_conghoa/2), 0)]
+    botleft = [max(int(box_dkhk[3][0][0]), 0), min(int(box_dkhk[3][0][1]), copy_img.shape[0])]
+    botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+
+    #copy_img = cv2.circle(copy_img,(topleft[0], topleft[1]), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(topright[0], topright[1]), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(botleft[0], botleft[1]), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(botright[0], botright[1]), 5, (0,255,0), -1)
+
+    box = [[topleft], [topright], [botright], [botleft]]
+    #print('box', box)
+    #print(box)
+    #warped =  four_point_transform(copy_img, box)
+    box_rec = crop_image(copy_img, box)
+    #print('rec', box_rec[0], box_rec[1])
+    save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
+    cv2.imwrite('out.jpg', save_img)
+
+def score_Quoctich(key):
+    s = 0
+    for i in {'Qu', 'uo', 'oc', 'c ', ' t', 'ti', 'ic', 'ch', 'h:'}:
+        if key.find(i) != -1:
+            s = s+1
+    for i in {'Quo', 'uoc', 'oc ', 'c t',' ti', 'tic', 'ich', 'ch:'}:
+        if key.find(i) != -1:
+            s = s+3
+    
+    return s
+    
+def score_Gioitinh(key):
+    s = 0
+    for i in {'Gi', 'io','oi', 'i ', ' t', 'ti', 'in', 'nh', 'h:'}:
+        if key.find(i) != -1:
+            s = s+1
+    for i in {'Gio', 'ioi', 'oi ', 'i t', ' ti', 'tin', 'inh', 'nh:'}:
+        if key.find(i) != -1:
+            s = s+3
+    if len(key) == 10:
+        s = s+5
+    return s
+
+def score_Quequan(key):
+    s = 0
+    for i in {'Qu', 'ue', 'e ', ' q', 'qu', 'ua', 'an', 'n:'}:
+        if key.find(i) != -1:
+            s = s+1
+    for i in {'Que', 'ue ', 'e q', ' qu', 'qua', 'uan', 'an:'}:
+        if key.find(i) != -1:
+            s = s+3
+    if len(key) == 9:
+        s = s+5
+    return s 
+
+def score_Noithuongtru(key):
+    s = 0
+    for i in {'No', 'oi', 'i ', ' t', 'th', 'hu', 'uo', 'on','ng', 'g ', ' t', 'tr', 'ru'}:
+        if key.find(i) != -1:
+            s = s+1
+    for i in {'Noi', 'oi ', 'i t', ' th', 'thu', 'huo', 'uon', 'ong', 'ng ', 'g t', ' tr', 'tru'}:
+        if key.find(i) != -1:
+            s = s+3
+    return s
+def box_nearest_cc(obj_Gioitinh, list_text_box2):
+
+    max_dis = (obj_Gioitinh.two_points[2] - obj_Gioitinh.two_points[0])*2
+
+    for obj in list_text_box2:
+        center_obj = [(obj.two_points[0]+obj.two_points[2])/2 , (obj.two_points[1]+obj.two_points[3])/2]
+        center_Gt = [(obj_Gioitinh.two_points[0]+obj_Gioitinh.two_points[2])/2 , (obj_Gioitinh.two_points[1]+obj_Gioitinh.two_points[3])/2]
+        dis = math.sqrt((center_Gt[0]-center_obj[0])**2 + (center_Gt[1]-center_obj[1])**2)
+        if dis < max_dis:
+            key = obj.key
+            key_no_accent = remove_accent(key)
+            if key_no_accent == 'Nam' or key_no_accent == 'Nu':
+                return obj
+def find_cogiatriden(list_text_box2):
+    maxx = 0
+    for obj in list_text_box2:
+        text = obj.key
+        text_no_accent = remove_accent(text)
+        score = score_expired(text_no_accent)
+        if score>maxx:
+            maxx = score
+            obj_ex = obj
+    return obj_ex
 

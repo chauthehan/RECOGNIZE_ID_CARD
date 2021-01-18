@@ -47,6 +47,7 @@ from ppocr.utils.utility import create_module, get_image_file_list
 import program
 from ppocr.utils.save_load import init_model
 from ppocr.data.reader_main import reader_main
+from tools.identify_text import *
 from tools.utils import *
 import cv2
 
@@ -62,6 +63,14 @@ import imutils
 from vietocr.tool.predictor import Predictor
 from vietocr.tool.config import Cfg
 import random
+
+
+class textbox:
+    def __init__(self, key, two_points, four_points, size):
+        self.key = key
+        self.two_points = two_points # describe text box by 2 points rectangle
+        self.four_points = four_points # describe text box by 4 points quadrilateral
+        self.size = size
 
 def draw_det_res(dt_boxes, config, img, img_name):
     if len(dt_boxes) > 0:
@@ -130,6 +139,7 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
 
     return dt_boxes, copy_img
 
+
 def main():
     config = program.load_config(FLAGS.config)
     program.merge_config(FLAGS.opt)
@@ -182,7 +192,7 @@ def main():
 
     detector = Predictor(config_ocr)
     
-    dic, dic_o, _ = OCR_text(2,dt_boxes, copy_img, detector)        
+    list_text_box1 = OCR_text(2, dt_boxes, copy_img, detector)        
     
     final_dic = {
         'Id': '',
@@ -194,453 +204,81 @@ def main():
         'Address': ''} 
 
     # check if the image is ID card or Citizen Card
-    score = 0
-    for key in dic:
-        no_mark = remove_mark(key)
 
-        if no_mark == 'Quoc tich':
-            score += 1
-        if no_mark == 'Viet Nam':
-            score += 1
-        if no_mark == 'Ho va ten':
-            score += 1
-        if no_mark == 'Gioi tinh':
-            score += 1
-        if no_mark == 'Noi thuong tru':
-            score += 1
-        if no_mark.find('Co gia tri den') != -1:
-            score += 1
-     
+    score = score_of_cc_or_cmnd(list_text_box1)
+           
     # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
         
     if score>=3:
-    
-    #-------------ID, Birth, ex---------------------
-        list_key_remove = []
-        birth_ex = [] 
-        for key in dic:
-            if count_num_in_key(key) in {7,8}:
-                birth_ex.append(key)
-                list_key_remove.append(key)
-            if count_num_in_key(key) > 8:
-                key_no_mark = remove_char(key)
-                final_dic['Id'] = key_no_mark 
-                list_key_remove.append(key)
+        print('[INFO] This is a Citizenship card!')
+
+        cut_roi_cc(list_text_box1, copy_img)
+        dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
+
+        # OCR again         
+        list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
+
+        # Find Id text
+        final_dic['Id'], obj_id = find_id_text(list_text_box2)
+
+        # Find box 'Quoc tich'
+        obj_quoctich = find_box_Quoctich(list_text_box2)
+
+        # Find birth text
+        final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich)
+
+        # Find name text
+        final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich, obj_id)
         
-        copy_birth_ex = []
-        copy_birth_ex.append(birth_ex[0])
-        copy_birth_ex.append(birth_ex[1])
+        # Find date of expired
+        final_dic['Date of expired'], obj_expired = find_key_expired(list_text_box2, obj_birth)
 
-        birth_ex[0] = remove_char(birth_ex[0])
-        birth_ex[0] = process_birth(birth_ex[0])
-        birth_ex[1] = remove_char(birth_ex[1])
-        birth_ex[1] = process_birth(birth_ex[1])
+        # Find sex
+        final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
 
-        if dic[copy_birth_ex[0]][0] < dic[copy_birth_ex[1]][1]:
-            final_dic['Date of expired'] = birth_ex[0]
-            final_dic['Birth'] = birth_ex[1]
-            birth_box = dic[copy_birth_ex[1]]
-        else:
-            final_dic['Date of expired'] = birth_ex[1]
-            final_dic['Birth'] = birth_ex[0]
-            birth_box = dic[copy_birth_ex[0]]   
+        # Delete box has been already  processed
 
-    #-------------------NAME---------------------
-        bottom = 0
-        for key in dic:
-            if dic[key][1] < birth_box[1]:
-                
-                key_no_mark = remove_mark(key)
-                count = count_upper_consecutive(key_no_mark)
+        list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich, obj_expired)
 
-                if count >= 3:
-                    if dic[key][1] > bottom:
-                        bottom = dic[key][1]
-                        name = key
-        final_dic['Name'] = name
-        #name_box = dic[name]
-        list_key_remove.append(name)
+        # find hometown and address
+        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
 
-        for key in list_key_remove:
-            del dic[key]
-
-    #-------------------Address---------------------
-        list_key_remove = []
-
-        for key1 in dic:
-            # if box has at least 3 word in Noi DKHK thuong tru, 
-            # than it must be address box
-            no_mark_str = remove_mark(key1)
-            count = 0
-            list_pos = []
-            mark = True
-            if no_mark_str.find('Noi') != -1:
-                count = count + 1
-                list_pos.append(no_mark_str.find('Noi'))
-            if no_mark_str.find('thuong') != -1:
-                count = count + 1
-                list_pos.append(no_mark_str.find('thuong'))
-            if no_mark_str.find('tru') != -1:
-                count = count + 1
-                list_pos.append(no_mark_str.find('tru'))
-            
-            for i in range(len(list_pos)-1):
-                if list_pos[i]>list_pos[i+1]:
-                    mark = False 
-
-            if count in {2, 3} and mark:
-                address_box = dic[key1]
-                list_key_remove.append(key1)
-                
-                
-                pos = no_mark_str.find('Noi thuong tru')
-                address_str = key1[pos+15:]
-                
-                same = ''
-                if len(address_str) == 0:
-
-                    same = same_rows(key1, dic)
-
-                    address_str = address_str + same + ', '
-
-                    list_key_remove.append(same)
-                else:
-                    address_str = address_str + ', '
-                
-                under = under_rows(key1, dic)
-
-                for box_under in under:
-                    for key in dic:
-                        if box_under == dic[key] and key != same:
-                            address_str = address_str + key
-                            list_key_remove.append(key)
-
-                final_dic['Address'] = address_str
-        
-        #delete box has been already done
-        for key in list_key_remove:
-            del dic[key]      
-
-     #----------------------------------------------------------   
-    #-------------------Hometown---------------------
-        list_key_remove = []
-
-        for key1 in dic:
-            # if box has at least 3 word in Noi DKHK thuong tru, 
-            # than it must be address box
-            no_mark_str = remove_mark(key1)
-            no_mark_str = str.lower(no_mark_str)
-            count = 0
-            list_pos = []
-            mark = True
-            if no_mark_str.find('que') != -1:
-                count = count + 1
-                list_pos.append(no_mark_str.find('que'))
-            if no_mark_str.find('quan') != -1:
-                count = count + 1
-                list_pos.append(no_mark_str.find('quan'))
-            
-            for i in range(len(list_pos)-1):
-                if list_pos[i]>list_pos[i+1]:
-                    mark = False 
-
-            if count in {1, 2} and mark:
-                address_box = dic[key1]
-                list_key_remove.append(key1)
-                
-                
-                pos = no_mark_str.find('que quan')
-                hometown = key1[pos+10:]
-                
-                same = ''
-                if len(hometown) == 0:
-
-                    same = same_rows(key1, dic)
-
-                    hometown = hometown + same + ', '
-
-                    list_key_remove.append(same)
-                else:
-                    hometown = hometown + ', '
-                
-                under = under_rows(key1, dic)
-
-                for box_under in under:
-                    for key in dic:
-                        if box_under == dic[key] and key != same:
-                            hometown = hometown + key
-                            list_key_remove.append(key)
-
-                final_dic['Hometown'] = hometown 
-        
-        #delete box has been already done
-        for key in list_key_remove:
-            del dic[key]
-     #----------------------------------------------------------   
-        list_key_remove = []
-        for key in dic:
-            if birth_box[1] > dic[key][1]:
-                list_key_remove.append(key)
-        for key in list_key_remove:
-            del dic[key]
-        
-        for key in dic:
-            key_no_mark = remove_mark(key)
-
-            if key_no_mark.find('Nu') != -1:
-                final_dic['Sex'] = 'Nữ'
-        if final_dic['Sex'] == '':
-            final_dic['Sex'] = 'Nam'
     else:
-        cut_roi(dic, copy_img, dic_o)
+        print('[INFO] This is a Identification Card!')
+        cut_roi(list_text_box1, copy_img)
 
         dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
         
         # OCR again         
-        dic, dic_o, dic_s = OCR_text(1, dt_boxes, copy_img, detector) 
-
-        #---------------ID--------------------
-        dic_s_birth = 0
-        birth_key = ''
-
-        bot = 9999
-        for key in dic:
-            key_no_mark = remove_mark(key)
-            key_no_mark = str.lower(key_no_mark)
-            if dic[key][1]<bot and key_no_mark.find('so') == 0:
-                bot = dic[key][1]
-                so = dic[key]
-                key_so = key
+        list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
         
-        dic_num = {}
-        for key in dic:
-            count = count_num_in_key(key)
-            if count >=4:
-                dic_num[key] = dic[key]
+        # Find Id text
+        final_dic['Id'], obj_id = find_id_text(list_text_box2)
 
-        if len(remove_char(key_so))>=4:
-            final_dic['Id'] = remove_char(key_so)
-        else:
-            dis = 9999
-            for key in dic_num:
-                if abs(dic_num[key][1]-so[1]) < dis:
-                    dis = abs(dic_num[key][1]-so[1])
-                    key_id = key
-            final_dic['Id'] = remove_char(key_id)
+        # Find birth text
+        final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2)
 
-        #---------------BIRTH--------------------
-        for key in dic:
-            #print(key)
-            count = count_num_in_key(key)
-            if count == 8 and key.find('-')!=-1: #and check:
-                # get the birth box
-                birth_key = key
-                final_dic['Birth'] = process_birth(key)
-                birth_box = dic[key]
-                # get the size of birth box
-                dic_s_birth = dic_s[key]
+        # Remove wrong box
+        list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
 
-            if (key[:2]=='19' and count==4):
-                birth_key = key
-                k = remove_mark(key)
-                k = remove_char_birth(k)
-                final_dic['Birth'] = key
-                birth_box = dic[key]
-                # get the size of birth box
-                dic_s_birth = dic_s[key]*2
-
-            if count == 7 and key.find('-')!=-1:
-                birth_key = key
-                k = remove_mark(key)
-                k = remove_char_birth(k)
-                final_dic['Birth'] = k
-                birth_box = dic[key]
-                # get the size of birth box
-                dic_s_birth = dic_s[key]
-
-        #--------------Remove wrong box-----------------
-
-        #print('BEFORE ' ,dic)
-
-        print(dic_s)
-        list_key_remove = []
-        for key in dic:
-            if dic_s[key] < int(dic_s_birth/2.15):
-                list_key_remove.append(key)
-            if dic[key][0] < so[0] - (birth_box[2]-birth_box[0]):
-                list_key_remove.append(key)
+        # Find name text
+        final_dic['Name'] = find_name_text(list_text_box2, obj_id, birth_box)
         
-        set_remove = set(list_key_remove)
-        list_key_remove = list(set_remove)
-        
-        #print('REMOVE', list_key_remove)
-        for key in list_key_remove:
-            if key == '':
-                continue
-            else:
-                del dic[key]
-        
-        #print('AFTER ', dic)
-        print('-------------')
+        # Delete box has been already processed
+        list_text_box2 = delete_box_processed(list_text_box2, birth_box)
 
-
-        # if the size of a box is smaller than some thresh, than delete it
-        # ----------NAME-----------
-        # if the box has more than 2 consecutive upper character, than it must be the box name
-        
-        dic_name = {}
-        bottom = 0
-        for key in dic:
-            if dic[key][1] < birth_box[1] and dic[key][1] > so[1]:
-
-                key_no_mark = remove_mark(key)
-                count = count_upper_consecutive(key_no_mark)
-                if count >= 2:
-                    dic_name[key] = dic[key]
-        
-        lst_name = []
-        for key in dic_name:
-            lst_name.append(key)
-        if len(lst_name)==1:
-            name = lst_name[0]
-        else:
-            #name appears on 2 lines
-            name = lst_name[1] + ' ' + lst_name[0]
-
-        name_no_mark = remove_mark(name)
-        for j, i in enumerate(name_no_mark[1:]):
-            if i>='A' and i<='Y':
-                pos = j
-                break 
-
-        final_dic['Name'] = name[pos:]
-
-        #delete box has been already done
-        list_key_remove = []
-
-        for key in dic:
-            if dic[key][1] < birth_box[1]:
-                list_key_remove.append(key)
+        # find hometown and address
+        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)
             
-        #print('remove2', list_key_remove)
-        for key in list_key_remove:
-            del dic[key]
-        del dic[birth_key]
-
-
-        # ---------HOMETOWN, ADDRESS-----------
-
-        hometown = ''
-        nguyenquan = ''
-        count = 0
-        address = ''
-        keys_above_dkhk = {}
-
-        maxx = 0
-        for key in dic:
-            key_no_mark = remove_mark(key)
-            key_no_mark = str.lower(key_no_mark)
-            #print(key,' ', score_nguyenquan(key_no_mark))
-        
-            if score_nguyenquan(key_no_mark)>maxx:
-                maxx = score_nguyenquan(key_no_mark)               
-                nguyenquan = key
-                box_nguyenquan = dic[key]
-        
-        # delete box left of nguyenquan
-        remove = ''
-        for key in dic:
-            if dic[key][2] < box_nguyenquan[0]:
-                remove = key
-
-        if remove != '':
-            del dic[remove]
-  
-        # remove box 'sinh ngay'
-        sinhngay = None
-        for key in dic:
-            if dic[key][2] > dic[nguyenquan][0] and dic[key][2]<dic[nguyenquan][2] and dic[key][1]<dic[nguyenquan][1]:
-                sinhngay = key
-        if sinhngay is not None:
-            del dic[sinhngay]
-
-        maxx = 0
-
-        for key in dic:
-            # if box has at least 3 word in Noi DKHK thuong tru, 
-            # than it must be address box
-            no_mark_str = remove_mark(key)
-            #print(key, ' ', score_dkhk(no_mark_str))
-            
-            if score_dkhk(no_mark_str)>maxx:
-                
-                maxx = score_dkhk(no_mark_str)
-                dkhk = key
-
-        if len(nguyenquan[12:]) > 3: 
-            nguyenquan2 = nguyenquan[12:]
-            nearest_hometown = nguyenquan
-        else:
-            nearest_hometown = box_nearest(nguyenquan, dic)
-            nguyenquan2 = nearest_hometown
-
-        #print('nearesthometown', nearest_hometown)
-        #print('nguyeqnan', nguyenquan)
-
-        hometown = hometown + nguyenquan2
-        del dic[nearest_hometown]
-        if nearest_hometown != nguyenquan:
-            del dic[nguyenquan]
-        
-        #print('20: ', dkhk[20:])
-        
-        if len(dkhk[20:]) > 2:
-            
-            nearest_address = dkhk[20:]
-            nearest_address_raw = dkhk
-        else:
-            nearest_address_raw = box_nearest(dkhk, dic)
-            nearest_address = nearest_address_raw
-        
-        address = address + nearest_address
-
-        for key in dic:
-            if dic[key][1]<dic[dkhk][1] and key != nearest_address_raw:
-                keys_above_dkhk[key] = dic[key]
-
-        if len(keys_above_dkhk) != 0:
-            hometown2 = sort_key_left2right(keys_above_dkhk)
-            hometown = hometown + ' '+hometown2
-                
-
-        for key in keys_above_dkhk:
-            del dic[key]
-        del dic[nearest_address_raw]
-        if nearest_address_raw != dkhk:
-            del dic[dkhk]
-
-        print('-----------------------')
-        #print('DIC', dic)
-
-        if len(dic) != 0:
-            address2 = sort_key_left2right(dic)
-            address = address + ' ' + address2     
-
-
-        final_dic['Address'] = address
-        final_dic['Hometown'] = hometown     
-        
    #----------------------------------------------
-
-
     print('-------------------------------------')
     print('Id number: ', finalize(final_dic['Id']))
     print('Name: ', finalize(final_dic['Name']))
+    print('Sex: ', finalize(final_dic['Sex']))
     print('Date of birth: ', finalize(final_dic['Birth']))
     print('Hometown: ', finalize(final_dic['Hometown']))    
     print('Address: ', finalize(final_dic['Address']))
     print('Date of expired: ', finalize(final_dic['Date of expired']))
-    print('Sex: ', finalize(final_dic['Sex']))
     print('-------------------------------------')
     logger.info('Done!')
 
