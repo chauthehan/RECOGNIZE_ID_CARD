@@ -383,13 +383,11 @@ def sort_key_left2right(lst):
     if len(lst) == 1:
         for obj in lst:
             string = obj.key
-    else:
-        for i, obj in enumerate(lst):
-            if i == 0:
-                a = obj.key
-            else:
-                b = obj.key    
-        string = a + b
+    elif len(lst) ==2:
+        if lst[0].two_points[0] > lst[1].two_points[0]:
+            string = lst[1].key + ' ' +lst[0].key
+        else:
+            string = lst[0].key + ' ' +lst[1].key
 
     return string
 
@@ -630,3 +628,25 @@ def find_cogiatriden(list_text_box2):
             obj_ex = obj
     return obj_ex
 
+from difflib import SequenceMatcher
+
+def mapping(hometown, address):
+    maxx1 = 0
+    maxx2 = 0
+    with open('diachi.txt', 'r') as infile:
+        for i in infile.readlines():
+            ratio1 = SequenceMatcher(a=i,b=hometown).ratio()
+            if ratio1>maxx1:
+                maxx1 = ratio1
+                res1 = i
+            ratio2 = SequenceMatcher(a=i,b=address).ratio()
+            if ratio2>maxx2:
+                maxx2 = ratio2
+                res2 = i
+    hometown = res1
+    address = res2
+
+    return hometown, address
+
+        
+    

@@ -5,7 +5,10 @@ def find_name_text(list_text_box2, obj_id, birth_box):
     
     dic_name = {}
     #bottom = 0
+    print('OBJID', obj_id.key)
+    
     for obj in list_text_box2:
+
         if obj.two_points[1] < birth_box[1] and obj.two_points[1] > obj_id.two_points[1]:
             
             key_no_accent = remove_accent(obj.key)
@@ -62,38 +65,40 @@ def find_id_text(list_text_box2):
                 key_id = key
 
     key_id = remove_char(key_id)
+    
     return key_id, obj_id
 
-def find_birth_text(list_text_box2):
+def find_birth_text(list_text_box2, obj_id):
     birth_size = 0
     key_birth = ''
 
     for obj in list_text_box2:
-        key = obj.key
-        #print(key)
-        count = count_num_in_key(key)
-        if count == 8 and key.find('-')!=-1: #and check:
-            # get the birth box
-            key_birth = process_birth(key)
-            birth_box = obj.two_points
-            # get the size of birth box
-            birth_size = obj.size
+        if obj != obj_id:
+            key = obj.key
+            #print(key)
+            count = count_num_in_key(key)
+            if count == 8 and key.find('-')!=-1: #and check:
+                # get the birth box
+                key_birth = process_birth(key)
+                birth_box = obj.two_points
+                # get the size of birth box
+                birth_size = obj.size
 
-        if (key[:2]=='19' and count==4):
-            k = remove_accent(key)
-            k = remove_char_birth(k)
-            key_birth = key
-            birth_box = obj.two_points
-            # get the size of birth box
-            birth_size = obj.size*2
+            if (key[:2]=='19' and count==4):
+                k = remove_accent(key)
+                k = remove_char_birth(k)
+                key_birth = key
+                birth_box = obj.two_points
+                # get the size of birth box
+                birth_size = obj.size*2
 
-        if count == 7 and key.find('-')!=-1:
-            k = remove_accent(key)
-            k = remove_char_birth(k)
-            key_birth = k
-            birth_box = obj.two_points
-            # get the size of birth box
-            birth_size = obj.size
+            if count == 7 and key.find('-')!=-1:
+                k = remove_accent(key)
+                k = remove_char_birth(k)
+                key_birth = k
+                birth_box = obj.two_points
+                # get the size of birth box
+                birth_size = obj.size
     return key_birth, birth_size, birth_box
 
 def remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size):
@@ -130,11 +135,12 @@ def delete_box_processed(list_text_box2, birth_box):
     list_obj_remove = []
 
     for obj in list_text_box2:
-        if obj.two_points[1] <= birth_box[1]:
+        if obj.two_points[1] <= birth_box[1] or obj.key=='':
             list_obj_remove.append(obj)  
 
     for obj in list_obj_remove:
         list_text_box2.remove(obj)
+    
 
     return list_text_box2
 
@@ -204,6 +210,7 @@ def find_hometown_address_text(list_text_box2):
     
     #print('nearesthometown', nearest_hometown)
     #print('nguyeqnan', obj_nguyenquan.key)
+    #print('nearest', nguyenquan2)
 
     hometown = hometown + nguyenquan2
     #print('HOMETONW', hometown)
@@ -227,12 +234,16 @@ def find_hometown_address_text(list_text_box2):
     
     address = address + nearest_address
 
+
+    #print('nearest address raw', nearest_address_raw)
     for obj in list_text_box2:
         if obj.two_points[1]<obj_dkhk.two_points[1] and obj.key != nearest_address_raw:
             keys_above_dkhk.append(obj)
 
     if len(keys_above_dkhk) != 0:
         hometown2 = sort_key_left2right(keys_above_dkhk)
+
+        #print('After sort', hometown2)
         hometown = hometown + ' '+hometown2
             
     for obj in keys_above_dkhk:
@@ -243,11 +254,16 @@ def find_hometown_address_text(list_text_box2):
         list_text_box2.remove(obj_dkhk)
 
     print('-----------------------')
-    #print('DIC', dic)
-
+    
+    print('LISTTESTBOX2')
+    for i in list_text_box2:
+        print(i.key)
     if len(list_text_box2) != 0:
         address2 = sort_key_left2right(list_text_box2)
         address = address + ' ' + address2
+    print('Hometown', hometown)
+    print('Address', address)
+    hometown, address = mapping(hometown, address)
     
     return hometown, address
 
@@ -366,10 +382,6 @@ def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quo
     
     for obj in list_obj_remove:
         list_text_box2.remove(obj)
-
-    print('AFTER REMOVE')
-    for obj in list_text_box2:
-        print(obj.key)
     
     return list_text_box2
 
@@ -472,5 +484,10 @@ def find_hometown_address_text_cc(list_text_box2):
     if len(list_text_box2) != 0:
         address2 = sort_key_left2right(list_text_box2)
         address = address + ' ' + address2
+    
+    print('Hometown', hometown)
+    print('Address', address)
+    
+    hometown, address = mapping(hometown, address)
     
     return hometown, address    

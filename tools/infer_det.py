@@ -256,7 +256,7 @@ def main():
         final_dic['Id'], obj_id = find_id_text(list_text_box2)
 
         # Find birth text
-        final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2)
+        final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2, obj_id)
 
         # Remove wrong box
         list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
@@ -268,7 +268,8 @@ def main():
         list_text_box2 = delete_box_processed(list_text_box2, birth_box)
 
         # find hometown and address
-        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)
+        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+
             
    #----------------------------------------------
     print('-------------------------------------')
