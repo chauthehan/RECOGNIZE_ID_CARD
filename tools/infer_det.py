@@ -47,8 +47,9 @@ from ppocr.utils.utility import create_module, get_image_file_list
 import program
 from ppocr.utils.save_load import init_model
 from ppocr.data.reader_main import reader_main
-from tools.identify_text import *
-from tools.utils import *
+from tools.identify_text_cmnd import *
+#from tools.identify_text_cc import *
+#from tools.utils import *
 import cv2
 
 from ppocr.utils.utility import initial_logger
@@ -222,7 +223,9 @@ def main():
         final_dic['Id'], obj_id = find_id_text(list_text_box2)
 
         # Find box 'Quoc tich'
-        obj_quoctich = find_box_Quoctich(list_text_box2)
+        obj_quoctich = find_box_Quoctich_Dantoc(list_text_box2)
+
+        print('QUOCTIChDANTOC', obj_quoctich.key)
 
         # Find birth text
         final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich)
@@ -237,9 +240,11 @@ def main():
         final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
 
         # Delete box has been already  processed
+        print(final_dic)
 
         list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich, obj_expired)
-
+        for obj in list_text_box2:
+            print('left', obj.key)
         # find hometown and address
         final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
 
@@ -268,6 +273,8 @@ def main():
         list_text_box2 = delete_box_processed(list_text_box2, birth_box)
 
         # find hometown and address
+        for obj in list_text_box2:
+            print('left', obj.key)
         final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
 
             
