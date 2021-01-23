@@ -44,10 +44,10 @@ def four_point_transform(image, box):
     (tl, tr, br, bl) = rect
     height = abs(tl[1]-bl[1])
     tl[0] = tl[0]
-    tl[1] = tl[1]- int(height/3)
-    tr[0] = tr[0]
-    tr[1] = tr[1]- int(height/3)
-    br[0] = br[0]
+    tl[1] = tl[1]- int(height/4.5)
+    tr[0] = tr[0]+ int(height/3.7)
+    tr[1] = tr[1]- int(height/4.5)
+    br[0] = br[0]+ int(height/3.7)
     br[1] = br[1]+ int(height/7)
     bl[0] = bl[0]
     bl[1] = bl[1]+ int(height/7)
@@ -409,6 +409,13 @@ def cut_roi(list_text_box, copy_img):
     save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
     cv2.imwrite('out.jpg', save_img)
 
+def count_char_in_key(key):
+    c = 0
+    for i in key:
+        if i>='a' and i<='y' or i>='A' and i<='B':
+            c = c+1
+    return c
+
 def OCR_text(i, dt_boxes, copy_img, detector):
     # dic = {}
     # dic_o = {}
@@ -417,8 +424,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
 
     for j, box in enumerate(dt_boxes):
         
-        box = box.astype(np.int32).reshape((-1, 1, 2))
-        
+        box = box.astype(np.int32).reshape((-1, 1, 2))      
         
         crop = four_point_transform(copy_img, box)
         #crop = imutils.resize(crop, height=32)
@@ -456,29 +462,51 @@ def cut_roi_cc(list_text_box, copy_img):
     for obj in list_text_box:
         text = obj.key
         text_no_accent = remove_accent(text)
-        sc_dkhk = score_expired(text_no_accent)
+        sc_ex = score_expired(text_no_accent)
         sc_conghoa = score_conghoa(text_no_accent)      
 
-        #print(key,' ' ,sc_dkhk)
+        #print(key,' ' ,sc_ex)
         #print(key,' ', sc_conghoa)  
     
-        if sc_dkhk > max1:
-            max1 = sc_dkhk
-            box_dkhk = obj.four_points
+        if sc_ex > max1:
+            max1 = sc_ex
+            obj_ex = obj
             #print('1', key)
         if sc_conghoa > max2:
             max2 = sc_conghoa
-            box_conghoa = obj.four_points
+            obj_conghoa = obj
             #print('2', key)
 
+    box_conghoa = obj_conghoa.four_points
+
     width_conghoa = box_conghoa[1][0][0] - box_conghoa[0][0][0]
-    height_conghoa = box_conghoa[3][0][1] - box_conghoa[0][0][1]
+    height_conghoa = box_conghoa[3][0][1] - box_conghoa[0][0][1]    
+    
+    if obj_ex.two_points[2] > obj_conghoa.two_points[0]+height_conghoa*1.5:
+        maxx = 0
+        for obj in list_text_box:
+            text = obj.key
+            text_no_accent = remove_accent(text)
+            sc_Noithuongtru = score_Noithuongtru(text_no_accent)
+            if sc_Noithuongtru > maxx:
+                maxx = sc_Noithuongtru
+                obj_Noithuongtru = obj
 
-    topleft = [max(int(box_dkhk[3][0][0]), 0), max(int(box_conghoa[0][0][1] - height_conghoa/2),0)]
-    topright = [min(int(box_conghoa[1][0][0] + width_conghoa/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height_conghoa/2), 0)]
-    botleft = [max(int(box_dkhk[3][0][0]+height_conghoa/2), 0), min(int(box_dkhk[3][0][1]+height_conghoa/2), copy_img.shape[0])]
-    botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+        box_ntt = obj_Noithuongtru.four_points
 
+        topleft = [max(int(box_ntt[3][0][0]), 0), max(int(box_conghoa[0][0][1] - height_conghoa/2),0)]
+        topright = [min(int(box_conghoa[1][0][0] + width_conghoa/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height_conghoa/2), 0)]
+        botleft = [max(int(box_ntt[3][0][0]+height_conghoa/2), 0), min(int(box_ntt[3][0][1]+height_conghoa*2.5), copy_img.shape[0])]
+        botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+        type_cut = 2
+    else:    
+        box_ex = obj_ex.four_points
+
+        topleft = [max(int(box_ex[3][0][0]), 0), max(int(box_conghoa[0][0][1] - height_conghoa/2),0)]
+        topright = [min(int(box_conghoa[1][0][0] + width_conghoa/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height_conghoa/2), 0)]
+        botleft = [max(int(box_ex[3][0][0]+height_conghoa/2), 0), min(int(box_ex[3][0][1]+height_conghoa/2), copy_img.shape[0])]
+        botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+        type_cut = 1
     #copy_img = cv2.circle(copy_img,(topleft[0], topleft[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(topright[0], topright[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(botleft[0], botleft[1]), 5, (0,255,0), -1)
@@ -493,7 +521,9 @@ def cut_roi_cc(list_text_box, copy_img):
     save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
     cv2.imwrite('out.jpg', save_img)
 
-def box_nearest_cc(obj_Gioitinh, list_text_box2):
+    return type_cut
+
+def box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2):
 
     max_dis = (obj_Gioitinh.two_points[2] - obj_Gioitinh.two_points[0])*2
 
@@ -507,26 +537,16 @@ def box_nearest_cc(obj_Gioitinh, list_text_box2):
             if key_no_accent == 'Nam' or key_no_accent == 'Nu':
                 return obj
 
-def mapping(hometown, address):
-    maxx1 = 0
-    maxx2 = 0
+def mapping(key):
+    maxx = 0
     with open('diachi.txt', 'r') as infile:
         for i in infile.readlines():
-            ratio1 = SequenceMatcher(a=i,b=hometown).ratio()
-            if ratio1>maxx1:
-                maxx1 = ratio1
+            ratio = SequenceMatcher(a=i,b=key).ratio()
+            if ratio>maxx:
+                maxx = ratio
                 res1 = i
-            ratio2 = SequenceMatcher(a=i,b=address).ratio()
-            if ratio2>maxx2:
-                maxx2 = ratio2
-                res2 = i
-    hometown1 = res1
-    address1 = res2    
-    # if 'Hồ Chí Minh' in res1:
-    #     hometown1 = hometown
-    # if 'Hồ Chí Minh' in res2:
-    #     address1 = address
-    return hometown1, address1        
+
+    return res1      
 
 def score_of_cc_or_cmnd(list_test_box1):
     score = 0
@@ -535,10 +555,10 @@ def score_of_cc_or_cmnd(list_test_box1):
         text = obj.key
         no_accent = remove_accent(text)
 
-        if no_accent.find('Quoc tich') != -1:
-            score += 1
-        if no_accent.find('Viet Nam') != -1:
-            score += 1
+        #if no_accent.find('Quoc tich') != -1:
+        #    score += 1
+        #if no_accent.find('Viet Nam') != -1:
+        #    score += 1
         if no_accent.find('Ho va ten') != -1:
             score += 1
         if no_accent.find('Gioi tinh') != -1:
@@ -547,4 +567,20 @@ def score_of_cc_or_cmnd(list_test_box1):
             score += 1
         if no_accent.find('Co gia tri den') != -1:
             score += 1
+        if no_accent.find('CAN CUOC CONG DAN') != -1:
+            score +=1 
     return score
+
+def change_PhuongQuan_to_PQ(key):
+    key_no_accent = remove_accent(key)
+    pos_phuong = key_no_accent.find('Phuong ')
+
+    if pos_phuong != -1:
+        key = key[:pos_phuong] + 'P.' + key[pos_phuong+7:]
+    
+    key_no_accent = remove_accent(key)
+    pos_quan = key_no_accent.find('Quan ')
+    if pos_quan != -1:
+        key = key[:pos_quan] + 'Q.' +key[pos_quan+5:]
+    
+    return key

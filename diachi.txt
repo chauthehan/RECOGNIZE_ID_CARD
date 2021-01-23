@@ -2233,6 +2233,16 @@ Quang Tiến,TP Hòa Bình, Hoà Bình
 Mông Hóa,TP Hòa Bình, Hoà Bình
 Trung Minh,TP Hòa Bình, Hoà Bình
 Độc Lập,TP Hòa Bình, Hoà Bình
+TT Kỳ Sơn, Kỳ Sơn, Hòa Bình
+Dân Hạ, Kỳ Sơn, Hòa Bình
+Dân Hòa, Kỳ Sơn, Hòa Bình
+Độc Lập, Kỳ Sơn, Hòa Bình
+Hợp Thành, Kỳ Sơn, Hòa Bình
+Hợp Thịnh, Kỳ Sơn, Hòa Bình
+Mông Hóa, Kỳ Sơn, Hòa Bình
+Phú Minh, Kỳ Sơn, Hòa Bình
+Phúc Tiến, Kỳ Sơn, Hòa Bình
+Yên Quang, Kỳ Sơn, Hòa Bình
 Thị trấn Đà Bắc,Đà Bắc,Tỉnh Hoà Bình
 TT Đà Bắc,Đà Bắc, Hoà Bình
 Đà Bắc, Hoà Bình
@@ -5285,6 +5295,7 @@ Ninh Sơn,TP Ninh Bình, Ninh Bình
 Ninh Phong,TP Ninh Bình, Ninh Bình
 Bắc Sơn,TP Tam Điệp, Ninh Bình
 TP Tam Điệp, Ninh Bình
+
 Trung Sơn,TP Tam Điệp, Ninh Bình
 Nam Sơn,TP Tam Điệp, Ninh Bình
 Tây Sơn,TP Tam Điệp, Ninh Bình
@@ -5348,6 +5359,7 @@ Gia Phong,Gia Viễn, Ninh Bình
 Thị trấn Thiên Tôn,Hoa Lư,Tỉnh Ninh Bình
 TT Thiên Tôn,Hoa Lư, Ninh Bình
 Hoa Lư, Ninh Bình
+Gia Khánh, Ninh Bình
 Ninh Giang,Hoa Lư, Ninh Bình
 Trường Yên,Hoa Lư, Ninh Bình
 Ninh Khang,Hoa Lư, Ninh Bình
@@ -10374,14 +10386,14 @@ P.16,Gò Vấp,TP Hồ Chí Minh
 P.12,Gò Vấp,TP Hồ Chí Minh
 P.14,Gò Vấp,TP Hồ Chí Minh
 P.10,Gò Vấp,TP Hồ Chí Minh
-P.05,Gò Vấp,TP Hồ Chí Minh
-P.07,Gò Vấp,TP Hồ Chí Minh
-P.04,Gò Vấp,TP Hồ Chí Minh
-P.01,Gò Vấp,TP Hồ Chí Minh
+P.5,Gò Vấp,TP Hồ Chí Minh
+P.7,Gò Vấp,TP Hồ Chí Minh
+P.4,Gò Vấp,TP Hồ Chí Minh
+P.1,Gò Vấp,TP Hồ Chí Minh
 P.9,Gò Vấp,TP Hồ Chí Minh
 P.8,Gò Vấp,TP Hồ Chí Minh
 P.11,Gò Vấp,TP Hồ Chí Minh
-P.03,Gò Vấp,TP Hồ Chí Minh
+P.3,Gò Vấp,TP Hồ Chí Minh
 P.13,Bình Thạnh,TP Hồ Chí Minh
 Bình Thạnh,TP Hồ Chí Minh
 P.11,Bình Thạnh,TP Hồ Chí Minh
@@ -10389,34 +10401,34 @@ P.27,Bình Thạnh,TP Hồ Chí Minh
 P.26,Bình Thạnh,TP Hồ Chí Minh
 P.12,Bình Thạnh,TP Hồ Chí Minh
 P.25,Bình Thạnh,TP Hồ Chí Minh
-P.05,Bình Thạnh,TP Hồ Chí Minh
-P.07,Bình Thạnh,TP Hồ Chí Minh
+P.5,Bình Thạnh,TP Hồ Chí Minh
+P.7,Bình Thạnh,TP Hồ Chí Minh
 P.24,Bình Thạnh,TP Hồ Chí Minh
 P.06,Bình Thạnh,TP Hồ Chí Minh
 P.14,Bình Thạnh,TP Hồ Chí Minh
 P.15,Bình Thạnh,TP Hồ Chí Minh
-P.02,Bình Thạnh,TP Hồ Chí Minh
-P.01,Bình Thạnh,TP Hồ Chí Minh
-P.03,Bình Thạnh,TP Hồ Chí Minh
+P.2,Bình Thạnh,TP Hồ Chí Minh
+P.1,Bình Thạnh,TP Hồ Chí Minh
+P.3,Bình Thạnh,TP Hồ Chí Minh
 P.17,Bình Thạnh,TP Hồ Chí Minh
 P.21,Bình Thạnh,TP Hồ Chí Minh
 P.22,Bình Thạnh,TP Hồ Chí Minh
 P.19,Bình Thạnh,TP Hồ Chí Minh
 P.28,Bình Thạnh,TP Hồ Chí Minh
-P.02,Tân Bình,TP Hồ Chí Minh
+P.2,Tân Bình,TP Hồ Chí Minh
 Tân Bình,TP Hồ Chí Minh
-P.04,Tân Bình,TP Hồ Chí Minh
+P.4,Tân Bình,TP Hồ Chí Minh
 P.12,Tân Bình,TP Hồ Chí Minh
 P.13,Tân Bình,TP Hồ Chí Minh
-P.01,Tân Bình,TP Hồ Chí Minh
-P.03,Tân Bình,TP Hồ Chí Minh
+P.1,Tân Bình,TP Hồ Chí Minh
+P.3,Tân Bình,TP Hồ Chí Minh
 P.11,Tân Bình,TP Hồ Chí Minh
-P.07,Tân Bình,TP Hồ Chí Minh
-P.05,Tân Bình,TP Hồ Chí Minh
+P.7,Tân Bình,TP Hồ Chí Minh
+P.5,Tân Bình,TP Hồ Chí Minh
 P.10,Tân Bình,TP Hồ Chí Minh
-P.06,Tân Bình,TP Hồ Chí Minh
-P.08,Tân Bình,TP Hồ Chí Minh
-P.09,Tân Bình,TP Hồ Chí Minh
+P.6,Tân Bình,TP Hồ Chí Minh
+P.8,Tân Bình,TP Hồ Chí Minh
+P.9,Tân Bình,TP Hồ Chí Minh
 P.14,Tân Bình,TP Hồ Chí Minh
 P.15,Tân Bình,TP Hồ Chí Minh
 Tân Sơn Nhì,Tân Phú,TP Hồ Chí Minh
@@ -10431,15 +10443,15 @@ Phú Trung,Tân Phú,TP Hồ Chí Minh
 Hòa Thạnh,Tân Phú,TP Hồ Chí Minh
 Hiệp Tân,Tân Phú,TP Hồ Chí Minh
 Tân Thới Hòa,Tân Phú,TP Hồ Chí Minh
-P.04,Phú Nhuận,TP Hồ Chí Minh
+P.4,Phú Nhuận,TP Hồ Chí Minh
 Phú Nhuận,TP Hồ Chí Minh
-P.05,Phú Nhuận,TP Hồ Chí Minh
-P.09,Phú Nhuận,TP Hồ Chí Minh
-P.07,Phú Nhuận,TP Hồ Chí Minh
-P.03,Phú Nhuận,TP Hồ Chí Minh
-P.01,Phú Nhuận,TP Hồ Chí Minh
-P.02,Phú Nhuận,TP Hồ Chí Minh
-P.08,Phú Nhuận,TP Hồ Chí Minh
+P.5,Phú Nhuận,TP Hồ Chí Minh
+P.9,Phú Nhuận,TP Hồ Chí Minh
+P.7,Phú Nhuận,TP Hồ Chí Minh
+P.3,Phú Nhuận,TP Hồ Chí Minh
+P.1,Phú Nhuận,TP Hồ Chí Minh
+P.2,Phú Nhuận,TP Hồ Chí Minh
+P.8,Phú Nhuận,TP Hồ Chí Minh
 P.15,Phú Nhuận,TP Hồ Chí Minh
 P.10,Phú Nhuận,TP Hồ Chí Minh
 P.11,Phú Nhuận,TP Hồ Chí Minh
@@ -10461,19 +10473,19 @@ An Lợi Đông,Q.2,TP Hồ Chí Minh
 Thủ Thiêm,Q.2,TP Hồ Chí Minh
 P.08,Q.3,TP Hồ Chí Minh
 Q.3,TP Hồ Chí Minh
-P.07,Q.3,TP Hồ Chí Minh
+P.7,Q.3,TP Hồ Chí Minh
 P.14,Q.3,TP Hồ Chí Minh
 P.12,Q.3,TP Hồ Chí Minh
 P.11,Q.3,TP Hồ Chí Minh
 P.13,Q.3,TP Hồ Chí Minh
-P.06,Q.3,TP Hồ Chí Minh
-P.09,Q.3,TP Hồ Chí Minh
+P.6,Q.3,TP Hồ Chí Minh
+P.9,Q.3,TP Hồ Chí Minh
 P.10,Q.3,TP Hồ Chí Minh
-P.04,Q.3,TP Hồ Chí Minh
-P.05,Q.3,TP Hồ Chí Minh
-P.03,Q.3,TP Hồ Chí Minh
-P.02,Q.3,TP Hồ Chí Minh
-P.01,Q.3,TP Hồ Chí Minh
+P.4,Q.3,TP Hồ Chí Minh
+P.5,Q.3,TP Hồ Chí Minh
+P.3,Q.3,TP Hồ Chí Minh
+P.2,Q.3,TP Hồ Chí Minh
+P.1,Q.3,TP Hồ Chí Minh
 P.15,Q.10,TP Hồ Chí Minh
 Q.10,TP Hồ Chí Minh
 P.13,Q.10,TP Hồ Chí Minh
@@ -10481,96 +10493,96 @@ P.14,Q.10,TP Hồ Chí Minh
 P.12,Q.10,TP Hồ Chí Minh
 P.11,Q.10,TP Hồ Chí Minh
 P.10,Q.10,TP Hồ Chí Minh
-P.09,Q.10,TP Hồ Chí Minh
-P.01,Q.10,TP Hồ Chí Minh
-P.08,Q.10,TP Hồ Chí Minh
-P.02,Q.10,TP Hồ Chí Minh
-P.04,Q.10,TP Hồ Chí Minh
-P.07,Q.10,TP Hồ Chí Minh
-P.05,Q.10,TP Hồ Chí Minh
-P.06,Q.10,TP Hồ Chí Minh
-P.03,Q.10,TP Hồ Chí Minh
+P.9,Q.10,TP Hồ Chí Minh
+P.1,Q.10,TP Hồ Chí Minh
+P.8,Q.10,TP Hồ Chí Minh
+P.2,Q.10,TP Hồ Chí Minh
+P.4,Q.10,TP Hồ Chí Minh
+P.7,Q.10,TP Hồ Chí Minh
+P.5,Q.10,TP Hồ Chí Minh
+P.6,Q.10,TP Hồ Chí Minh
+P.3,Q.10,TP Hồ Chí Minh
 P.15,Q.11,TP Hồ Chí Minh
 Q.11,TP Hồ Chí Minh
-P.05,Q.11,TP Hồ Chí Minh
+P.5,Q.11,TP Hồ Chí Minh
 P.14,Q.11,TP Hồ Chí Minh
 P.11,Q.11,TP Hồ Chí Minh
-P.03,Q.11,TP Hồ Chí Minh
+P.3,Q.11,TP Hồ Chí Minh
 P.10,Q.11,TP Hồ Chí Minh
 P.13,Q.11,TP Hồ Chí Minh
-P.08,Q.11,TP Hồ Chí Minh
+P.8,Q.11,TP Hồ Chí Minh
 P.09,Q.11,TP Hồ Chí Minh
 P.12,Q.11,TP Hồ Chí Minh
-P.07,Q.11,TP Hồ Chí Minh
-P.06,Q.11,TP Hồ Chí Minh
-P.04,Q.11,TP Hồ Chí Minh
-P.01,Q.11,TP Hồ Chí Minh
-P.02,Q.11,TP Hồ Chí Minh
+P.7,Q.11,TP Hồ Chí Minh
+P.6,Q.11,TP Hồ Chí Minh
+P.4,Q.11,TP Hồ Chí Minh
+P.1,Q.11,TP Hồ Chí Minh
+P.2,Q.11,TP Hồ Chí Minh
 P.16,Q.11,TP Hồ Chí Minh
 P.12,Q.4,TP Hồ Chí Minh
 Q.4,TP Hồ Chí Minh
 P.13,Q.4,TP Hồ Chí Minh
-P.09,Q.4,TP Hồ Chí Minh
-P.06,Q.4,TP Hồ Chí Minh
-P.08,Q.4,TP Hồ Chí Minh
+P.9,Q.4,TP Hồ Chí Minh
+P.6,Q.4,TP Hồ Chí Minh
+P.8,Q.4,TP Hồ Chí Minh
 P.10,Q.4,TP Hồ Chí Minh
-P.05,Q.4,TP Hồ Chí Minh
+P.5,Q.4,TP Hồ Chí Minh
 P.18,Q.4,TP Hồ Chí Minh
 P.14,Q.4,TP Hồ Chí Minh
-P.04,Q.4,TP Hồ Chí Minh
-P.03,Q.4,TP Hồ Chí Minh
+P.4,Q.4,TP Hồ Chí Minh
+P.3,Q.4,TP Hồ Chí Minh
 P.16,Q.4,TP Hồ Chí Minh
-P.02,Q.4,TP Hồ Chí Minh
+P.2,Q.4,TP Hồ Chí Minh
 P.15,Q.4,TP Hồ Chí Minh
-P.01,Q.4,TP Hồ Chí Minh
-P.04,Q.5,TP Hồ Chí Minh
+P.1,Q.4,TP Hồ Chí Minh
+P.4,Q.5,TP Hồ Chí Minh
 Q.5,TP Hồ Chí Minh
-P.09,Q.5,TP Hồ Chí Minh
-P.03,Q.5,TP Hồ Chí Minh
+P.9,Q.5,TP Hồ Chí Minh
+P.3,Q.5,TP Hồ Chí Minh
 P.12,Q.5,TP Hồ Chí Minh
-P.02,Q.5,TP Hồ Chí Minh
-P.08,Q.5,TP Hồ Chí Minh
+P.2,Q.5,TP Hồ Chí Minh
+P.8,Q.5,TP Hồ Chí Minh
 P.15,Q.5,TP Hồ Chí Minh
-P.07,Q.5,TP Hồ Chí Minh
-P.01,Q.5,TP Hồ Chí Minh
+P.7,Q.5,TP Hồ Chí Minh
+P.1,Q.5,TP Hồ Chí Minh
 P.11,Q.5,TP Hồ Chí Minh
 P.14,Q.5,TP Hồ Chí Minh
-P.05,Q.5,TP Hồ Chí Minh
-P.06,Q.5,TP Hồ Chí Minh
+P.5,Q.5,TP Hồ Chí Minh
+P.6,Q.5,TP Hồ Chí Minh
 P.10,Q.5,TP Hồ Chí Minh
 P.13,Q.5,TP Hồ Chí Minh
 P.14,Q.6,TP Hồ Chí Minh
 Q.6,TP Hồ Chí Minh
 P.13,Q.6,TP Hồ Chí Minh
-P.09,Q.6,TP Hồ Chí Minh
-P.06,Q.6,TP Hồ Chí Minh
+P.9,Q.6,TP Hồ Chí Minh
+P.6,Q.6,TP Hồ Chí Minh
 P.12,Q.6,TP Hồ Chí Minh
-P.05,Q.6,TP Hồ Chí Minh
+P.5,Q.6,TP Hồ Chí Minh
 P.11,Q.6,TP Hồ Chí Minh
-P.02,Q.6,TP Hồ Chí Minh
-P.01,Q.6,TP Hồ Chí Minh
-P.04,Q.6,TP Hồ Chí Minh
-P.08,Q.6,TP Hồ Chí Minh
-P.03,Q.6,TP Hồ Chí Minh
-P.07,Q.6,TP Hồ Chí Minh
+P.2,Q.6,TP Hồ Chí Minh
+P.1,Q.6,TP Hồ Chí Minh
+P.4,Q.6,TP Hồ Chí Minh
+P.8,Q.6,TP Hồ Chí Minh
+P.3,Q.6,TP Hồ Chí Minh
+P.7,Q.6,TP Hồ Chí Minh
 P.10,Q.6,TP Hồ Chí Minh
-P.08,Q.8,TP Hồ Chí Minh
+P.8,Q.8,TP Hồ Chí Minh
 Q.8,TP Hồ Chí Minh
-P.02,Q.8,TP Hồ Chí Minh
-P.01,Q.8,TP Hồ Chí Minh
-P.03,Q.8,TP Hồ Chí Minh
+P.2,Q.8,TP Hồ Chí Minh
+P.1,Q.8,TP Hồ Chí Minh
+P.3,Q.8,TP Hồ Chí Minh
 P.11,Q.8,TP Hồ Chí Minh
-P.09,Q.8,TP Hồ Chí Minh
+P.9,Q.8,TP Hồ Chí Minh
 P.10,Q.8,TP Hồ Chí Minh
-P.04,Q.8,TP Hồ Chí Minh
+P.4,Q.8,TP Hồ Chí Minh
 P.13,Q.8,TP Hồ Chí Minh
 P.12,Q.8,TP Hồ Chí Minh
-P.05,Q.8,TP Hồ Chí Minh
+P.5,Q.8,TP Hồ Chí Minh
 P.14,Q.8,TP Hồ Chí Minh
-P.06,Q.8,TP Hồ Chí Minh
+P.6,Q.8,TP Hồ Chí Minh
 P.15,Q.8,TP Hồ Chí Minh
 P.16,Q.8,TP Hồ Chí Minh
-P.07,Q.8,TP Hồ Chí Minh
+P.7,Q.8,TP Hồ Chí Minh
 Bình Hưng Hòa,Bình Tân,TP Hồ Chí Minh
 Bình Tân,TP Hồ Chí Minh
 Bình Hưng Hoà A,Bình Tân,TP Hồ Chí Minh
@@ -10580,7 +10592,7 @@ Bình Trị Đông A,Bình Tân,TP Hồ Chí Minh
 Bình Trị Đông B,Bình Tân,TP Hồ Chí Minh
 Tân Tạo,Bình Tân,TP Hồ Chí Minh
 Tân Tạo A,Bình Tân,TP Hồ Chí Minh
- An Lạc,Bình Tân,TP Hồ Chí Minh
+An Lạc,Bình Tân,TP Hồ Chí Minh
 An Lạc A,Bình Tân,TP Hồ Chí Minh
 Tân Thuận Đông,Q.7,TP Hồ Chí Minh
 Q.7,TP Hồ Chí Minh

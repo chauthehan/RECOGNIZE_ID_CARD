@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#python3 tools/infer_det.py -c configs/det/det_r18_vd_db_v1.1.yml -o Global.checkpoints="./output/det_db/best_accuracy" PostProcess.box_thresh=0.1 PostProcess.unclip_ratio=1.5 Global.infer_img="/home/han/Downloads/Telegram Desktop/110x.jpg"
+#python3 tools/infer_det.py -c configs/det/det_r18_vd_db_v1.1.yml -o Global.checkpoints="./output/det_db/best_accuracy" PostProcess.box_thresh=0.1 PostProcess.unclip_ratio=1.5 Global.infer_img="/home/han/Documents/cmnd/recognize_id_card/test/61.png"
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -47,7 +47,7 @@ from ppocr.utils.utility import create_module, get_image_file_list
 import program
 from ppocr.utils.save_load import init_model
 from ppocr.data.reader_main import reader_main
-from tools.identify_text_cmnd import *
+from tools.identify_text import *
 #from tools.identify_text_cc import *
 #from tools.utils import *
 import cv2
@@ -175,120 +175,133 @@ def main():
     else:
         raise Exception("{} not exists!".format(checkpoints))
 
-    # Detect box text
-
-    img_path = config['Global'].get('infer_img')
-
-    dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
-
-    logger.info("Detect success!")
-
-    logger.info("Begining ocr..")
-
     config_ocr = Cfg.load_config_from_name('vgg_seq2seq')
-    config_ocr['weights'] = './my_weights/transformerocr.pth'
+    config_ocr['weights'] = './my_weights/best.pth'
+    #config_ocr['weights'] = './2-95,89.pth'
     config_ocr['cnn']['pretrained']=False
     config_ocr['device'] = 'cpu'
     config_ocr['predictor']['beamsearch']=False
 
     detector = Predictor(config_ocr)
-    
-    list_text_box1 = OCR_text(2, dt_boxes, copy_img, detector)        
-    
-    final_dic = {
-        'Id': '',
-        'Name': '',
-        'Birth': '',
-        'Sex' : '',
-        'Hometown': '',
-        'Date of expired': '',
-        'Address': ''} 
+    # Detect box text
+    paths = os.listdir('test/')
 
-    # check if the image is ID card or Citizen Card
+    for i in range(143, 200):
+        img_path = 'test/' + str(i) + '.jpg'
+        if not os.path.exists(img_path):
+            img_path = 'test/' + str(i) + '.png'
+        if not os.path.exists(img_path):
+            continue
 
-    score = score_of_cc_or_cmnd(list_text_box1)
-           
-    # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
+    #img_path = config['Global'].get('infer_img')
+        dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
+
+        logger.info("Detect success!")
+
+        logger.info("Begining ocr..")
+
+        print('pass')
+        list_text_box1 = OCR_text(1, dt_boxes, copy_img, detector)        
         
-    if score>=3:
-        print('[INFO] This is a Citizenship card!')
+        final_dic = {
+            'Id': '',
+            'Name': '',
+            'Birth': '',
+            'Sex' : '',
+            'Hometown': '',
+            'Date of expired': '',
+            'Address': ''} 
 
-        cut_roi_cc(list_text_box1, copy_img)
-        dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
+        # check if the image is ID card or Citizen Card
 
-        # OCR again         
-        list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
-
-        # Find Id text
-        final_dic['Id'], obj_id = find_id_text(list_text_box2)
-
-        # Find box 'Quoc tich'
-        obj_quoctich = find_box_Quoctich_Dantoc(list_text_box2)
-
-        print('QUOCTIChDANTOC', obj_quoctich.key)
-
-        # Find birth text
-        final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich)
-
-        # Find name text
-        final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich, obj_id)
-        
-        # Find date of expired
-        final_dic['Date of expired'], obj_expired = find_key_expired(list_text_box2, obj_birth)
-
-        # Find sex
-        final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
-
-        # Delete box has been already  processed
-        print(final_dic)
-
-        list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich, obj_expired)
-        for obj in list_text_box2:
-            print('left', obj.key)
-        # find hometown and address
-        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
-
-    else:
-        print('[INFO] This is a Identification Card!')
-        cut_roi(list_text_box1, copy_img)
-
-        dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
-        
-        # OCR again         
-        list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
-        
-        # Find Id text
-        final_dic['Id'], obj_id = find_id_text(list_text_box2)
-
-        # Find birth text
-        final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2, obj_id)
-
-        # Remove wrong box
-        list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
-
-        # Find name text
-        final_dic['Name'] = find_name_text(list_text_box2, obj_id, birth_box)
-        
-        # Delete box has been already processed
-        list_text_box2 = delete_box_processed(list_text_box2, birth_box)
-
-        # find hometown and address
-        for obj in list_text_box2:
-            print('left', obj.key)
-        final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
-
+        score = score_of_cc_or_cmnd(list_text_box1)
             
-   #----------------------------------------------
-    print('-------------------------------------')
-    print('Id number: ', finalize(final_dic['Id']))
-    print('Name: ', finalize(final_dic['Name']))
-    print('Sex: ', finalize(final_dic['Sex']))
-    print('Date of birth: ', finalize(final_dic['Birth']))
-    print('Hometown: ', finalize(final_dic['Hometown']))    
-    print('Address: ', finalize(final_dic['Address']))
-    print('Date of expired: ', finalize(final_dic['Date of expired']))
-    print('-------------------------------------')
-    logger.info('Done!')
+        # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
+            
+        if score>=1:
+            print('[INFO] This is a Citizenship card!')
+
+            type_cut = cut_roi_cc(list_text_box1, copy_img)
+            dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
+
+            # OCR again         
+            list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
+
+            # Find Id text
+            final_dic['Id'], obj_id = find_id_text_cc(list_text_box2)
+
+            # Find box 'Quoc tich'
+            obj_quoctich_dantoc = find_box_Quoctich_Dantoc(list_text_box2)
+
+            print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
+
+            # Find birth text
+            final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc)
+
+            # Find name text
+            final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id)
+            
+            # Find date of expired
+            if type_cut == 2:
+                final_dic['Date of expired'], obj_expired = '', None
+            else:
+                final_dic['Date of expired'], obj_expired = find_key_expired(list_text_box2, obj_birth)
+
+            # Find sex
+            final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
+
+            # Delete box has been already  processed
+            print(final_dic)
+
+            list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, type_cut)
+            for obj in list_text_box2:
+                print('left', obj.key)
+            # find hometown and address
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
+
+        else:
+            print('[INFO] This is a Identification Card!')
+            cut_roi(list_text_box1, copy_img)
+
+            dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
+            
+            # OCR again         
+            list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
+            
+            # Find Id text
+            final_dic['Id'], obj_id = find_id_text(list_text_box2)
+
+            # Find birth text
+            final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2, obj_id)
+
+            # Remove wrong box
+            list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
+
+            # Find name text
+            final_dic['Name'] = find_name_text(list_text_box2, obj_id, birth_box)
+            
+            # Delete box has been already processed
+            list_text_box2 = delete_box_processed(list_text_box2, birth_box)
+
+            # find hometown and address
+            for obj in list_text_box2:
+                print('left', obj.key)
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+
+            if process_birth(final_dic['Id']) == final_dic['Birth']:
+                final_dic['Id'] = 'CANNOT READ'
+        
+    #----------------------------------------------
+        print('-------------------------------------')
+        print('Id number: ', finalize(final_dic['Id']))
+        print('Name: ', finalize(final_dic['Name']))
+        print('Sex: ', finalize(final_dic['Sex']))
+        print('Date of birth: ', finalize(final_dic['Birth']))
+        print('Hometown: ', finalize(final_dic['Hometown']))    
+        print('Address: ', finalize(final_dic['Address']))
+        print('Date of expired: ', finalize(final_dic['Date of expired']))
+        print('-------------------------------------')
+        logger.info('Done!')
 
     
 if __name__ == '__main__':

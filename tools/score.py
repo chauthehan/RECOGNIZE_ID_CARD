@@ -73,8 +73,9 @@ def score_Gioitinh(key):
     for i in {'Gio', 'ioi', 'oi ', 'i t', ' ti', 'tin', 'inh', 'nh:'}:
         if key.find(i) != -1:
             s = s+3
-    if len(key) == 10:
-        s = s+5
+    for i in {'Gioi', 'ioi ','oi t', 'i ti', ' tin', 'tinh', 'inh:'}:
+        if key.find(i) != -1:
+            s = s+5
     return s
 
 def score_Quequan(key):
