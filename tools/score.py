@@ -86,6 +86,7 @@ def score_Quequan(key):
     for i in {'Que', 'ue ', 'e q', ' qu', 'qua', 'uan', 'an:'}:
         if key.find(i) != -1:
             s = s+3
+    
     if len(key) == 9:
         s = s+5
     return s 

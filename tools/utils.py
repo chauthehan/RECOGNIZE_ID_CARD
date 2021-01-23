@@ -170,21 +170,6 @@ def box_nearest(obj, list_text_box2):
     
     return return_obj
 
-def under_rows(key1, dic):
-    box1 = dic[key1]
-    lst = []
-    for key2 in dic:
-        if key1 != key2:
-            box2 = dic[key2]
-            if box2[0] < box1[0]-(box1[3]-box1[1]):
-                continue
-        
-            if (box1[3]<box2[1] + (box1[3]-box1[1])/2):
-                lst.append(box2)
-    lst.sort(key=Key)
-
-    return lst        
-
 def under_rows_adress(key1, dic):
     box1 = dic[key1]
     lst = []
@@ -230,6 +215,17 @@ def process_birth(key):
         if char>='0' and char<='9':
             birth = birth + char 
     
+    if len(birth)==8:
+        if birth[2] == '7':
+            birth = birth[:2] + '1' +birth[3:]
+        if int(birth[2]) > 1 and int(birth[2])!=7:
+            birth = birth[:2] + '0' +birth[3:]
+
+        if birth[0] == '7':
+            birth = birth[:0] + '1' +birth[1:]
+        if int(birth[2]) > 3 and int(birth[2])!=7:
+            birth = birth[:0] + '0' +birth[1:]
+            
     final_birth = ''
     i = -1
     while True:
@@ -406,7 +402,32 @@ def cut_roi(list_text_box, copy_img):
     #warped =  four_point_transform(copy_img, box)
     box_rec = crop_image(copy_img, box)
     #print('rec', box_rec[0], box_rec[1])
-    save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
+    save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]
+    count = 0
+    sum_corner = 0
+    c = 0
+    for obj in list_text_box:
+        #print(obj.four_points)
+        #print(obj.four_points[0][0][0])
+        if obj.four_points[0][0][0] > box_rec[0] and obj.four_points[0][0][1]>box_rec[1] and obj.four_points[2][0][0]<box_rec[2] and obj.four_points[2][0][1]<box_rec[3] and len(obj.key)>=2:
+            point1 = [obj.four_points[0][0][0], obj.four_points[0][0][1]] 
+            point2 = [obj.four_points[1][0][0], obj.four_points[1][0][1]]
+            dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+            h = point2[1] - point1[1]
+            sin = h/dis
+            corner = -np.arcsin(sin)
+            corner_deg = corner/np.pi*180
+            print(obj.key,' ', corner_deg)
+            count = count+1
+            if abs(corner_deg) > 3:
+                c = c+1
+            sum_corner = sum_corner + corner_deg
+    if c >=5:
+        corner = sum_corner/count
+        save_img = imutils.rotate_bound(save_img, corner)
+    
+    #cv2.imshow('', save_img)
+    #cv2.waitKey(0)
     cv2.imwrite('out.jpg', save_img)
 
 def count_char_in_key(key):
@@ -445,7 +466,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
         print(pred)    
         
         size = crop.shape[0] * crop.shape[1]
-        obj = textbox(pred, box_rec, box, size)
+        obj = textbox(pred, box_rec, box, size, 'box{}/{}.jpg'.format(i, j))
 
         list_text_box.append(obj)
         # dic[pred] = box_rec
@@ -518,7 +539,33 @@ def cut_roi_cc(list_text_box, copy_img):
     #warped =  four_point_transform(copy_img, box)
     box_rec = crop_image(copy_img, box)
     #print('rec', box_rec[0], box_rec[1])
-    save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]    
+    save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]
+
+    count = 0
+    sum_corner = 0
+    c = 0
+    for obj in list_text_box:
+        #print(obj.four_points)
+        #print(obj.four_points[0][0][0])
+        if obj.four_points[0][0][0] > box_rec[0] and obj.four_points[0][0][1]>box_rec[1] and obj.four_points[2][0][0]<box_rec[2] and obj.four_points[2][0][1]<box_rec[3] and len(obj.key)>=2:
+            point1 = [obj.four_points[0][0][0], obj.four_points[0][0][1]] 
+            point2 = [obj.four_points[1][0][0], obj.four_points[1][0][1]]
+            dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+            h = point2[1] - point1[1]
+            sin = h/dis
+            corner = -np.arcsin(sin)
+            corner_deg = corner/np.pi*180
+            print(obj.key,' ', corner_deg)
+            count = count+1
+            if abs(corner_deg) > 3:
+                c = c+1
+            sum_corner = sum_corner + corner_deg
+    if c >=5:
+        corner = sum_corner/count
+        save_img = imutils.rotate_bound(save_img, corner)
+    
+    #cv2.imshow('', save_img)
+    #cv2.waitKey(0)
     cv2.imwrite('out.jpg', save_img)
 
     return type_cut
@@ -584,3 +631,57 @@ def change_PhuongQuan_to_PQ(key):
         key = key[:pos_quan] + 'Q.' +key[pos_quan+5:]
     
     return key
+
+def normalize_name(key_name):
+
+    key_name = finalize(key_name)
+    key = remove_accent(key_name)
+    key = str.lower(key)
+    if 'ho ten' in key:
+        key_name = key_name[6:]
+    
+    #delete space at first position
+
+    while True:
+        if key_name.find(' ') == 0:
+            key_name = key_name[1:]
+        else:
+            break   
+
+    #print(key_name)
+    if key_name.find('-') != -1:
+        pos1 = key_name.find('-')
+    else:
+        pos1 = key_name.find(' ')
+    
+    Ho = key_name[:pos1]
+    Ho_no_accent = remove_accent(Ho)
+
+    if Ho_no_accent not in {'AN', 'ANH', 'AU', 'CAI', 'CHUNG', 'CO', 'CONG', 
+    'CU', 'DAU', 'DOAN', 'DONG','DUONG', 'GIANG', 'HA', 'HAN', 'KHA', 'LA',
+    'LIEU', 'LO', 'MA', 'MAU', 'ONG', 'PHI', 'PHU', 'QUANG', 'TONG', 'TRINH',
+    'UNG', 'KIEU', 'LY'}:
+        print('HO', Ho)
+        with open('ho.txt', 'r') as f:
+            maxx = 0
+            for i in f.readlines():
+                name = remove_accent(i)
+                name = str.upper(name)
+                if name[:-1] == Ho_no_accent:
+                    Ho = i       
+                    Ho = str.upper(Ho)
+                    Ho = Ho[:-1]
+        f.close()
+    
+    pos2 = key_name[pos1+1:].find(' ')
+
+    if key_name[pos1+1:][:pos2] == 'THI':
+        lot = 'THỊ'    
+        key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
+    else:
+        key_name = Ho + ' ' + key_name[pos1+1:]
+    
+    key_name = key_name.replace('-', ' ')
+
+    
+    return key_name

@@ -30,58 +30,28 @@ def find_name_text(list_text_box2, obj_id, birth_box):
         #name appears on 2 lines
         name = lst_name[1] + ' ' + lst_name[0]
     
+    # Case: <name> ho ten
     pos = -1
+    name = finalize(name)
     name_no_accent = remove_accent(name)
-    #print('NAME', name_no_accent)
+    if str.lower(name_no_accent).find('ho ten') >2:
+        pos = str.lower(name_no_accent).find('ho ten')    
+        name = name[:pos]
+
+    # Case: ho ten <name>
+    pos = -1
+    #name_no_accent = finalize(name_no_accent)
+    name_no_accent = remove_accent(name)
     for j, i in enumerate(name_no_accent):
         if not ((i>='A' and i<='Y') or i == ' ' or i=='-'):
             pos = j
     
     key_name = name[pos+1:]
-    
-    #delete space at first position
-    while True:
-        if key_name.find(' ') == 0:
-            key_name = key_name[1:]
-        else:
-            break
-    #print(key_name)
-    if key_name.find('-') != -1:
-        pos1 = key_name.find('-')
-    else:
-        pos1 = key_name.find(' ')
-    Ho = key_name[:pos1]
-    Ho = remove_accent(Ho)
-    #Ho = str.upper(Ho)
-    #print('HO', Ho)
-    with open('ho.txt', 'r') as f:
-        maxx = 0
-        for i in f.readlines():
-            name = remove_accent(i)
-            name = str.upper(name)
-            ratio = SequenceMatcher(a=Ho, b=name).ratio()
-            if ratio > maxx:
-                maxx = ratio
-                res = i
-    f.close()
-
-    res = str.upper(res)
-
-    pos2 = key_name[pos1+1:].find(' ')
-    #print(key_name[pos1+1:])
-    #print(pos2)
-    #print('LOT',key_name[pos1+1:][:pos2])
-    if key_name[pos1+1:][:pos2] == 'THI':
-        lot = 'THỊ'    
-        key_name = res[:-1] + ' ' + lot + key_name[pos1+1:][pos2+1:]
-    else:
-        key_name = res[:-1] + ' ' + key_name[pos1+1:]
-    
-    key_name = key_name.replace('-', ' ')
+    key_name = normalize_name(key_name)
 
     return key_name
 
-def find_id_text(list_text_box2):
+def find_id_text(list_text_box2, detector):
     bot = 9999
     key_so = ''
     key_id = ''
@@ -120,13 +90,26 @@ def find_id_text(list_text_box2):
                 dis = abs(dic_num[key].two_points[1]-obj_id.two_points[1])
                 key_id = key
 
-    key_id = remove_char(key_id)
-    if len(key_id)>9:
-        key_id = key_id[-9:]
+        key_id = remove_char(key_id)
+        #print('KEY_ID', key_id)
+        if len(key_id)>9:
+            key_id = key_id[-9:]
+    
+    if len(key_id)<9:
+        img = cv2.imread(obj_id.name_img)
+        h = img.shape[0]
+        w = img.shape[1]
+        img1 = img[0:h, int(w/5):w]
+        #cv2.imshow('', img1)
+        #cv2.waitKey(0)
+        pil_img = Image.fromarray(img1)
+    
+        key_id = detector.predict(pil_img)
+        key_id = remove_char(key_id)
     
     return key_id, obj_id
 
-def find_id_text_cc(list_text_box2):
+def find_id_text_cc(list_text_box2, detector):
     bot = 9999
     key_so = ''
     key_id = ''
@@ -153,29 +136,47 @@ def find_id_text_cc(list_text_box2):
                 key_id = key
                 obj_id = dic_num[key]
 
+        #key_id = remove_char(key_id)
+
+        # if len(key_id) == 13:
+        #     key_id = key_id[:-1]
+        # if len(key_id) == 14:
+        #     key_id = key_id[2:]
+        # if len(key_id) == 15:
+        #     key_id = key_id[2:][:-1]            
+    # else:
+    #     if len(remove_char(key_so))>=4:
+    #         key_id = key_so
+    #     else:
+    #         dis = 9999
+    #         for key in dic_num:
+    #             if abs(dic_num[key].two_points[1]-obj_id.two_points[1]) < dis:
+    #                 dis = abs(dic_num[key].two_points[1]-obj_id.two_points[1])
+    #                 key_id = key
+    #     key_id = remove_char(key_id)
+        # if len(key_id)>12:
+        #     key_id = key_id[:12]
+
+    img = cv2.imread(obj_id.name_img)
+    h = img.shape[0]
+    w = img.shape[1]
+    img1 = img[0:h, int(w/8):w]
+    pil_img = Image.fromarray(img1)
+   
+    key_id = detector.predict(pil_img)
+    key_id = remove_char(key_id)
+
+    if len(key_id) < 12:
+        img1 = img[0:h, int(w/10):w]
+        pil_img = Image.fromarray(img1)
+        key_id = detector.predict(pil_img)
         key_id = remove_char(key_id)
 
-        if len(key_id) == 13:
-            key_id = key_id[:-1]
-        if len(key_id) == 14:
-            key_id = key_id[2:]
-        if len(key_id) == 15:
-            key_id = key_id[2:][:-1] 
-            
-    else:
-        if len(remove_char(key_so))>=4:
-            key_id = key_so
-        else:
-            dis = 9999
-            for key in dic_num:
-                if abs(dic_num[key].two_points[1]-obj_id.two_points[1]) < dis:
-                    dis = abs(dic_num[key].two_points[1]-obj_id.two_points[1])
-                    key_id = key
-        key_id = remove_char(key_id)
-        if len(key_id)>12:
-            key_id = key_id[:12]
-
- 
+        if len(key_id) < 12:
+            pil_img = Image.fromarray(img)
+            key_id = detector.predict(pil_img)
+            key_id = remove_char(key_id)
+    
     return key_id, obj_id
 
 def find_birth_text(list_text_box2, obj_id):
@@ -187,7 +188,7 @@ def find_birth_text(list_text_box2, obj_id):
             key = obj.key
             #print(key)
             count = count_num_in_key(key)
-            if count == 8 and key.find('-')!=-1: #and check:
+            if (count == 8 and key.find('-')!=-1) or (count==8 and key.count(' ')==2): #and check:
                 # get the birth box
                 obj_birth = obj
                 key_birth = process_birth(key)
@@ -366,9 +367,10 @@ def find_hometown_address_text(list_text_box2):
             
     for obj in keys_above_dkhk:
         list_text_box2.remove(obj)
-    list_text_box2.remove(obj_nearest_address_raw)
+    if obj_nearest_address_raw in list_text_box2:
+        list_text_box2.remove(obj_nearest_address_raw)
 
-    if nearest_address_raw != dkhk:
+    if nearest_address_raw != dkhk and obj_dkhk in list_text_box2:
         list_text_box2.remove(obj_dkhk)
 
     print('-----------------------')
@@ -428,18 +430,24 @@ def find_box_Quoctich_Dantoc(list_text_box2):
 
     return obj_Quoctich
 
-def find_birth_text_cc(list_text_box2, obj_quoctich):
+def find_birth_text_cc(list_text_box2, obj_quoctich, detector):
     key_birth = ''
     obj_birth = None
     for obj in list_text_box2:
         if obj.two_points[1] < obj_quoctich.two_points[1]:
             key = obj.key
-            count = count_num_in_key(key)
-
-            if count == 8:
-                key_birth = remove_char(key)
-                key_birth = process_birth(key_birth)
+            key_num = remove_char(key)
+            
+            if len(key_num)== 8:                                
                 obj_birth = obj
+                key_birth = key_num
+            elif len(key_num) in [9, 10]:
+                obj_birth = obj
+                key_birth = key_num[-8:]             
+    
+    print('KEYBIRTH', key_birth)
+    key_birth = process_birth(key_birth)
+
     return key_birth, obj_birth
 
 def find_cogiatriden(list_text_box2):
@@ -487,26 +495,7 @@ def find_name_text_cc(list_text_box2, obj_quoctich, obj_id):
             pos = j
             
     key_name = name[pos+1:]
-
-    pos1 = key_name.find(' ')
-    Ho = key_name[:pos1]
-    Ho = remove_accent(Ho)
-    #Ho = str.upper(Ho)
-
-    with open('ho.txt', 'r') as f:
-        maxx = 0
-        for i in f.readlines():
-            name = remove_accent(i)
-            name = str.upper(name)
-            ratio = SequenceMatcher(a=Ho, b=name).ratio()
-            if ratio > maxx:
-                maxx = ratio
-                res = i
-    f.close()
-    
-    res = str.upper(res)
-    key_name = res[:-1] + key_name[pos1:]
-    
+    key_name = normalize_name(key_name)
     return key_name 
         
 def find_key_expired(list_text_box2, obj_birth):
@@ -577,7 +566,7 @@ def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quo
     
     #print('QUOCTICH', obj_quoctich_dantoc)
     VietNamdantoc = find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc)
-    
+    obj_ngaythangnamsinh = find_ngaythangnamsinh(list_text_box2)
     if VietNamdantoc is not None:
         list_text_box2.remove(VietNamdantoc)
     
@@ -588,15 +577,39 @@ def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quo
         list_text_box2.remove(obj_Gioitinh)
 
     list_obj_remove = []
-    for obj in list_text_box2:        
-        if obj.two_points[1] <= obj_birth.two_points[3]:
+
+    # if obj_nam_or_nu is not None:
+    #     #print('1111')
+    #     center_namnu = (obj_nam_or_nu.two_points[1]+obj_nam_or_nu.two_points[3])/2
+    #     for obj in list_text_box2:
+    #         center = (obj.two_points[1] + obj.two_points[3])/2
+    #         if center <= center_namnu:                
+    #             list_obj_remove.append(obj)
+    #     if obj_Gioitinh in list_text_box2:
+    #         list_text_box2.remove(obj_Gioitinh)
+    # elif obj_Gioitinh in list_text_box2:
+    #     #print('22222')
+    #     center_gioitinh = (obj_Gioitinh.two_points[1]+obj_Gioitinh.two_points[3])/2
+    #     for obj in list_text_box2:
+    #         center = (obj.two_points[1] + obj.two_points[3])/2
+    #         if center <= center_gioitinh:
+    #             list_obj_remove.append(obj)
+    # else:
+        #print('33333')                      
+    center_birth = (obj_birth.two_points[1]+obj_birth.two_points[3])/2
+    for obj in list_text_box2:
+        center = (obj.two_points[1] + obj.two_points[3])/2
+        if center <= center_birth:
             
             list_obj_remove.append(obj)
 
     for obj in list_obj_remove:
-        #print('listremove', obj.key)
+        print('listremove', obj.key)
         if obj in list_text_box2:
             list_text_box2.remove(obj)
+
+    if obj_ngaythangnamsinh in list_text_box2:
+        list_text_box2.remove(obj_ngaythangnamsinh)
     
     return list_text_box2
 
@@ -619,32 +632,29 @@ def find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc):
                 if obj.two_points[0] > obj_quoctich_dantoc.two_points[2]:
                     return obj
         else:
-            return None
-
-            
+            return None            
     
 def find_hometown_address_text_cc(list_text_box2):
     hometown = ''
     quequan = ''
     address = ''
     keys_above_noithuongtru = []
-
+    
     maxx = 0
     for obj in list_text_box2:
         key = obj.key
-        key_no_accent = remove_accent(key)
-        key_no_accent = str.lower(key_no_accent)
-
-        print(key,' ', score_Quequan(key_no_accent))
-    
-        if score_Quequan(key_no_accent)>maxx:
-            maxx = score_Quequan(key_no_accent) 
-                      
-            quequan = key
-            box_quequan = obj.two_points
+        key = key[:9]
+        key = remove_accent(key)
+        ratio = SequenceMatcher(a=key, b='Que quan:').ratio()
+        if ratio > maxx:
+            maxx = ratio
             obj_quequan = obj
+            box_quequan = obj.two_points
+            quequan=obj.key
+            #print(key)
+        
     #print('NGUYENQUAN', nguyenquan)
-    #print('KEY QYE QUAN', obj_quequan.key)
+    print('KEY QYE QUAN', obj_quequan.key)
 
     # delete box left of nguyenquan
     remove_obj = []
@@ -669,6 +679,7 @@ def find_hometown_address_text_cc(list_text_box2):
             maxx = score_Noithuongtru(key_no_accent)
             obj_Noithuongtru = obj
 
+    print('NOITHUONGTRU', obj_Noithuongtru.key)
     obj_nearest_hometown = None
 
     quequan2 = ''
@@ -680,7 +691,8 @@ def find_hometown_address_text_cc(list_text_box2):
         quequan2 = obj_nearest_hometown.key
     
     #print('nearesthometown', nearest_hometown)
-    #print('nguyeqnan', obj_quequan.key)
+    # print('QUE QUAN', obj_quequan.key)
+    # print('GAN QUE QUAN', quequan2)
 
     hometown = hometown + quequan2
     #print('HOMETONW', hometown)
@@ -703,7 +715,7 @@ def find_hometown_address_text_cc(list_text_box2):
         nearest_address_raw = nearest_address
     
     address = address + nearest_address
-    print('nearest', nearest_address_raw)
+    #print('nearest', nearest_address_raw)
     for obj in list_text_box2:
         if obj.two_points[1]<obj_Noithuongtru.two_points[1] and obj.key != nearest_address_raw:
             keys_above_noithuongtru.append(obj)
@@ -763,3 +775,18 @@ def find_hometown_address_text_cc(list_text_box2):
     #print('address1', address)  
 
     return hometown1, address1
+
+
+def find_ngaythangnamsinh(list_text_box2):
+    maxx = 0
+    for obj in list_text_box2:
+        key = obj.key
+        if len(key) >= 19:
+            key = key[:19]
+            key = remove_accent(key)
+            ratio = SequenceMatcher(a=key, b='Ngay thang nam sinh').ratio()
+            if ratio > maxx:
+                maxx = ratio 
+                obj_res = obj 
+    
+    return obj_res

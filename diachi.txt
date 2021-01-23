@@ -5354,6 +5354,7 @@ Gia Trung,Gia Viễn, Ninh Bình
 Gia Minh,Gia Viễn, Ninh Bình
 Gia Lạc,Gia Viễn, Ninh Bình
 Gia Tiến,Gia Viễn, Ninh Bình
+Xã Nghĩa Hồ, Huyện Lục Ngạn, Bắc Giang
 Gia Sinh,Gia Viễn, Ninh Bình
 Gia Phong,Gia Viễn, Ninh Bình
 Thị trấn Thiên Tôn,Hoa Lư,Tỉnh Ninh Bình
@@ -5368,6 +5369,8 @@ Ninh Hòa,Hoa Lư, Ninh Bình
 Ninh Xuân,Hoa Lư, Ninh Bình
 Ninh Hải,Hoa Lư, Ninh Bình
 Ninh Thắng,Hoa Lư, Ninh Bình
+Tân Trường, Tĩnh Gia, Thanh Hóa
+Tĩnh Gia, Thanh Hóa
 Ninh Vân,Hoa Lư, Ninh Bình
 Ninh An,Hoa Lư, Ninh Bình
 Thị trấn Yên Ninh,Yên Khánh,Tỉnh Ninh Bình

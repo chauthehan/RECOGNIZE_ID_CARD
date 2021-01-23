@@ -67,11 +67,12 @@ import random
 
 
 class textbox:
-    def __init__(self, key, two_points, four_points, size):
+    def __init__(self, key, two_points, four_points, size, name_img):
         self.key = key
         self.two_points = two_points # describe text box by 2 points rectangle
         self.four_points = four_points # describe text box by 4 points quadrilateral
         self.size = size
+        self.name_img = name_img
 
 def draw_det_res(dt_boxes, config, img, img_name):
     if len(dt_boxes) > 0:
@@ -186,7 +187,7 @@ def main():
     # Detect box text
     paths = os.listdir('test/')
 
-    for i in range(143, 200):
+    for i in range(359, 400):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
@@ -200,7 +201,7 @@ def main():
 
         logger.info("Begining ocr..")
 
-        print('pass')
+        #print('pass')
         list_text_box1 = OCR_text(1, dt_boxes, copy_img, detector)        
         
         final_dic = {
@@ -228,15 +229,15 @@ def main():
             list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
 
             # Find Id text
-            final_dic['Id'], obj_id = find_id_text_cc(list_text_box2)
+            final_dic['Id'], obj_id = find_id_text_cc(list_text_box2, detector)
 
             # Find box 'Quoc tich'
             obj_quoctich_dantoc = find_box_Quoctich_Dantoc(list_text_box2)
 
-            print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
+            #print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
 
             # Find birth text
-            final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc)
+            final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, detector)
 
             # Find name text
             final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id)
@@ -251,9 +252,9 @@ def main():
             final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
 
             # Delete box has been already  processed
-            print(final_dic)
 
             list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, type_cut)
+            
             for obj in list_text_box2:
                 print('left', obj.key)
             # find hometown and address
@@ -269,7 +270,7 @@ def main():
             list_text_box2 = OCR_text(1, dt_boxes, copy_img, detector)
             
             # Find Id text
-            final_dic['Id'], obj_id = find_id_text(list_text_box2)
+            final_dic['Id'], obj_id = find_id_text(list_text_box2, detector)
 
             # Find birth text
             final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2, obj_id)
@@ -287,9 +288,7 @@ def main():
             for obj in list_text_box2:
                 print('left', obj.key)
             final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
-
-            if process_birth(final_dic['Id']) == final_dic['Birth']:
-                final_dic['Id'] = 'CANNOT READ'
+            
         
     #----------------------------------------------
         print('-------------------------------------')
