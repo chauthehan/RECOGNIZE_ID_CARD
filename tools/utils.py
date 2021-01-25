@@ -156,31 +156,51 @@ def Key(x):
     return x[0]
 
 def box_nearest(obj, list_text_box2):
+    count = 0
+    sum_corner = 0
+    c = 0
+    for ob in list_text_box2:
+        point1 = [(ob.four_points[0][0][0]+ob.four_points[3][0][0])/2, (ob.four_points[0][0][1]+ob.four_points[3][0][1])/2] 
+        point2 = [(ob.four_points[1][0][0]+ob.four_points[2][0][0])/2, (ob.four_points[1][0][1]+ob.four_points[3][0][1])/2]
+        dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+        h = point2[1] - point1[1]
+        sin = h/dis
+        corner_rad = np.arcsin(sin)
+        #corner_deg = corner_rad/np.pi*180
+        #print(ob.key,' ', corner_deg)
+        count = count+1
+        sum_corner += corner_rad
+    
+    corner = abs(sum_corner/count)
+    #print('CORNER', corner/np.pi*180)    
+    
+    point1 = [(obj.four_points[0][0][0]+obj.four_points[1][0][0]+obj.four_points[2][0][0]+obj.four_points[3][0][0])/4, (obj.four_points[0][0][1]+obj.four_points[1][0][1]+obj.four_points[2][0][1]+obj.four_points[3][0][1])/4]
 
-    box1 = obj.two_points
-    min_dis = 1000
+    min_dis = 10000
     for objj in list_text_box2:
+        #print('objj', objj.key,' ', objj.four_points)
         if obj.key == objj.key:
             continue
-        box2 = objj.two_points
-        
-        if abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2) < min_dis:
-            min_dis = abs((box2[3] + box2[1])/2-(box1[3]+box1[1])/2)
-            return_obj = objj 
+        point2 = [(objj.four_points[0][0][0]+objj.four_points[1][0][0]+objj.four_points[2][0][0]+objj.four_points[3][0][0])/4, (objj.four_points[0][0][1]+objj.four_points[1][0][1]+objj.four_points[2][0][1]+objj.four_points[3][0][1])/4]
+
+        dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+        h = point2[1] - point1[1]
+        sin = h/dis
+        corner_rad = abs(np.arcsin(sin))
+        #print('CORNER_rad', corner_rad/np.pi*180)    
+        #corner_deg = abs(corner_rad/np.pi*180)
+
+        corner_a = abs(corner_rad - corner)
+        #print('corner_a', corner_a/np.pi*180)
+
+        dis_a = dis*np.sin(corner_a)
+
+        print(obj.key, ' ',objj.key,' ', dis_a)
+        if dis_a < min_dis:
+            min_dis = dis_a
+            return_obj = objj
     
     return return_obj
-
-def under_rows_adress(key1, dic):
-    box1 = dic[key1]
-    lst = []
-    for key2 in dic:
-        if key1 != key2:
-            box2 = dic[key2]        
-            if (box1[3]<box2[1] + (box1[3]-box1[1])/2):
-                lst.append(box2)
-    lst.sort(key=Key)
-
-    return lst 
 
 def remove_char(key):
     id = ''
@@ -307,6 +327,15 @@ def count_upper_consecutive(key):
             count = 0
         i = i + 1
 
+def count_lower(key):
+    count = 0
+    count_max = 0
+    i = 0
+    for i in key:
+        if i>='a' and i<='y':
+            count +=1
+    return count
+
 def remove_first_lower(key):
     final = ''
     i = 0
@@ -403,27 +432,10 @@ def cut_roi(list_text_box, copy_img):
     box_rec = crop_image(copy_img, box)
     #print('rec', box_rec[0], box_rec[1])
     save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]
-    count = 0
-    sum_corner = 0
-    c = 0
-    for obj in list_text_box:
-        #print(obj.four_points)
-        #print(obj.four_points[0][0][0])
-        if obj.four_points[0][0][0] > box_rec[0] and obj.four_points[0][0][1]>box_rec[1] and obj.four_points[2][0][0]<box_rec[2] and obj.four_points[2][0][1]<box_rec[3] and len(obj.key)>=2:
-            point1 = [obj.four_points[0][0][0], obj.four_points[0][0][1]] 
-            point2 = [obj.four_points[1][0][0], obj.four_points[1][0][1]]
-            dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
-            h = point2[1] - point1[1]
-            sin = h/dis
-            corner = -np.arcsin(sin)
-            corner_deg = corner/np.pi*180
-            print(obj.key,' ', corner_deg)
-            count = count+1
-            if abs(corner_deg) > 3:
-                c = c+1
-            sum_corner = sum_corner + corner_deg
+
+    corner, c = cal_corner(list_text_box, box_rec)
+
     if c >=5:
-        corner = sum_corner/count
         save_img = imutils.rotate_bound(save_img, corner)
     
     #cv2.imshow('', save_img)
@@ -541,6 +553,16 @@ def cut_roi_cc(list_text_box, copy_img):
     #print('rec', box_rec[0], box_rec[1])
     save_img = copy_img[int(box_rec[1]):int(box_rec[3]), int(box_rec[0]):int(box_rec[2])]
 
+    corner, c = cal_corner(list_text_box,box_rec)
+
+    if c >=5:
+        save_img = imutils.rotate_bound(save_img, corner)
+
+    cv2.imwrite('out.jpg', save_img)
+
+    return type_cut
+
+def cal_corner(list_text_box, box_rec):
     count = 0
     sum_corner = 0
     c = 0
@@ -555,20 +577,13 @@ def cut_roi_cc(list_text_box, copy_img):
             sin = h/dis
             corner = -np.arcsin(sin)
             corner_deg = corner/np.pi*180
-            print(obj.key,' ', corner_deg)
+            #print(obj.key,' ', corner_deg)
             count = count+1
             if abs(corner_deg) > 3:
                 c = c+1
             sum_corner = sum_corner + corner_deg
-    if c >=5:
-        corner = sum_corner/count
-        save_img = imutils.rotate_bound(save_img, corner)
-    
-    #cv2.imshow('', save_img)
-    #cv2.waitKey(0)
-    cv2.imwrite('out.jpg', save_img)
-
-    return type_cut
+    corner = sum_corner/count
+    return corner, c
 
 def box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2):
 
@@ -583,6 +598,37 @@ def box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2):
             key_no_accent = remove_accent(key)
             if key_no_accent == 'Nam' or key_no_accent == 'Nu':
                 return obj
+
+def normalize_hometown_address(nguyenquan, dkhk):
+
+    nguyenquan = change_PhuongQuan_to_PQ(nguyenquan)
+    dkhk = change_PhuongQuan_to_PQ(dkhk)
+
+    nguyenquan1 = mapping(nguyenquan)
+    dkhk1 = mapping(dkhk)
+    # check whether it's Ho Chi Minh region
+    pos = 0
+    if nguyenquan1.find('TP Hồ Chí Minh') != -1:
+        for i in range(len(nguyenquan)-1):
+            if (nguyenquan[i]=='P' and nguyenquan[i+1] in '0123456789') or (nguyenquan[i]=='P' and nguyenquan[i+2] in '0123456789'):
+                pos = i
+                #print(pos)
+        nguyenquan = nguyenquan[pos:]
+        
+    if pos != 0:
+        nguyenquan1 = mapping(nguyenquan)    
+    pos = 0
+    if dkhk1.find('TP Hồ Chí Minh') != -1:
+        for i in range(len(dkhk)-1):
+            if (dkhk[i]=='P' and dkhk[i+1] in '0123456789') or (dkhk[i]=='P' and dkhk[i+2] in '0123456789'):
+                pos = i
+                #print(pos)
+        dkhk = dkhk[pos:]
+    
+    if pos != 0:
+        dkhk1 = mapping(dkhk)
+    
+    return nguyenquan1, dkhk1
 
 def mapping(key):
     maxx = 0
@@ -660,7 +706,7 @@ def normalize_name(key_name):
     if Ho_no_accent not in {'AN', 'ANH', 'AU', 'CAI', 'CHUNG', 'CO', 'CONG', 
     'CU', 'DAU', 'DOAN', 'DONG','DUONG', 'GIANG', 'HA', 'HAN', 'KHA', 'LA',
     'LIEU', 'LO', 'MA', 'MAU', 'ONG', 'PHI', 'PHU', 'QUANG', 'TONG', 'TRINH',
-    'UNG', 'KIEU', 'LY'}:
+    'UNG', 'KIEU', 'LY', 'NGO', 'CHU'}:
         print('HO', Ho)
         with open('ho.txt', 'r') as f:
             maxx = 0

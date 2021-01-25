@@ -187,7 +187,7 @@ def main():
     # Detect box text
     paths = os.listdir('test/')
 
-    for i in range(359, 400):
+    for i in range(500, 600):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
@@ -218,7 +218,6 @@ def main():
         score = score_of_cc_or_cmnd(list_text_box1)
             
         # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
-            
         if score>=1:
             print('[INFO] This is a Citizenship card!')
 
@@ -237,10 +236,10 @@ def main():
             #print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
 
             # Find birth text
-            final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, detector)
+            final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, copy_img)
 
             # Find name text
-            final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id)
+            final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id, copy_img)
             
             # Find date of expired
             if type_cut == 2:
@@ -258,8 +257,7 @@ def main():
             for obj in list_text_box2:
                 print('left', obj.key)
             # find hometown and address
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
-
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc_1(list_text_box2)
         else:
             print('[INFO] This is a Identification Card!')
             cut_roi(list_text_box1, copy_img)
@@ -287,9 +285,8 @@ def main():
             # find hometown and address
             for obj in list_text_box2:
                 print('left', obj.key)
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_1(list_text_box2)  
             
-        
     #----------------------------------------------
         print('-------------------------------------')
         print('Id number: ', finalize(final_dic['Id']))

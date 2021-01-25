@@ -1,5 +1,6 @@
 def score_nguyenquan(key):
     s = 0
+    key = key[:12]
     for i in {'ng', 'gu', 'uy', 'ye', 'en', 'n ', ' q', 'qu', 'ua','an'}:
         if key.find(i) != -1:
             s = s+1
@@ -48,24 +49,33 @@ def score_expired(key):
     return s
 
 def score_Quoctich_Dantoc(key):
+    key = key[:11]
     s = 0
     for i in {'Qu', 'uo', 'oc', 'c ', ' t', 'ti', 'ic', 'ch', 'h:'}:
         if key.find(i) != -1:
-            s = s+2
+            s = s+1
     for i in {'Quo', 'uoc', 'oc ', 'c t',' ti', 'tic', 'ich', 'ch:'}:
         if key.find(i) != -1:
-            s = s+4
+            s = s+3
+    for i in {'Quoc', 'uoc ', 'oc t', 'c ti', '  tic', 'tich', 'ich:'}:
+        if key.find(i) != -1:
+            s = s+5
+
     for i in {'Da', 'an', 'n ', ' t', 'to', 'oc', 'c:'}:
         if key.find(i) != -1:
-            s = s+2
+            s = s+1
     for i in {'Dan', 'an ', 'n t', ' to', 'toc', 'oc:'}:
         if key.find(i) != -1:
-            s = s+4
-    if len(key) < 20:
-        s = s+10    
+            s = s+3
+    for i in {'Dan ', 'an t', 'n to', ' toc', 'toc:'}:
+        if key.find(i) != -1:
+            s = s+5
+    #if len(key) < 20:
+    #    s = s+10    
     return s
     
 def score_Gioitinh(key):
+    key = key[:11]
     s = 0
     for i in {'Gi', 'io','oi', 'i ', ' t', 'ti', 'in', 'nh', 'h:'}:
         if key.find(i) != -1:
@@ -79,6 +89,7 @@ def score_Gioitinh(key):
     return s
 
 def score_Quequan(key):
+    key = key[:10]
     s = 0
     for i in {'Qu', 'ue', 'e ', ' q', 'qu', 'ua', 'an', 'n:'}:
         if key.find(i) != -1:
@@ -86,12 +97,14 @@ def score_Quequan(key):
     for i in {'Que', 'ue ', 'e q', ' qu', 'qua', 'uan', 'an:'}:
         if key.find(i) != -1:
             s = s+3
-    
-    if len(key) == 9:
-        s = s+5
+    for i in {'Que ', 'ue q', 'e qu', ' qua', 'quan', 'uan:'}:
+        if key.find(i) != -1:
+            s = s+3
+
     return s 
 
 def score_Noithuongtru(key):
+    key = key[:15]
     s = 0
     for i in {'No', 'oi', 'i ', ' t', 'th', 'hu', 'uo', 'on','ng', 'g ', ' t', 'tr', 'ru'}:
         if key.find(i) != -1:
