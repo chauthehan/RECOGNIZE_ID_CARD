@@ -195,7 +195,7 @@ def box_nearest(obj, list_text_box2):
 
         dis_a = dis*np.sin(corner_a)
 
-        print(obj.key, ' ',objj.key,' ', dis_a)
+        #print(obj.key, ' ',objj.key,' ', dis_a)
         if dis_a < min_dis:
             min_dis = dis_a
             return_obj = objj
@@ -475,7 +475,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
                 if pred == text.key:
                     pred = pred + ' '
 
-        print(pred)    
+        #print(pred)    
         
         size = crop.shape[0] * crop.shape[1]
         obj = textbox(pred, box_rec, box, size, 'box{}/{}.jpg'.format(i, j))
@@ -707,7 +707,7 @@ def normalize_name(key_name):
     'CU', 'DAU', 'DOAN', 'DONG','DUONG', 'GIANG', 'HA', 'HAN', 'KHA', 'LA',
     'LIEU', 'LO', 'MA', 'MAU', 'ONG', 'PHI', 'PHU', 'QUANG', 'TONG', 'TRINH',
     'UNG', 'KIEU', 'LY', 'NGO', 'CHU'}:
-        print('HO', Ho)
+        #print('HO', Ho)
         with open('ho.txt', 'r') as f:
             maxx = 0
             for i in f.readlines():

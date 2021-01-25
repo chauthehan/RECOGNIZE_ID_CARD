@@ -86,7 +86,7 @@ def draw_det_res(dt_boxes, config, img, img_name):
             os.makedirs(save_det_path)
         save_path = os.path.join(save_det_path, os.path.basename(img_name))
         cv2.imwrite(save_path, src_im)
-        logger.info("The detected Image saved in {}".format(save_path))
+        #logger.info("The detected Image saved in {}".format(save_path))
 
 def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
     config['Global']['infer_img'] = img_path
@@ -95,7 +95,7 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
     for data in test_reader():
         img_num = len(data)
         tackling_num = tackling_num + img_num
-        logger.info("Number of images:%d", tackling_num)
+        #logger.info("Number of images:%d", tackling_num)
         img_list = []
         ratio_list = []
         img_name_list = []
@@ -187,7 +187,7 @@ def main():
     # Detect box text
     paths = os.listdir('test/')
 
-    for i in range(500, 600):
+    for i in range(100, 200):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
@@ -219,7 +219,7 @@ def main():
             
         # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
         if score>=1:
-            print('[INFO] This is a Citizenship card!')
+            #print('[INFO] This is a Citizenship card!')
 
             type_cut = cut_roi_cc(list_text_box1, copy_img)
             dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
@@ -237,6 +237,8 @@ def main():
 
             # Find birth text
             final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, copy_img)
+            
+            #list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
 
             # Find name text
             final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id, copy_img)
@@ -254,12 +256,12 @@ def main():
 
             list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, type_cut)
             
-            for obj in list_text_box2:
-                print('left', obj.key)
+            #for obj in list_text_box2:
+            #    print('left', obj.key)
             # find hometown and address
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc_1(list_text_box2)
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
         else:
-            print('[INFO] This is a Identification Card!')
+            #print('[INFO] This is a Identification Card!')
             cut_roi(list_text_box1, copy_img)
 
             dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
@@ -283,8 +285,9 @@ def main():
             list_text_box2 = delete_box_processed(list_text_box2, birth_box)
 
             # find hometown and address
-            for obj in list_text_box2:
-                print('left', obj.key)
+            #for obj in list_text_box2:
+            #    print('left', obj.key)
+
             final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_1(list_text_box2)  
             
     #----------------------------------------------
@@ -296,9 +299,9 @@ def main():
         print('Hometown: ', finalize(final_dic['Hometown']))    
         print('Address: ', finalize(final_dic['Address']))
         print('Date of expired: ', finalize(final_dic['Date of expired']))
+        
+        logger.info('Done recognizing!')
         print('-------------------------------------')
-        logger.info('Done!')
-
     
 if __name__ == '__main__':
     enable_static_mode()
