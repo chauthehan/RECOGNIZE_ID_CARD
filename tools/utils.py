@@ -453,6 +453,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
     # dic = {}
     # dic_o = {}
     # dic_s = {}
+    print('---------------')
     list_text_box = []
 
     for j, box in enumerate(dt_boxes):
@@ -475,7 +476,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
                 if pred == text.key:
                     pred = pred + ' '
 
-        #print(pred)    
+        print(pred)    
         
         size = crop.shape[0] * crop.shape[1]
         obj = textbox(pred, box_rec, box, size, 'box{}/{}.jpg'.format(i, j))
@@ -499,8 +500,7 @@ def cut_roi_cc(list_text_box, copy_img):
         sc_conghoa = score_conghoa(text_no_accent)      
 
         #print(key,' ' ,sc_ex)
-        #print(key,' ', sc_conghoa)  
-    
+        #print(key,' ', sc_conghoa)    
         if sc_ex > max1:
             max1 = sc_ex
             obj_ex = obj
@@ -515,7 +515,7 @@ def cut_roi_cc(list_text_box, copy_img):
     width_conghoa = box_conghoa[1][0][0] - box_conghoa[0][0][0]
     height_conghoa = box_conghoa[3][0][1] - box_conghoa[0][0][1]    
     
-    if obj_ex.two_points[2] > obj_conghoa.two_points[0]+height_conghoa*1.5:
+    if max1<25:
         maxx = 0
         for obj in list_text_box:
             text = obj.key
@@ -601,8 +601,10 @@ def box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2):
 
 def normalize_hometown_address(nguyenquan, dkhk):
 
-    nguyenquan = change_PhuongQuan_to_PQ(nguyenquan)
-    dkhk = change_PhuongQuan_to_PQ(dkhk)
+    nguyenquan = change_format(nguyenquan)
+    dkhk = change_format(dkhk)  
+
+    print('Change format:', nguyenquan,' ', dkhk)  
 
     nguyenquan1 = mapping(nguyenquan)
     dkhk1 = mapping(dkhk)
@@ -632,6 +634,7 @@ def normalize_hometown_address(nguyenquan, dkhk):
 
 def mapping(key):
     maxx = 0
+    res1 = ''
     with open('diachi.txt', 'r') as infile:
         for i in infile.readlines():
             ratio = SequenceMatcher(a=i,b=key).ratio()
@@ -664,18 +667,22 @@ def score_of_cc_or_cmnd(list_test_box1):
             score +=1 
     return score
 
-def change_PhuongQuan_to_PQ(key):
-    key_no_accent = remove_accent(key)
-    pos_phuong = key_no_accent.find('Phuong ')
+def change_format(key):
+    if not (key.find('Xã') != -1 or key.find('xã')!=-1):
+        #key_no_accent = remove_accent(key)
+        pos_phuong = key.find('Phường ')
 
-    if pos_phuong != -1:
-        key = key[:pos_phuong] + 'P.' + key[pos_phuong+7:]
+        if pos_phuong != -1:
+            key = key[:pos_phuong] + 'P.' + key[pos_phuong+7:]
     
-    key_no_accent = remove_accent(key)
-    pos_quan = key_no_accent.find('Quan ')
-    if pos_quan != -1:
-        key = key[:pos_quan] + 'Q.' +key[pos_quan+5:]
+    if not (key.find('Huyện') != -1 or key.find('huyện')!=-1):
+        #key_no_accent = remove_accent(key)
+        pos_quan = key.find('Quận ')
+        if pos_quan != -1:
+            key = key[:pos_quan] + 'Q.' +key[pos_quan+5:]
     
+    key = key.replace('Xã', '')
+    key = key.replace('Huyện', '')    
     return key
 
 def normalize_name(key_name):
@@ -720,9 +727,13 @@ def normalize_name(key_name):
         f.close()
     
     pos2 = key_name[pos1+1:].find(' ')
+    #print('AAAA', key_name[pos1+1:][:pos2])
 
     if key_name[pos1+1:][:pos2] == 'THI':
         lot = 'THỊ'    
+        key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
+    elif key_name[pos1+1:][:pos2] == 'ĂĂ':
+        lot = 'VĂN '
         key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
     else:
         key_name = Ho + ' ' + key_name[pos1+1:]
@@ -731,3 +742,55 @@ def normalize_name(key_name):
 
     
     return key_name
+
+def draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd):
+    
+    w = obj_cmnd.two_points[2]-obj_cmnd.two_points[0]
+    h = obj_cmnd.two_points[3]-obj_cmnd.two_points[1]
+    
+    if box_id != []:
+        lean_w = box_id[3][0][0]-box_id[0][0][0]
+    else:
+        lean_w = obj_cmnd.four_points[3][0][0] - obj_cmnd.four_points[0][0][0]
+
+    point1 = [int(obj_cmnd.four_points[3][0][0]+w/5), int(obj_cmnd.four_points[3][0][1])]
+    point2 = [int(obj_cmnd.four_points[2][0][0]-w/11), int(obj_cmnd.four_points[2][0][1])]
+    point4 = [int(point1[0]+ lean_w), int(obj_name.four_points[0][0][1]-h/7)]
+    point3 = [int(point2[0]+ lean_w), int(obj_name.four_points[1][0][1]-h/7)]
+
+    print(copy_img.shape)
+    print(point1, ' ', point2,' ',point3,' ',point4)
+    #copy_img = cv2.circle(copy_img,(int(point1[0]), int(point1[1])), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(int(point2[0]), int(point2[1])), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(int(point3[0]), int(point3[1])), 5, (0,255,0), -1)
+    #copy_img = cv2.circle(copy_img,(int(point4[0]), int(point4[1])), 5, (0,255,0), -1)    
+
+    box = [[point1], [point2], [point3], [point4]]
+
+    warp = four_point_transform(copy_img, box)
+    #warp = cv2.GaussianBlur(warp,(5,5),0)
+    warp = cv2.cvtColor(warp, cv2.COLOR_BGR2RGB)
+
+    im_pil = Image.fromarray(warp)
+    pred = detector.predict(im_pil)
+    #cv2.imshow('', warp)
+    #cv2.waitKey(0)
+    if count_num_in_key(pred) >= 9:
+        return remove_char(pred) 
+    else:
+        return ''
+
+def find_cmnd(list_text_box2):
+    maxx = 0
+    for obj in list_text_box2:
+        s = 0
+        key = obj.key 
+        key = remove_accent(key)
+        for i in {'GI', 'IA', 'AY', 'Y ', ' C', 'CH', 'HU', 'UN', 'NG', 'G ', ' M'
+            ,'MI', 'IN', 'NH', 'H ', ' N', 'HA', 'AN', 'N ', ' D', 'DA'}:
+            if key.find(i) !=-1:
+                s += 1
+        if s > maxx:
+            maxx = s
+            obj_cmnd = obj
+    return obj_cmnd

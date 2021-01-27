@@ -1,0 +1,973 @@
+Phường Chương Dương Độ,Quận Hoàn Kiếm,Thành phố Hà Nội
+Phường Bùi Thị Xuân,Quận Hai Bà Trưng,Thành phố Hà Nội
+Phường Ngô Thì Nhậm,Quận Hai Bà Trưng,Thành phố Hà Nội
+Xã Tầm Xá,Huyện Đông Anh,Thành phố Hà Nội
+Xã Xuân Phú,Huyện Phúc Thọ,Thành phố Hà Nội
+Xã Phương Độ,Huyện Phúc Thọ,Thành phố Hà Nội
+Xã Sen Chiểu,Huyện Phúc Thọ,Thành phố Hà Nội
+Xã Cẩm Đình,Huyện Phúc Thọ,Thành phố Hà Nội
+Xã Văn Nhân,Huyện Phú Xuyên,Thành phố Hà Nội
+Xã Thụy Phú,Huyện Phú Xuyên,Thành phố Hà Nội
+Xã Bản Péo,Huyện Hoàng Su Phì,Tỉnh Hà Giang
+Xã Ngán Chiên,Huyện Xín Mần,Tỉnh Hà Giang
+Xã Tân Việt,Huyện Bảo Lâm,Tỉnh Cao Bằng
+Thị trấn Thông Nông,Huyện Thông Nông,Tỉnh Cao Bằng
+Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Cần Yên,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Cần Nông,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Vị Quang,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Lương Thông,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Đa Thông,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Ngọc Động,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Yên Sơn,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Lương Can,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Thanh Long,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Bình Lãng,Huyện Thông Nông,Tỉnh Cao Bằng
+Xã Kéo Yên,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Vân An,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Nà Sác,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Vần Dính,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Hồng Sĩ,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Sĩ Hai,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Phù Ngọc,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Đào Ngạn,Huyện Hà Quảng,Tỉnh Cao Bằng
+Xã Hạ Thôn,Huyện Hà Quảng,Tỉnh Cao Bằng
+Thị trấn Hùng Quốc,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Cô Mười,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Tri Phương,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Quang Hán,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Quang Vinh,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Xuân Nội,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Quang Trung,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Lưu Ngọc,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Cao Chương,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Quốc Toản,Huyện Trà Lĩnh,Tỉnh Cao Bằng
+Xã Ngọc Chung,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Lăng Yên,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Đình Minh,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Cảnh Tiên,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Thông Hoè,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Thân Giáp,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Đoài Côn,Huyện Trùng Khánh,Tỉnh Cao Bằng
+Xã Việt Chu,Huyện Hạ Lang,Tỉnh Cao Bằng
+Xã Thái Đức,Huyện Hạ Lang,Tỉnh Cao Bằng
+Thị trấn Quảng Uyên,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Phi Hải,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Quảng Hưng,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Bình Lăng,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Quốc Dân,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Quốc Phong,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Độc Lập,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Cai Bộ,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Đoài Khôn,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Phúc Sen,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Chí Thảo,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Tự Do,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Hồng Định,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Hồng Quang,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Ngọc Động,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Hoàng Hải,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Xã Hạnh Phúc,Huyện Quảng Uyên,Tỉnh Cao Bằng
+Thị trấn Tà Lùng,Huyện Phục Hoà,Tỉnh Cao Bằng
+Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Triệu ẩu,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Hồng Đại,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Cách Linh,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Đại Sơn,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Lương Thiện,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Tiên Thành,Huyện Phục Hoà,Tỉnh Cao Bằng
+Thị trấn Hoà Thuận,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Mỹ Hưng,Huyện Phục Hoà,Tỉnh Cao Bằng
+Xã Đức Xuân,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Bình Long,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Công Trừng,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Bế Triều,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Trương Vương,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Hà Trì,Huyện Hoà An,Tỉnh Cao Bằng
+Xã Thái Học,Huyện Nguyên Bình,Tỉnh Cao Bằng
+Xã Bắc Hợp,Huyện Nguyên Bình,Tỉnh Cao Bằng
+Xã Lang Môn,Huyện Nguyên Bình,Tỉnh Cao Bằng
+Xã Minh Thanh,Huyện Nguyên Bình,Tỉnh Cao Bằng
+Xã Thị Ngân,Huyện Thạch An,Tỉnh Cao Bằng
+Xã Danh Sỹ,Huyện Thạch An,Tỉnh Cao Bằng
+Xã Cao Trĩ,Huyện Ba Bể,Tỉnh Bắc Kạn
+Xã Lãng Ngâm,Huyện Ngân Sơn,Tỉnh Bắc Kạn
+Xã Hương Nê,Huyện Ngân Sơn,Tỉnh Bắc Kạn
+Xã Phương Linh,Huyện Bạch Thông,Tỉnh Bắc Kạn
+Xã Tú Trĩ,Huyện Bạch Thông,Tỉnh Bắc Kạn
+Xã Tân Tiến,Huyện Bạch Thông,Tỉnh Bắc Kạn
+Xã Quân Bình,Huyện Bạch Thông,Tỉnh Bắc Kạn
+Xã Hà Vị,Huyện Bạch Thông,Tỉnh Bắc Kạn
+Xã Rã Bản,Huyện Chợ Đồn,Tỉnh Bắc Kạn
+Xã Đông Viên,Huyện Chợ Đồn,Tỉnh Bắc Kạn
+Xã Phong Huân,Huyện Chợ Đồn,Tỉnh Bắc Kạn
+Xã Yên Nhuận,Huyện Chợ Đồn,Tỉnh Bắc Kạn
+Thị trấn Chợ Mới,Huyện Chợ Mới,Tỉnh Bắc Kạn
+Xã Nông Thịnh,Huyện Chợ Mới,Tỉnh Bắc Kạn
+Xã Thanh Bình,Huyện Chợ Mới,Tỉnh Bắc Kạn
+Xã Yên Đĩnh,Huyện Chợ Mới,Tỉnh Bắc Kạn
+Xã Vũ Loan,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Lạng San,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Văn Học,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Lương Hạ,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Lương Thành,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Ân Tình,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Lam Sơn,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Hữu Thác,Huyện Na Rì,Tỉnh Bắc Kạn
+Xã Hảo Nghĩa,Huyện Na Rì,Tỉnh Bắc Kạn
+Thị trấn Nà Hang,Huyện Nà Hang,Tỉnh Tuyên Quang
+Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Sinh Long,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Thượng Giáp,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Thượng Nông,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Côn Lôn,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Yên Hoa,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Hồng Thái,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Đà Vị,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Khau Tinh,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Sơn Phú,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Năng Khả,Huyện Nà Hang,Tỉnh Tuyên Quang
+Xã Thanh Tương,Huyện Nà Hang,Tỉnh Tuyên Quang
+Thị trấn Tân Bình,Huyện Yên Sơn,Tỉnh Tuyên Quang
+Xã Kim Phú,Huyện Yên Sơn,Tỉnh Tuyên Quang
+Xã Phú Lâm,Huyện Yên Sơn,Tỉnh Tuyên Quang
+Xã Thanh Phát,Huyện Sơn Dương,Tỉnh Tuyên Quang
+Xã Tuân Lộ,Huyện Sơn Dương,Tỉnh Tuyên Quang
+Xã Sầm Dương,Huyện Sơn Dương,Tỉnh Tuyên Quang
+Xã Lâm Xuyên,Huyện Sơn Dương,Tỉnh Tuyên Quang
+Phường Phố Mới,Thành phố Lào Cai,Tỉnh Lào Cai
+Xã Ngải Thầu,Huyện Bát Xát,Tỉnh Lào Cai
+Xã Cốc San,Huyện Bát Xát,Tỉnh Lào Cai
+Xã Mản Thẩn,Huyện Si Ma Cai,Tỉnh Lào Cai
+Xã Lùng Sui,Huyện Si Ma Cai,Tỉnh Lào Cai
+Xã Cán Hồ,Huyện Si Ma Cai,Tỉnh Lào Cai
+Xã Quan Thần Sán,Huyện Si Ma Cai,Tỉnh Lào Cai
+Xã Lử Thẩn,Huyện Si Ma Cai,Tỉnh Lào Cai
+Xã Bản Già,Huyện Bắc Hà,Tỉnh Lào Cai
+Xã Lầu Thí Ngài,Huyện Bắc Hà,Tỉnh Lào Cai
+Xã Long Phúc,Huyện Bảo Yên,Tỉnh Lào Cai
+Xã Long Khánh,Huyện Bảo Yên,Tỉnh Lào Cai
+Xã Bản Khoang,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Tả Giàng Phình,Huyện Sa Pa,Tỉnh Lào Cai
+Xã San Sả Hồ,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Bản Phùng,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Hầu Thào,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Lao Chải,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Thanh Kim,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Suối Thầu,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Sử Pán,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Thanh Phú,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Nậm Sài,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Nậm Cang,Huyện Sa Pa,Tỉnh Lào Cai
+Xã Văn Sơn,Huyện Văn Bàn,Tỉnh Lào Cai
+Xã Tà Lèng,Thành phố Điện Biên Phủ,Tỉnh Điện Biên
+Xã Nà Tấu,Huyện Điện Biên,Tỉnh Điện Biên
+Xã Nà Nhạn,Huyện Điện Biên,Tỉnh Điện Biên
+Xã Mường Phăng,Huyện Điện Biên,Tỉnh Điện Biên
+Xã Pá Khoang,Huyện Điện Biên,Tỉnh Điện Biên
+Xã Nậm Loỏng,Thành phố Lai Châu,Tỉnh Lai Châu
+Xã Sùng Phài,Huyện Tam Đường,Tỉnh Lai Châu
+Xã Bun Tở,Huyện Mường Tè,Tỉnh Lai Châu
+Xã Bun Nưa,Huyện Mường Tè,Tỉnh Lai Châu
+Xã Sì Lờ Lầu,Huyện Phong Thổ,Tỉnh Lai Châu
+Xã Ma Li Chải,Huyện Phong Thổ,Tỉnh Lai Châu
+Xã Phỏng Lái,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Phỏng Lập,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Nong Lay,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Thôn Mòn,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Tòng Lệnh,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Tòng Cọ,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Muội Nọi,Huyện Thuận Châu,Tỉnh Sơn La
+Xã Xín Vàng,Huyện Bắc Yên,Tỉnh Sơn La
+Xã Bắc Ngà,Huyện Bắc Yên,Tỉnh Sơn La
+Xã Phiêng Kôn,Huyện Bắc Yên,Tỉnh Sơn La
+Xã Mương Tranh,Huyện Mai Sơn,Tỉnh Sơn La
+Xã Nà Ngựu,Huyện Sông Mã,Tỉnh Sơn La
+Xã Xốp Cộp,Huyện Sốp Cộp,Tỉnh Sơn La
+Xã Văn Tiến,Thành phố Yên Bái,Tỉnh Yên Bái
+Xã Phúc Lộc,Thành phố Yên Bái,Tỉnh Yên Bái
+Xã Yên Hưng,Huyện Văn Yên,Tỉnh Yên Bái
+Xã Hoàng Thắng,Huyện Văn Yên,Tỉnh Yên Bái
+Xã Minh Tiến,Huyện Trấn Yên,Tỉnh Yên Bái
+Thị trấn NT Nghĩa Lộ,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Sơn A,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Phù Nham,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Thanh Lương,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Hạnh Sơn,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Phúc Sơn,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Thạch Lương,Huyện Văn Chấn,Tỉnh Yên Bái
+Xã Văn Lãng,Huyện Yên Bình,Tỉnh Yên Bái
+Xã Tích Cốc,Huyện Yên Bình,Tỉnh Yên Bái
+Phường Chăm Mát,Thành phố Hòa Bình,Tỉnh Hoà Bình
+Xã Thái Thịnh,Thành phố Hòa Bình,Tỉnh Hoà Bình
+Xã Đồng Nghê,Huyện Đà Bắc,Tỉnh Hoà Bình
+Xã Suối Nánh,Huyện Đà Bắc,Tỉnh Hoà Bình
+Xã Mường Tuổng,Huyện Đà Bắc,Tỉnh Hoà Bình
+Xã Hào Lý,Huyện Đà Bắc,Tỉnh Hoà Bình
+Xã Tu Lý,Huyện Đà Bắc,Tỉnh Hoà Bình
+Thị trấn Kỳ Sơn,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Hợp Thịnh,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Phú Minh,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Hợp Thành,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Phúc Tiến,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Dân Hòa,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Mông Hóa,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Dân Hạ,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Độc Lập,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Yên Quang,Huyện Kỳ Sơn,Tỉnh Hoà Bình
+Xã Trường Sơn,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Cao Răm,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Hợp Hòa,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Thành Lập,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Tiến Sơn,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Trung Sơn,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Tân Thành,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Hợp Châu,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Long Sơn,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Cao Thắng,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Thanh Lương,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã Hợp Thanh,Huyện Lương Sơn,Tỉnh Hoà Bình
+Xã  Bắc Sơn,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Hùng Tiến,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Nật Sơn,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Sơn Thủy,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Thượng Bì,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Lập Chiệng,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Hạ Bì,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Trung Bì,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Kim Sơn,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Hợp Đồng,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Thượng Tiến,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Kim Tiến,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Kim Bình,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Hợp Kim,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Kim Truy,Huyện Kim Bôi,Tỉnh Hoà Bình
+Xã Đông Phong,Huyện Cao Phong,Tỉnh Hoà Bình
+Xã Xuân Phong,Huyện Cao Phong,Tỉnh Hoà Bình
+Xã Tân Phong,Huyện Cao Phong,Tỉnh Hoà Bình
+Xã Yên Lập,Huyện Cao Phong,Tỉnh Hoà Bình
+Xã Yên Thượng,Huyện Cao Phong,Tỉnh Hoà Bình
+Thị trấn Mường Khến,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Ngòi Hoa,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Trung Hòa,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Quy Hậu,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Địch Giáo,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Tuân Lộ,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Lũng Vân,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Bắc Sơn,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Quy Mỹ,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Do Nhân,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Nam Sơn,Huyện Tân Lạc,Tỉnh Hoà Bình
+Xã Tân Dân,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Tân Mai,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Phúc Sạn,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Ba Khan,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Tân Sơn,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Đồng Bảng,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Piềng Vế,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Nà Mèo,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Thung Khe,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Nong Luông,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Pù Pin,Huyện Mai Châu,Tỉnh Hoà Bình
+Xã Phú Lương,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Phúc Tuy,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Chí Thiện,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Bình Cảng,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Bình Chân,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Liên Vũ,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Vũ Lâm,Huyện Lạc Sơn,Tỉnh Hoà Bình
+Xã Lạc Hưng,Huyện Yên Thủy,Tỉnh Hoà Bình
+Xã Yên Lạc,Huyện Yên Thủy,Tỉnh Hoà Bình
+Thị trấn Thanh Hà,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Thanh Nông,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Phú Lão,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Cố Nghĩa,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Lạc Long,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Liên Hòa,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã Đồng Môn,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Xã An Lạc,Huyện Lạc Thủy,Tỉnh Hoà Bình
+Phường Lương Châu,Thành phố Sông Công,Tỉnh Thái Nguyên
+Xã Vinh Sơn,Thành phố Sông Công,Tỉnh Thái Nguyên
+Xã Kim Sơn,Huyện Định Hóa,Tỉnh Thái Nguyên
+Xã Bắc Ái,Huyện Tràng Định,Tỉnh Lạng Sơn
+Xã Tô Hiệu,Huyện Bình Gia,Tỉnh Lạng Sơn
+Xã Tân Việt,Huyện Văn Lãng,Tỉnh Lạng Sơn
+Xã Trùng Quán,Huyện Văn Lãng,Tỉnh Lạng Sơn
+Xã An Hùng,Huyện Văn Lãng,Tỉnh Lạng Sơn
+Xã Tân Lang,Huyện Văn Lãng,Tỉnh Lạng Sơn
+Xã Nam La,Huyện Văn Lãng,Tỉnh Lạng Sơn
+Xã Song Giáp,Huyện Cao Lộc,Tỉnh Lạng Sơn
+Xã Phú Mỹ,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Việt Yên,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Song Giang,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Vân Mộng,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Vĩnh Lại,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Văn An,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Đại An,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Chu Túc,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Xuân Mai,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Tràng Sơn,Huyện Văn Quan,Tỉnh Lạng Sơn
+Xã Quỳnh Sơn,Huyện Bắc Sơn,Tỉnh Lạng Sơn
+Xã Hữu Vĩnh,Huyện Bắc Sơn,Tỉnh Lạng Sơn
+Xã Thiện Kỵ,Huyện Hữu Lũng,Tỉnh Lạng Sơn
+Xã Tân Lập,Huyện Hữu Lũng,Tỉnh Lạng Sơn
+Xã Đô Lương,Huyện Hữu Lũng,Tỉnh Lạng Sơn
+Xã Quang Lang,Huyện Chi Lăng,Tỉnh Lạng Sơn
+Xã Bằng Khánh,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Xuân Lễ,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Xuân Mãn,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Vân Mộng,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Như Khuê,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Lục Thôn,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Xuân Tình,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Hiệp Hạ,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Nhượng Bạn,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Quan Bản,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Minh Phát,Huyện Lộc Bình,Tỉnh Lạng Sơn
+Xã Điền Công,Thành phố Uông Bí,Tỉnh Quảng Ninh
+Xã Tình Húc,Huyện Bình Liêu,Tỉnh Quảng Ninh
+Xã Đại Thành,Huyện Tiên Yên,Tỉnh Quảng Ninh
+Xã Quảng Lợi,Huyện Đầm Hà,Tỉnh Quảng Ninh
+Xã Quảng Thắng,Huyện Hải Hà,Tỉnh Quảng Ninh
+Xã Quảng Trung,Huyện Hải Hà,Tỉnh Quảng Ninh
+Xã Phú Hải,Huyện Hải Hà,Tỉnh Quảng Ninh
+Xã Quảng Điền,Huyện Hải Hà,Tỉnh Quảng Ninh
+Xã Tiến Tới,Huyện Hải Hà,Tỉnh Quảng Ninh
+Thị trấn Trới,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Kỳ Thượng,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Đồng Sơn,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Tân Dân,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Đồng Lâm,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Hòa Bình,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Vũ Oai,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Dân Chủ,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Quảng La,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Bằng Cả,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Thống Nhất,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Sơn Dương,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Xã Lê Lợi,Huyện Hoành Bồ,Tỉnh Quảng Ninh
+Thị trấn Cầu Gồ,Huyện Yên Thế,Tỉnh Bắc Giang
+Xã Tân Thịnh,Huyện Lạng Giang,Tỉnh Bắc Giang
+Xã Phi Mô,Huyện Lạng Giang,Tỉnh Bắc Giang
+Thị trấn Lục Nam,Huyện Lục Nam,Tỉnh Bắc Giang
+Xã Tiên Hưng,Huyện Lục Nam,Tỉnh Bắc Giang
+Xã Nghĩa Hồ,Huyện Lục Ngạn,Tỉnh Bắc Giang
+Thị trấn Thanh Sơn,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Thạch Sơn,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Quế Sơn,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Phúc Thắng,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Chiên Sơn,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Vĩnh Khương,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã An Lập,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Bồng Am,Huyện Sơn Động,Tỉnh Bắc Giang
+Xã Tuấn Mậu,Huyện Sơn Động,Tỉnh Bắc Giang
+Thị trấn Neo,Huyện Yên Dũng,Tỉnh Bắc Giang
+Thị trấn Tân Dân,Huyện Yên Dũng,Tỉnh Bắc Giang
+Xã Nham Sơn,Huyện Yên Dũng,Tỉnh Bắc Giang
+Xã Thắng Cương,Huyện Yên Dũng,Tỉnh Bắc Giang
+Thị trấn  Bích Động,Huyện Việt Yên,Tỉnh Bắc Giang
+Xã Bích Sơn,Huyện Việt Yên,Tỉnh Bắc Giang
+Xã Hoàng Ninh,Huyện Việt Yên,Tỉnh Bắc Giang
+Xã Đức Thắng,Huyện Hiệp Hòa,Tỉnh Bắc Giang
+Xã Tân Đức,Thành phố Việt Trì,Tỉnh Phú Thọ
+Phường Trường Thịnh,Thị xã Phú Thọ,Tỉnh Phú Thọ
+Xã Đông Khê,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Nghinh Xuyên,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Hùng Quan,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Phương Trung,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Quế Lâm,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Phong Phú,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Hữu Đô,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Đại Nghĩa,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Phú Thứ,Huyện Đoan Hùng,Tỉnh Phú Thọ
+Xã Hậu Bổng,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Đan Hà,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Lệnh Khanh,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Phụ Khánh,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Liên Phương,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Động Lâm,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Lâm Lợi,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Quân Khê,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Y Sơn,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Cáo Điền,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Chuế Lưu,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Chính Công,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Mai Tùng,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Vụ Cầu,Huyện Hạ Hoà,Tỉnh Phú Thọ
+Xã Thanh Vân,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Thái Ninh,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Năng Yên,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Yển Khê,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Quảng Nạp,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Vũ Yển,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Yên Nội,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Phương Lĩnh,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Thanh Xá,Huyện Thanh Ba,Tỉnh Phú Thọ
+Xã Bình Bộ,Huyện Phù Ninh,Tỉnh Phú Thọ
+Xã Tử Đà,Huyện Phù Ninh,Tỉnh Phú Thọ
+Xã Vĩnh Phú,Huyện Phù Ninh,Tỉnh Phú Thọ
+Thị trấn Sông Thao,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Phương Xá,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Đồng Cam,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Phùng Xá,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Sơn Nga,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Sai Nga,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Thanh Nga,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Tình Cương,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Hiền Đa,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Cát Trù,Huyện Cẩm Khê,Tỉnh Phú Thọ
+Xã Vực Trường,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Hương Nha,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Xuân Quang,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Tứ Mỹ,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Văn Lương,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Hùng Đô,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Phương Thịnh,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Tam Cường,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Cổ Tiết,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Hồng Đà,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Dậu Dương,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Thượng Nông,Huyện Tam Nông,Tỉnh Phú Thọ
+Xã Hợp Hải,Huyện Lâm Thao,Tỉnh Phú Thọ
+Xã Sơn Dương,Huyện Lâm Thao,Tỉnh Phú Thọ
+Xã Kinh Kệ,Huyện Lâm Thao,Tỉnh Phú Thọ
+Xã Đồng Luận,Huyện Thanh Thuỷ,Tỉnh Phú Thọ
+Xã Trung Thịnh,Huyện Thanh Thuỷ,Tỉnh Phú Thọ
+Xã Trung Nghĩa,Huyện Thanh Thuỷ,Tỉnh Phú Thọ
+Xã Phượng Mao,Huyện Thanh Thuỷ,Tỉnh Phú Thọ
+Xã Yến Mao,Huyện Thanh Thuỷ,Tỉnh Phú Thọ
+Xã Tân Cương,Huyện Vĩnh Tường,Tỉnh Vĩnh Phúc
+Xã Phú Thịnh,Huyện Vĩnh Tường,Tỉnh Vĩnh Phúc
+Xã An Châu,Thành phố Hải Dương,Tỉnh Hải Dương
+Xã Thượng Đạt,Thành phố Hải Dương,Tỉnh Hải Dương
+Xã Kênh Giang,Thị xã Chí Linh,Tỉnh Hải Dương
+Thị trấn Kinh Môn,Huyện Kinh Môn,Tỉnh Hải Dương
+Xã Phúc Thành B,Huyện Kinh Môn,Tỉnh Hải Dương
+Xã Thái Sơn,Huyện Kinh Môn,Tỉnh Hải Dương
+Xã Quang Trung,Huyện Kinh Môn,Tỉnh Hải Dương
+Xã Phạm Mệnh,Huyện Kinh Môn,Tỉnh Hải Dương
+Xã Việt Hưng,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Tuấn Hưng,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Kim Lương,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Kim Khê,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Cẩm La,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Đồng Gia,Huyện Kim Thành,Tỉnh Hải Dương
+Xã Quyết Thắng,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã Tiền Tiến,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã An Lương,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã Phượng Hoàng,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã Hợp Đức,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã Trường Thành,Huyện Thanh Hà,Tỉnh Hải Dương
+Xã Thanh Bính,Huyện Thanh Hà,Tỉnh Hải Dương
+Thị trấn Cẩm Giàng,Huyện Cẩm Giàng,Tỉnh Hải Dương
+Xã Cẩm Sơn,Huyện Cẩm Giàng,Tỉnh Hải Dương
+Xã Cẩm Định,Huyện Cẩm Giàng,Tỉnh Hải Dương
+Xã Kim Giang,Huyện Cẩm Giàng,Tỉnh Hải Dương
+Xã Hưng Thịnh,Huyện Bình Giang,Tỉnh Hải Dương
+Xã Vĩnh Tuy,Huyện Bình Giang,Tỉnh Hải Dương
+Xã Tráng Liệt,Huyện Bình Giang,Tỉnh Hải Dương
+Xã Cổ Bi,Huyện Bình Giang,Tỉnh Hải Dương
+Xã Liên Hồng,Huyện Gia Lộc,Tỉnh Hải Dương
+Xã Trùng Khánh,Huyện Gia Lộc,Tỉnh Hải Dương
+Xã Gia Xuyên,Huyện Gia Lộc,Tỉnh Hải Dương
+Xã Gia Hòa,Huyện Gia Lộc,Tỉnh Hải Dương
+Xã Phương Hưng,Huyện Gia Lộc,Tỉnh Hải Dương
+Xã Ngọc Sơn,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Kỳ Sơn,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Đại Đồng,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Tứ Xuyên,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Đông Kỳ,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Tây Kỳ,Huyện Tứ Kỳ,Tỉnh Hải Dương
+Xã Quyết Thắng,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Ninh Hòa,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Ninh Thành,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Hoàng Hanh,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Quang Hưng,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Hồng Thái,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Hưng Thái,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Văn Giang,Huyện Ninh Giang,Tỉnh Hải Dương
+Xã Hùng Sơn,Huyện Thanh Miện,Tỉnh Hải Dương
+Xã Diên Hồng,Huyện Thanh Miện,Tỉnh Hải Dương
+Xã Tiền Phong,Huyện Thanh Miện,Tỉnh Hải Dương
+Phường Quang Trung,Quận Hồng Bàng,Thành phố Hải Phòng
+Phường Phạm Hồng Thái,Quận Hồng Bàng,Thành phố Hải Phòng
+Phường Lương Khánh Thiện,Quận Ngô Quyền,Thành phố Hải Phòng
+Phường Ngọc Hải,Quận Đồ Sơn,Thành phố Hải Phòng
+Phường Vạn Sơn,Quận Đồ Sơn,Thành phố Hải Phòng
+Xã Tiên Tiến,Huyện Tiên Lãng,Thành phố Hải Phòng
+Xã Tiên Hưng,Huyện Tiên Lãng,Thành phố Hải Phòng
+Xã Minh Phương,Huyện Tiên Lữ,Tỉnh Hưng Yên
+Xã Quỳnh Sơn,Huyện Quỳnh Phụ,Tỉnh Thái Bình
+Xã Quỳnh Châu,Huyện Quỳnh Phụ,Tỉnh Thái Bình
+Xã Đông Hà,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Đông Giang,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Hoa Lư,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Minh Châu,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Hồng Châu,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Bạch Đằng,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Hoa Nam,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Đông Phong,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Đông Lĩnh,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Đông Huy,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Đồng Phú,Huyện Đông Hưng,Tỉnh Thái Bình
+Xã Thụy Tân,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Hồng Quỳnh,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Dũng,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Hồng,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy An,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Dương,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Phúc,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Lương,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thụy Hà,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Thủy,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Dương,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Hòa,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Sơn,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Hồng,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái An,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Hà,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Tân,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Thuần,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Học,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Thái Thành,Huyện Thái Thụy,Tỉnh Thái Bình
+Xã Đông Hải,Huyện Tiền Hải,Tỉnh Thái Bình
+Xã Tây An,Huyện Tiền Hải,Tỉnh Thái Bình
+Xã Tây Sơn,Huyện Tiền Hải,Tỉnh Thái Bình
+Thị trấn Thanh Nê,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã Vũ Tây,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã Vũ Sơn,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã Quyết Tiến,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã An Bồi,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã Minh Hưng,Huyện Kiến Xương,Tỉnh Thái Bình
+Xã Quang Hưng,Huyện Kiến Xương,Tỉnh Thái Bình
+Phường Lam Hà,Thành phố Phủ Lý,Tỉnh Hà Nam
+Xã Đọi Sơn,Huyện Duy Tiên,Tỉnh Hà Nam
+Xã Châu Sơn,Huyện Duy Tiên,Tỉnh Hà Nam
+Xã Tiền Phong,Huyện Duy Tiên,Tỉnh Hà Nam
+Xã Thanh Bình,Huyện Thanh Liêm,Tỉnh Hà Nam
+Xã Thanh Lưu,Huyện Thanh Liêm,Tỉnh Hà Nam
+Xã An Mỹ,Huyện Bình Lục,Tỉnh Hà Nam
+Xã Mỹ Thọ,Huyện Bình Lục,Tỉnh Hà Nam
+Xã Nhân Đạo,Huyện Lý Nhân,Tỉnh Hà Nam
+Xã Đồng Lý,Huyện Lý Nhân,Tỉnh Hà Nam
+Xã Nhân Hưng,Huyện Lý Nhân,Tỉnh Hà Nam
+Xã Yên Xá,Huyện Ý Yên,Tỉnh Nam Định
+Xã Nghĩa Thắng,Huyện Nghĩa Hưng,Tỉnh Nam Định
+Xã Nghĩa Phúc,Huyện Nghĩa Hưng,Tỉnh Nam Định
+Xã Trực Phú,Huyện Trực Ninh,Tỉnh Nam Định
+Xã Hải Toàn,Huyện Hải Hậu,Tỉnh Nam Định
+Xã Xuân Thiện,Huyện Kim Sơn,Tỉnh Ninh Bình
+Xã Chính Tâm,Huyện Kim Sơn,Tỉnh Ninh Bình
+Xã Yên Mật,Huyện Kim Sơn,Tỉnh Ninh Bình
+Xã Hoằng Lý,Thành phố Thanh Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Long,Thành phố Thanh Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Anh,Thành phố Thanh Hóa,Tỉnh Thanh Hóa
+Phường An Hoạch,Thành phố Thanh Hóa,Tỉnh Thanh Hóa
+Xã Đông Hưng,Thành phố Thanh Hóa,Tỉnh Thanh Hóa
+Xã Hà Lan,Thị xã Bỉm Sơn,Tỉnh Thanh Hóa
+Xã Tén Tằn,Huyện Mường Lát,Tỉnh Thanh Hóa
+Thị trấn Quan Hóa,Huyện Quan Hóa,Tỉnh Thanh Hóa
+Xã Thanh Xuân,Huyện Quan Hóa,Tỉnh Thanh Hóa
+Xã Xuân Phú,Huyện Quan Hóa,Tỉnh Thanh Hóa
+Xã Lâm Sa,Huyện Bá Thước,Tỉnh Thanh Hóa
+Xã Tân Lập,Huyện Bá Thước,Tỉnh Thanh Hóa
+Thị trấn Quan Sơn,Huyện Quan Sơn,Tỉnh Thanh Hóa
+Xã Quang Hiến,Huyện Lang Chánh,Tỉnh Thanh Hóa
+Xã Ngọc Khê,Huyện Ngọc Lặc,Tỉnh Thanh Hóa
+Thị trấn Cẩm Thủy,Huyện Cẩm Thủy,Tỉnh Thanh Hóa
+Xã Phúc Do,Huyện Cẩm Thủy,Tỉnh Thanh Hóa
+Xã Cẩm Sơn,Huyện Cẩm Thủy,Tỉnh Thanh Hóa
+Xã Cẩm Phong,Huyện Cẩm Thủy,Tỉnh Thanh Hóa
+Xã Thạch Tân,Huyện Thạch Thành,Tỉnh Thanh Hóa
+Xã Thành Vân,Huyện Thạch Thành,Tỉnh Thanh Hóa
+Xã Thành Kim,Huyện Thạch Thành,Tỉnh Thanh Hóa
+Xã Hà Vân,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Yên,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Thanh,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Dương,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Phú,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Phong,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Ninh,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Lâm,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Hà Toại,Huyện Hà Trung,Tỉnh Thanh Hóa
+Xã Vĩnh Thành,Huyện Vĩnh Lộc,Tỉnh Thanh Hóa
+Xã Vĩnh Minh,Huyện Vĩnh Lộc,Tỉnh Thanh Hóa
+Xã Vĩnh Khang,Huyện Vĩnh Lộc,Tỉnh Thanh Hóa
+Xã Vĩnh Tân,Huyện Vĩnh Lộc,Tỉnh Thanh Hóa
+Xã Vĩnh Ninh,Huyện Vĩnh Lộc,Tỉnh Thanh Hóa
+Xã Yên Giang,Huyện Yên Định,Tỉnh Thanh Hóa
+Xã Yên Bái,Huyện Yên Định,Tỉnh Thanh Hóa
+Xã Định Tường,Huyện Yên Định,Tỉnh Thanh Hóa
+Xã Xuân Khánh,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Thọ Nguyên,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Thành,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Hạnh Phúc,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Quang,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Sơn,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Thắng,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Lam,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Thọ Minh,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Châu,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Phú Yên,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Yên,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Thọ Thắng,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Tân,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Vinh,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Thọ Trường,Huyện Thọ Xuân,Tỉnh Thanh Hóa
+Xã Xuân Cẩm,Huyện Thường Xuân,Tỉnh Thanh Hóa
+Xã Minh Dân,Huyện Triệu Sơn,Tỉnh Thanh Hóa
+Xã Minh Châu,Huyện Triệu Sơn,Tỉnh Thanh Hóa
+Xã Tân Ninh,Huyện Triệu Sơn,Tỉnh Thanh Hóa
+Thị trấn Vạn Hà,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Thiệu Minh,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Thiệu Tâm,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Thiệu Đô,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Thiệu Châu,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Thiệu Tân,Huyện Thiệu Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Khánh,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Lương,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Khê,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Minh,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Phúc,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Hoằng Vinh,Huyện Hoằng Hóa,Tỉnh Thanh Hóa
+Xã Châu Lộc,Huyện Hậu Lộc,Tỉnh Thanh Hóa
+Xã Văn Lộc,Huyện Hậu Lộc,Tỉnh Thanh Hóa
+Xã Lộc Tân,Huyện Hậu Lộc,Tỉnh Thanh Hóa
+Xã Thịnh Lộc,Huyện Hậu Lộc,Tỉnh Thanh Hóa
+Xã Nga Lĩnh,Huyện Nga Sơn,Tỉnh Thanh Hóa
+Xã Nga Nhân,Huyện Nga Sơn,Tỉnh Thanh Hóa
+Xã Nga Hưng,Huyện Nga Sơn,Tỉnh Thanh Hóa
+Xã Nga Mỹ,Huyện Nga Sơn,Tỉnh Thanh Hóa
+Xã Xuân Quỳ,Huyện Như Xuân,Tỉnh Thanh Hóa
+Xã Yên Lễ,Huyện Như Xuân,Tỉnh Thanh Hóa
+Xã Xuân Thọ,Huyện Như Thanh,Tỉnh Thanh Hóa
+Xã Hải Vân,Huyện Như Thanh,Tỉnh Thanh Hóa
+Xã Phúc Đường,Huyện Như Thanh,Tỉnh Thanh Hóa
+Xã Trung Ý,Huyện Nông Cống,Tỉnh Thanh Hóa
+Xã Tế Tân,Huyện Nông Cống,Tỉnh Thanh Hóa
+Xã Công Bình,Huyện Nông Cống,Tỉnh Thanh Hóa
+Xã Đông Anh,Huyện Đông Sơn,Tỉnh Thanh Hóa
+Thị trấn Quảng Xương,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Xã Quảng Tân,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Xã Quảng Phong,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Xã Quảng Lĩnh,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Xã Quảng Vọng,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Xã Quảng Lợi,Huyện Quảng Xương,Tỉnh Thanh Hóa
+Thị trấn Tĩnh Gia,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Châu,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Thanh Thủy,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Thanh Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Triêu Dương,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Ninh,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Anh Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Ngọc Lĩnh,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải An,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hùng Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Các Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Tân Dân,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Lĩnh,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Định Hải,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Phú Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Ninh Hải,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Nguyên Bình,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Nhân,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Hòa,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Bình Minh,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Thanh,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Phú Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Xuân Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Trúc Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Bình,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Tân Trường,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Tùng Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Tĩnh Hải,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Mai Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Trường Lâm,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Yến,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Thượng,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Nghi Sơn,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Hải Hà,Huyện Tĩnh Gia,Tỉnh Thanh Hóa
+Xã Nghĩa Hòa,Thị xã Thái Hoà,Tỉnh Nghệ An
+Xã Quế Sơn,Huyện Quế Phong,Tỉnh Nghệ An
+Thị trấn Hòa Bình,Huyện Tương Dương,Tỉnh Nghệ An
+Xã Nghĩa Tân,Huyện Nghĩa Đàn,Tỉnh Nghệ An
+Xã Nghĩa Thắng,Huyện Nghĩa Đàn,Tỉnh Nghệ An
+Xã Nghĩa Liên,Huyện Nghĩa Đàn,Tỉnh Nghệ An
+Xã Quỳnh Diện,Huyện Quỳnh Lưu,Tỉnh Nghệ An
+Xã Diễn Minh,Huyện Diễn Châu,Tỉnh Nghệ An
+Xã Diễn Bình,Huyện Diễn Châu,Tỉnh Nghệ An
+Xã Diễn Thắng,Huyện Diễn Châu,Tỉnh Nghệ An
+Xã Thanh Hưng,Huyện Thanh Chương,Tỉnh Nghệ An
+Xã Thanh Tường,Huyện Thanh Chương,Tỉnh Nghệ An
+Xã Thanh Văn,Huyện Thanh Chương,Tỉnh Nghệ An
+Xã Nghi Hợp,Huyện Nghi Lộc,Tỉnh Nghệ An
+Xã Nghi Khánh,Huyện Nghi Lộc,Tỉnh Nghệ An
+Xã Vân Diên,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Thượng,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Tân,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Lộc,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Phúc,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Cường,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Nam Trung,Huyện Nam Đàn,Tỉnh Nghệ An
+Xã Hưng Thắng,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Long,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Tiến,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Xá,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Châu,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Xuân,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Nhân,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Phú,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Khánh,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Hưng Lam,Huyện Hưng Nguyên,Tỉnh Nghệ An
+Xã Thạch Môn,Thành phố Hà Tĩnh,Tỉnh Hà Tĩnh
+Xã Thạch Đồng,Thành phố Hà Tĩnh,Tỉnh Hà Tĩnh
+Xã Sơn Thịnh,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn An,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Hòa,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Tân,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Mỹ,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Hà,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Quang,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Diệm,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Thủy,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Phúc,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Sơn Mai,Huyện Hương Sơn,Tỉnh Hà Tĩnh
+Xã Đức Quang,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Vĩnh,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Châu,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Tùng,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức La,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Nhân,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Bùi Xá,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Thịnh,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Yên,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Thủy,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Thái Yên,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Trung Lễ,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Hòa,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Long,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Lâm,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Thanh,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Dũng,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Lập,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức An,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Đức Lạc,Huyện Đức Thọ,Tỉnh Hà Tĩnh
+Xã Sơn Thọ,Huyện Vũ Quang,Tỉnh Hà Tĩnh
+Xã Hương Điền,Huyện Vũ Quang,Tỉnh Hà Tĩnh
+Xã Hương Thọ,Huyện Vũ Quang,Tỉnh Hà Tĩnh
+Xã Hương Quang,Huyện Vũ Quang,Tỉnh Hà Tĩnh
+Thị trấn Nghi Xuân,Huyện Nghi Xuân,Tỉnh Hà Tĩnh
+Xã Xuân Trường,Huyện Nghi Xuân,Tỉnh Hà Tĩnh
+Xã Xuân Đan,Huyện Nghi Xuân,Tỉnh Hà Tĩnh
+Xã Kim Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Song Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Trường Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Yên Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Khánh Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Vĩnh Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Tiến Lộc,Huyện Can Lộc,Tỉnh Hà Tĩnh
+Xã Phương Mỹ,Huyện Hương Khê,Tỉnh Hà Tĩnh
+Xã Phương Điền,Huyện Hương Khê,Tỉnh Hà Tĩnh
+Xã Thạch Bàn,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Đỉnh,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Phù Việt,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Việt Xuyên,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Tiến,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Thanh,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Vĩnh,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Lưu,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Bắc Sơn,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Tân,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Lâm,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Hương,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Nam Hương,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Thạch Điền,Huyện Thạch Hà,Tỉnh Hà Tĩnh
+Xã Cẩm Hòa,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Cẩm Yên,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Cẩm Nam,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Cẩm Huy,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Cẩm Thăng,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Cẩm Phúc,Huyện Cẩm Xuyên,Tỉnh Hà Tĩnh
+Xã Kỳ Hợp,Huyện Kỳ Anh,Tỉnh Hà Tĩnh
+Xã Kỳ Lâm,Huyện Kỳ Anh,Tỉnh Hà Tĩnh
+Xã An Lộc,Huyện Lộc Hà,Tỉnh Hà Tĩnh
+Xã Bình Lộc,Huyện Lộc Hà,Tỉnh Hà Tĩnh
+Xã Thạch Bằng,Huyện Lộc Hà,Tỉnh Hà Tĩnh
+Phường Sông Trí,Thị xã Kỳ Anh,Tỉnh Hà Tĩnh
+Xã Kỳ Hưng,Thị xã Kỳ Anh,Tỉnh Hà Tĩnh
+Phường Đồng Mỹ,Thành Phố Đồng Hới,Tỉnh Quảng Bình
+Phường Hải Đình,Thành Phố Đồng Hới,Tỉnh Quảng Bình
+Xã Quy Hóa,Huyện Minh Hóa,Tỉnh Quảng Bình
+Xã Nam Hóa,Huyện Tuyên Hóa,Tỉnh Quảng Bình
+Xã Quảng Liên,Huyện Quảng Trạch,Tỉnh Quảng Bình
+Xã Quảng Trường,Huyện Quảng Trạch,Tỉnh Quảng Bình
+Xã Hải Trạch,Huyện Bố Trạch,Tỉnh Quảng Bình
+Xã Phú Trạch,Huyện Bố Trạch,Tỉnh Quảng Bình
+Xã Sơn Trạch,Huyện Bố Trạch,Tỉnh Quảng Bình
+Xã Hoàn Trạch,Huyện Bố Trạch,Tỉnh Quảng Bình
+Xã Ngư Thủy Trung,Huyện Lệ Thủy,Tỉnh Quảng Bình
+Xã Ngư Thủy Nam,Huyện Lệ Thủy,Tỉnh Quảng Bình
+Xã Văn Thủy,Huyện Lệ Thủy,Tỉnh Quảng Bình
+Xã Vĩnh Trung,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Kim,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Thạch,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Nam,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Hiền,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Thành,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã Vĩnh Tân,Huyện Vĩnh Linh,Tỉnh Quảng Trị
+Xã A Xing,Huyện Hướng Hóa,Tỉnh Quảng Trị
+Xã A Túc,Huyện Hướng Hóa,Tỉnh Quảng Trị
+Xã Gio Phong,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Vĩnh Trường,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Gio Bình,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Gio Thành,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Linh Thượng,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Gio Hòa,Huyện Gio Linh,Tỉnh Quảng Trị
+Xã Hải Phúc,Huyện Đa Krông,Tỉnh Quảng Trị
+Xã Cam An,Huyện Cam Lộ,Tỉnh Quảng Trị
+Xã Cam Thanh,Huyện Cam Lộ,Tỉnh Quảng Trị
+Xã Triệu Đông,Huyện Triệu Phong,Tỉnh Quảng Trị
+Thị trấn Hải Lăng,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Xuân,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Vĩnh,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Thiện,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Thành,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Hòa,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Tân,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Hải Thọ,Huyện Hải Lăng,Tỉnh Quảng Trị
+Xã Vinh Phú,Huyện Phú Vang,Tỉnh Thừa Thiên Huế
+Xã Vinh Thái,Huyện Phú Vang,Tỉnh Thừa Thiên Huế
+Xã Bình Điền,Thị xã Hương Trà,Tỉnh Thừa Thiên Huế
+Xã Hồng Tiến,Thị xã Hương Trà,Tỉnh Thừa Thiên Huế
+Xã Hồng Trung,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã Bắc Sơn,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã Hồng Quảng,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã Nhâm,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã Hương Lâm,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã A Đớt,Huyện A Lưới,Tỉnh Thừa Thiên Huế
+Xã Vinh Hải,Huyện Phú Lộc,Tỉnh Thừa Thiên Huế
+Xã Vinh Giang,Huyện Phú Lộc,Tỉnh Thừa Thiên Huế
+Xã Hương Hòa,Huyện Nam Đông,Tỉnh Thừa Thiên Huế
+Xã Hương Giang,Huyện Nam Đông,Tỉnh Thừa Thiên Huế
+Xã Quế Cường,Huyện Quế Sơn,Tỉnh Quảng Nam
+Xã Phú Thọ,Huyện Quế Sơn,Tỉnh Quảng Nam
+Thị trấn Tân An,Huyện Hiệp Đức,Tỉnh Quảng Nam
+Xã Quế Bình,Huyện Hiệp Đức,Tỉnh Quảng Nam
+Xã Quế Ninh,Huyện Nông Sơn,Tỉnh Quảng Nam
+Xã Quế Phước,Huyện Nông Sơn,Tỉnh Quảng Nam
+Xã Bình Thới,Huyện Bình Sơn,Tỉnh Quảng Ngãi
+Xã Bình Thanh Tây,Huyện Bình Sơn,Tỉnh Quảng Ngãi
+Xã Bình Phú,Huyện Bình Sơn,Tỉnh Quảng Ngãi
+Xã Bình Thanh Đông,Huyện Bình Sơn,Tỉnh Quảng Ngãi
+Xã Bình Tân,Huyện Bình Sơn,Tỉnh Quảng Ngãi
+Xã Trà Thanh,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Khê,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Quân,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Phong,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Lãnh,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Nham,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Xinh,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Thọ,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Trà Trung,Huyện Tây Trà,Tỉnh Quảng Ngãi
+Xã Nghĩa Thọ,Huyện Tư Nghĩa,Tỉnh Quảng Ngãi
+Thị trấn Đức Phổ,Huyện Đức Phổ,Tỉnh Quảng Ngãi
+Xã Ba Chùa,Huyện Ba Tơ,Tỉnh Quảng Ngãi
+Xã An Vĩnh,Huyện Lý Sơn,Tỉnh Quảng Ngãi
+Xã An Hải,Huyện Lý Sơn,Tỉnh Quảng Ngãi
+Xã An Bình,Huyện Lý Sơn,Tỉnh Quảng Ngãi
+Phường Nhơn Bình,Thành phố Qui Nhơn,Tỉnh Bình Định
+Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Nhơn Phú,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Đống Đa,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Trần Quang Diệu,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Hải Cảng,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Quang Trung,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Thị Nại,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Lê Hồng Phong,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Trần Hưng Đạo,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Ngô Mây,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Lý Thường Kiệt,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Lê Lợi,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Trần Phú,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Bùi Thị Xuân,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Nguyễn Văn Cừ,Thành phố Qui Nhơn,Tỉnh Bình Định
+Phường Ghềnh Ráng,Thành phố Qui Nhơn,Tỉnh Bình Định
+Xã Nhơn Lý,Thành phố Qui Nhơn,Tỉnh Bình Định
+Xã Nhơn Hội,Thành phố Qui Nhơn,Tỉnh Bình Định
+Xã Nhơn Hải,Thành phố Qui Nhơn,Tỉnh Bình Định
+Xã Nhơn Châu,Thành phố Qui Nhơn,Tỉnh Bình Định
+Xã Phước Mỹ,Thành phố Qui Nhơn,Tỉnh Bình Định
+Thị trấn  Tam Quan,Huyện Hoài Nhơn,Tỉnh Bình Định
+Xã Dak Mang,Huyện Hoài Ân,Tỉnh Bình Định
+Xã Xuân Hòa,Thị xã Sông Cầu,Tỉnh Phú Yên
+Xã An Hải,Huyện Tuy An,Tỉnh Phú Yên
+Xã An Hòa,Huyện Tuy An,Tỉnh Phú Yên
+Xã Diên Bình,Huyện Diên Khánh,Tỉnh Khánh Hòa
+Xã Diên Lộc,Huyện Diên Khánh,Tỉnh Khánh Hòa
+Xã Hòa Phú,Huyện Tuy Phong,Tỉnh Bình Thuận
+Xã Đức Tân,Huyện Tánh Linh,Tỉnh Bình Thuận
+Xã Đức Chính,Huyện Đức Linh,Tỉnh Bình Thuận
+Xã Đắk Plô,Huyện Đắk Glei,Tỉnh Kon Tum
+Thị trấn Plei Cần,Huyện Ngọc Hồi,Tỉnh Kon Tum
+Xã Pờ Y,Huyện Ngọc Hồi,Tỉnh Kon Tum
+Xã Đắk Long,Huyện Kon Plông,Tỉnh Kon Tum
+Xã Ngọk Lây,Huyện Tu Mơ Rông,Tỉnh Kon Tum
+Xã Ngok Yêu,Huyện Tu Mơ Rông,Tỉnh Kon Tum
+Xã Đắk Tơ Kan,Huyện Tu Mơ Rông,Tỉnh Kon Tum
+Xã Ia Dal,Huyện Ia H' Drai,Tỉnh Kon Tum
+Xã Chư HDrông,Thành phố Pleiku,Tỉnh Gia Lai
+Xã Chư Jôr,Huyện Chư Păh,Tỉnh Gia Lai
+Xã Hà Ra,Huyện Mang Yang,Tỉnh Gia Lai
+Xã Dlê Yang,Huyện Ea H'leo,Tỉnh Đắk Lắk
+Xã Hương Lâm,Huyện Đạ Tẻh,Tỉnh Lâm Đồng
+Xã Hà Đông,Huyện Đạ Tẻh,Tỉnh Lâm Đồng
+Xã Mỹ Lâm,Huyện Cát Tiên,Tỉnh Lâm Đồng
+Xã Tư Nghĩa,Huyện Cát Tiên,Tỉnh Lâm Đồng
+Xã Phước Cát 1,Huyện Cát Tiên,Tỉnh Lâm Đồng
+Thị trấn Hòa Thành,Huyện Hòa Thành,Tỉnh Tây Ninh
+Xã Phước Lưu,Huyện Trảng Bàng,Tỉnh Tây Ninh
+Xã Bình Thạnh,Huyện Trảng Bàng,Tỉnh Tây Ninh
+Xã An Hoà,Thành phố Biên Hòa,Tỉnh Đồng Nai
+Xã Xuân Thạnh,Huyện Thống Nhất,Tỉnh Đồng Nai
+Xã Suối Trầu,Huyện Long Thành,Tỉnh Đồng Nai
+Thị trấn Phú Mỹ,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Tân Hoà,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Tân Hải,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Phước Hoà,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Tân Phước,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Mỹ Xuân,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Sông Xoài,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Hắc Dịch,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Châu Pha,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Tóc Tiên,Huyện Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+Xã Long Thành,Huyện Thủ Thừa,Tỉnh Long An
+Xã Tân Lập,Huyện Thủ Thừa,Tỉnh Long An
+Xã Mỹ Bình,Huyện Tân Trụ,Tỉnh Long An
+Xã An Nhựt Tân,Huyện Tân Trụ,Tỉnh Long An
+Xã Tân Kim,Huyện Cần Giuộc,Tỉnh Long An
+Xã Trường Bình,Huyện Cần Giuộc,Tỉnh Long An
+Phường 1,Thành phố Bến Tre,Tỉnh Bến Tre
+Phường 3,Thành phố Bến Tre,Tỉnh Bến Tre
+Phường 2,Thành phố Bến Tre,Tỉnh Bến Tre
+Xã Mỹ Thành,Thành phố Bến Tre,Tỉnh Bến Tre
+Xã Giao Hòa,Huyện Châu Thành,Tỉnh Bến Tre
+Xã Bình Khánh Đông,Huyện Mỏ Cày Nam,Tỉnh Bến Tre
+Xã Bình Khánh Tây,Huyện Mỏ Cày Nam,Tỉnh Bến Tre
+Xã Phong Mỹ,Huyện Giồng Trôm,Tỉnh Bến Tre
+Xã Phước Tuy,Huyện Ba Tri,Tỉnh Bến Tre
+Xã Phú Ngãi,Huyện Ba Tri,Tỉnh Bến Tre
+Xã Chánh Hội,Huyện Mang Thít,Tỉnh Vĩnh Long
+Xã Thành Đông,Huyện Bình Tân,Tỉnh Vĩnh Long
+Xã Thường Thới Hậu B,Huyện Hồng Ngự,Tỉnh Đồng Tháp
+Xã Hòn Thơm,Huyện Phú Quốc,Tỉnh Kiên Giang
+Phường An Hội,Quận Ninh Kiều,Thành phố Cần Thơ
+Phường An Lạc,Quận Ninh Kiều,Thành phố Cần Thơ
+Xã Phú An,Huyện Châu Thành,Tỉnh Hậu Giang
+Xã Việt Khái,Huyện Phú Tân,Tỉnh Cà Mau

@@ -9,12 +9,12 @@ def score_nguyenquan(key):
             s = s+3
     for i in {'nguy', 'guye', 'uyen', 'yen ', 'en q', 'n qu', ' qua', 'quan'}:
         if key.find(i) != -1:
-            s = s+5
-        
+            s = s+5        
     return s
 
 def score_dkhk(key):
     s = 0
+    key = key[:20]
     for i in {'No', 'oi', 'i ', ' D', 'DK', 'KH', 'HK', 'K ', ' t', 'th', 'hu',
         'uo', 'on', 'ng', 'g ', ' t', 'tr', 'ru', 'u:'}:
         if key.find(i) != -1:
@@ -39,6 +39,7 @@ def score_conghoa(key):
     return s
 
 def score_expired(key):
+    key = key[:15]
     s = 0
     for i in {'Co', 'o ', ' g', 'gi', 'ia', 'a ', ' t', 'tr', 'ri',' d', 'de', 'en', 'n:'}:
         if key.find(i) != -1:

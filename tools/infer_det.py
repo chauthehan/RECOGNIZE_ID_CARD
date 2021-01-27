@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-#python3 tools/infer_det.py -c configs/det/det_r18_vd_db_v1.1.yml -o Global.checkpoints="./output/det_db/best_accuracy" PostProcess.box_thresh=0.1 PostProcess.unclip_ratio=1.5 Global.infer_img="/home/han/Documents/cmnd/recognize_id_card/test/61.png"
+#python3 tools/infer_det.py -c configs/det/det_r18_vd_db_v1.1.yml -o Global.checkpoints="./output/det_db/best_accuracy" PostProcess.box_thresh=0.1 PostProcess.unclip_ratio=1.5"
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -185,22 +185,23 @@ def main():
 
     detector = Predictor(config_ocr)
     # Detect box text
-    paths = os.listdir('test/')
 
-    for i in range(100, 200):
+    #for i in range(9, 400):
+    for i in range(278, 550):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
         if not os.path.exists(img_path):
             continue
-
+        #img_path = '/home/han/Documents/cmnd/recognize_id_card/hardcore/125.png'
+        logger.info("Begining detect id card..")
     #img_path = config['Global'].get('infer_img')
         dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
 
         logger.info("Detect success!")
 
         logger.info("Begining ocr..")
-
+        
         #print('pass')
         list_text_box1 = OCR_text(1, dt_boxes, copy_img, detector)        
         
@@ -232,16 +233,19 @@ def main():
 
             # Find box 'Quoc tich'
             obj_quoctich_dantoc = find_box_Quoctich_Dantoc(list_text_box2)
+            VietNamdantoc = find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc)
 
             #print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
 
             # Find birth text
             final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, copy_img)
             
-            #list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
+            # Remove wrong box 
+            list_text_box2 = remove_wrong_box_cc(list_text_box2, obj_id)
 
             # Find name text
-            final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, obj_id, copy_img)
+            final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, VietNamdantoc, obj_id, copy_img)
+
             
             # Find date of expired
             if type_cut == 2:
@@ -252,14 +256,19 @@ def main():
             # Find sex
             final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
 
+            if VietNamdantoc is not None and obj_nam_or_nu is None and obj_Gioitinh is None:
+                final_dic['Sex'] = find_gioitinh_base_vietnam(list_text_box2, VietNamdantoc, obj_quoctich_dantoc)
+
             # Delete box has been already  processed
 
-            list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, type_cut)
+            list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut)
             
-            #for obj in list_text_box2:
-            #    print('left', obj.key)
+            for obj in list_text_box2:
+                print('left', obj.key)
             # find hometown and address
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc_1(list_text_box2)
+
+            print('Final dic: ', final_dic)
         else:
             #print('[INFO] This is a Identification Card!')
             cut_roi(list_text_box1, copy_img)
@@ -271,23 +280,33 @@ def main():
             
             # Find Id text
             final_dic['Id'], obj_id = find_id_text(list_text_box2, detector)
-
-            # Find birth text
-            final_dic['Birth'], birth_size, birth_box  = find_birth_text(list_text_box2, obj_id)
-
-            # Remove wrong box
-            list_text_box2 = remove_wrong_box(list_text_box2, obj_id, birth_box, birth_size)
-
-            # Find name text
-            final_dic['Name'] = find_name_text(list_text_box2, obj_id, birth_box)
             
+            box_id = []
+            if obj_id is not None:
+                box_id = obj_id.four_points
+            # Find birth text
+            final_dic['Birth'], birth_size, obj_birth  = find_birth_text(list_text_box2, obj_id)
+            
+            # Find cmnd
+            obj_cmnd = find_cmnd(list_text_box2)
+            # Remove wrong box
+            list_text_box2 = remove_wrong_box(list_text_box2, obj_id, obj_birth, birth_size, obj_cmnd)
+            
+            # Find name text
+            
+            final_dic['Name'], obj_name = find_name_text(list_text_box2, obj_id, obj_birth.two_points, obj_cmnd, detector)
+            
+            if (final_dic['Id'] == remove_char(final_dic['Birth']) or len(final_dic['Id'])<9) and obj_name is not None:
+                final_dic['Id'] = draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd)
+
             # Delete box has been already processed
-            list_text_box2 = delete_box_processed(list_text_box2, birth_box)
-
+            
+            list_text_box2 = delete_box_processed(list_text_box2, obj_birth.two_points)
+            
             # find hometown and address
-            #for obj in list_text_box2:
-            #    print('left', obj.key)
-
+            for obj in list_text_box2:
+                print('left', obj.key)
+            
             final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_1(list_text_box2)  
             
     #----------------------------------------------
@@ -302,7 +321,7 @@ def main():
         
         logger.info('Done recognizing!')
         print('-------------------------------------')
-    
+
 if __name__ == '__main__':
     enable_static_mode()
     parser = program.ArgsParser()

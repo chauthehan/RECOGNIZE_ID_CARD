@@ -108,6 +108,25 @@ Quỳnh Mai,Hai Bà Trưng,TP Hà Nội
 Quỳnh Lôi,Hai Bà Trưng,TP Hà Nội
 Minh Khai,Hai Bà Trưng,TP Hà Nội
 Trương Định,Hai Bà Trưng,TP Hà Nội
+Nguyễn Du,HBT,TP Hà Nội
+HBT,TP Hà Nội
+Bạch Đằng,HBT,TP Hà Nội
+Phạm Đình Hổ,HBT,TP Hà Nội
+Lê Đại Hành,HBT,TP Hà Nội
+Đồng Nhân,HBT,TP Hà Nội
+Phố Huế,HBT,TP Hà Nội
+Đống Mác,HBT,TP Hà Nội
+Thanh Lương,HBT,TP Hà Nội
+Thanh Nhàn,HBT,TP Hà Nội
+Cầu Dền,HBT,TP Hà Nội
+Bách Khoa,HBT,TP Hà Nội
+Đồng Tâm,HBT,TP Hà Nội
+Vĩnh Tuy,HBT,TP Hà Nội
+Bạch Mai,HBT,TP Hà Nội
+Quỳnh Mai,HBT,TP Hà Nội
+Quỳnh Lôi,HBT,TP Hà Nội
+Minh Khai,HBT,TP Hà Nội
+Trương Định,HBT,TP Hà Nội
 Thanh Trì,Hoàng Mai,TP Hà Nội
 Hoàng Mai,TP Hà Nội
 Vĩnh Hưng,Hoàng Mai,TP Hà Nội
@@ -10462,6 +10481,22 @@ P.17,Phú Nhuận,TP Hồ Chí Minh
 P.14,Phú Nhuận,TP Hồ Chí Minh
 P.12,Phú Nhuận,TP Hồ Chí Minh
 P.13,Phú Nhuận,TP Hồ Chí Minh
+P.4,PN,TP Hồ Chí Minh
+PN,TP Hồ Chí Minh
+P.5,PN,TP Hồ Chí Minh
+P.9,PN,TP Hồ Chí Minh
+P.7,PN,TP Hồ Chí Minh
+P.3,PN,TP Hồ Chí Minh
+P.1,PN,TP Hồ Chí Minh
+P.2,PN,TP Hồ Chí Minh
+P.8,PN,TP Hồ Chí Minh
+P.15,PN,TP Hồ Chí Minh
+P.10,PN,TP Hồ Chí Minh
+P.11,PN,TP Hồ Chí Minh
+P.17,PN,TP Hồ Chí Minh
+P.14,PN,TP Hồ Chí Minh
+P.12,PN,TP Hồ Chí Minh
+P.13,PN,TP Hồ Chí Minh
 Thảo Điền,Q.2,TP Hồ Chí Minh
 Q.2,TP Hồ Chí Minh
 An Phú,Q.2,TP Hồ Chí Minh
@@ -12667,3 +12702,1023 @@ Thị trấn Rạch Gốc,Ngọc Hiển,Tỉnh Cà Mau
 TT Rạch Gốc,Ngọc Hiển, Cà Mau
 Tân Ân,Ngọc Hiển, Cà Mau
 Đất Mũi,Ngọc Hiển, Cà Mau
+Chương Dương Độ,Hoàn Kiếm,TP Hà Nội
+Bùi Thị Xuân,Hai Bà Trưng,TP Hà Nội
+Ngô Thì Nhậm,Hai Bà Trưng,TP Hà Nội
+Tầm Xá,Đông Anh,TP Hà Nội
+Xuân Phú,Phúc Thọ,TP Hà Nội
+Phương Độ,Phúc Thọ,TP Hà Nội
+Sen Chiểu,Phúc Thọ,TP Hà Nội
+Cẩm Đình,Phúc Thọ,TP Hà Nội
+Văn Nhân,Phú Xuyên,TP Hà Nội
+Thụy Phú,Phú Xuyên,TP Hà Nội
+Bản Péo,Hoàng Su Phì, Hà Giang
+Ngán Chiên,Xín Mần, Hà Giang
+Tân Việt,Bảo Lâm, Cao Bằng
+Thị trấn Thông Nông,Thông Nông,Tỉnh Cao Bằng
+TT Thông Nông,Thông Nông, Cao Bằng
+Thông Nông, Cao Bằng
+Cần Yên,Thông Nông, Cao Bằng
+Cần Nông,Thông Nông, Cao Bằng
+Vị Quang,Thông Nông, Cao Bằng
+Lương Thông,Thông Nông, Cao Bằng
+Đa Thông,Thông Nông, Cao Bằng
+Ngọc Động,Thông Nông, Cao Bằng
+Yên Sơn,Thông Nông, Cao Bằng
+Lương Can,Thông Nông, Cao Bằng
+Thanh Long,Thông Nông, Cao Bằng
+Bình Lãng,Thông Nông, Cao Bằng
+Kéo Yên,Hà Quảng, Cao Bằng
+Vân An,Hà Quảng, Cao Bằng
+Nà Sác,Hà Quảng, Cao Bằng
+Vần Dính,Hà Quảng, Cao Bằng
+Hồng Sĩ,Hà Quảng, Cao Bằng
+Sĩ Hai,Hà Quảng, Cao Bằng
+Phù Ngọc,Hà Quảng, Cao Bằng
+Đào Ngạn,Hà Quảng, Cao Bằng
+Hạ Thôn,Hà Quảng, Cao Bằng
+Thị trấn Hùng Quốc,Trà Lĩnh,Tỉnh Cao Bằng
+TT Hùng Quốc,Trà Lĩnh, Cao Bằng
+Trà Lĩnh, Cao Bằng
+Cô Mười,Trà Lĩnh, Cao Bằng
+Tri Phương,Trà Lĩnh, Cao Bằng
+Quang Hán,Trà Lĩnh, Cao Bằng
+Quang Vinh,Trà Lĩnh, Cao Bằng
+Xuân Nội,Trà Lĩnh, Cao Bằng
+Quang Trung,Trà Lĩnh, Cao Bằng
+Lưu Ngọc,Trà Lĩnh, Cao Bằng
+Cao Chương,Trà Lĩnh, Cao Bằng
+Quốc Toản,Trà Lĩnh, Cao Bằng
+Ngọc Chung,Trùng Khánh, Cao Bằng
+Lăng Yên,Trùng Khánh, Cao Bằng
+Đình Minh,Trùng Khánh, Cao Bằng
+Cảnh Tiên,Trùng Khánh, Cao Bằng
+Thông Hoè,Trùng Khánh, Cao Bằng
+Thân Giáp,Trùng Khánh, Cao Bằng
+Đoài Côn,Trùng Khánh, Cao Bằng
+Việt Chu,Hạ Lang, Cao Bằng
+Thái Đức,Hạ Lang, Cao Bằng
+Thị trấn Quảng Uyên,Quảng Uyên,Tỉnh Cao Bằng
+TT Quảng Uyên,Quảng Uyên, Cao Bằng
+Quảng Uyên, Cao Bằng
+Phi Hải,Quảng Uyên, Cao Bằng
+Quảng Hưng,Quảng Uyên, Cao Bằng
+Bình Lăng,Quảng Uyên, Cao Bằng
+Quốc Dân,Quảng Uyên, Cao Bằng
+Quốc Phong,Quảng Uyên, Cao Bằng
+Độc Lập,Quảng Uyên, Cao Bằng
+Cai Bộ,Quảng Uyên, Cao Bằng
+Đoài Khôn,Quảng Uyên, Cao Bằng
+Phúc Sen,Quảng Uyên, Cao Bằng
+Chí Thảo,Quảng Uyên, Cao Bằng
+Tự Do,Quảng Uyên, Cao Bằng
+Hồng Định,Quảng Uyên, Cao Bằng
+Hồng Quang,Quảng Uyên, Cao Bằng
+Ngọc Động,Quảng Uyên, Cao Bằng
+Hoàng Hải,Quảng Uyên, Cao Bằng
+Hạnh Phúc,Quảng Uyên, Cao Bằng
+Thị trấn Tà Lùng,Phục Hoà,Tỉnh Cao Bằng
+TT Tà Lùng,Phục Hoà, Cao Bằng
+Phục Hoà, Cao Bằng
+Triệu ẩu,Phục Hoà, Cao Bằng
+Hồng Đại,Phục Hoà, Cao Bằng
+Cách Linh,Phục Hoà, Cao Bằng
+Đại Sơn,Phục Hoà, Cao Bằng
+Lương Thiện,Phục Hoà, Cao Bằng
+Tiên Thành,Phục Hoà, Cao Bằng
+Thị trấn Hoà Thuận,Phục Hoà,Tỉnh Cao Bằng
+TT Hoà Thuận,Phục Hoà, Cao Bằng
+Mỹ Hưng,Phục Hoà, Cao Bằng
+Đức Xuân,Hoà An, Cao Bằng
+Bình Long,Hoà An, Cao Bằng
+Công Trừng,Hoà An, Cao Bằng
+Bế Triều,Hoà An, Cao Bằng
+Trương Vương,Hoà An, Cao Bằng
+Hà Trì,Hoà An, Cao Bằng
+Thái Học,Nguyên Bình, Cao Bằng
+Bắc Hợp,Nguyên Bình, Cao Bằng
+Lang Môn,Nguyên Bình, Cao Bằng
+Minh Thanh,Nguyên Bình, Cao Bằng
+Thị Ngân,Thạch An, Cao Bằng
+Danh Sỹ,Thạch An, Cao Bằng
+Cao Trĩ,Ba Bể, Bắc Kạn
+Lãng Ngâm,Ngân Sơn, Bắc Kạn
+Hương Nê,Ngân Sơn, Bắc Kạn
+Phương Linh,Bạch Thông, Bắc Kạn
+Tú Trĩ,Bạch Thông, Bắc Kạn
+Tân Tiến,Bạch Thông, Bắc Kạn
+Quân Bình,Bạch Thông, Bắc Kạn
+Hà Vị,Bạch Thông, Bắc Kạn
+Rã Bản,Chợ Đồn, Bắc Kạn
+Đông Viên,Chợ Đồn, Bắc Kạn
+Phong Huân,Chợ Đồn, Bắc Kạn
+Yên Nhuận,Chợ Đồn, Bắc Kạn
+Thị trấn Chợ Mới,Chợ Mới,Tỉnh Bắc Kạn
+TT Chợ Mới,Chợ Mới, Bắc Kạn
+Nông Thịnh,Chợ Mới, Bắc Kạn
+Thanh Bình,Chợ Mới, Bắc Kạn
+Yên Đĩnh,Chợ Mới, Bắc Kạn
+Vũ Loan,Na Rì, Bắc Kạn
+Lạng San,Na Rì, Bắc Kạn
+Văn Học,Na Rì, Bắc Kạn
+Lương Hạ,Na Rì, Bắc Kạn
+Lương Thành,Na Rì, Bắc Kạn
+Ân Tình,Na Rì, Bắc Kạn
+Lam Sơn,Na Rì, Bắc Kạn
+Hữu Thác,Na Rì, Bắc Kạn
+Hảo Nghĩa,Na Rì, Bắc Kạn
+Thị trấn Nà Hang,Nà Hang,Tỉnh Tuyên Quang
+TT Nà Hang,Nà Hang, Tuyên Quang
+Nà Hang, Tuyên Quang
+Sinh Long,Nà Hang, Tuyên Quang
+Thượng Giáp,Nà Hang, Tuyên Quang
+Thượng Nông,Nà Hang, Tuyên Quang
+Côn Lôn,Nà Hang, Tuyên Quang
+Yên Hoa,Nà Hang, Tuyên Quang
+Hồng Thái,Nà Hang, Tuyên Quang
+Đà Vị,Nà Hang, Tuyên Quang
+Khau Tinh,Nà Hang, Tuyên Quang
+Sơn Phú,Nà Hang, Tuyên Quang
+Năng Khả,Nà Hang, Tuyên Quang
+Thanh Tương,Nà Hang, Tuyên Quang
+Thị trấn Tân Bình,Yên Sơn,Tỉnh Tuyên Quang
+TT Tân Bình,Yên Sơn, Tuyên Quang
+Kim Phú,Yên Sơn, Tuyên Quang
+Phú Lâm,Yên Sơn, Tuyên Quang
+Thanh Phát,Sơn Dương, Tuyên Quang
+Tuân Lộ,Sơn Dương, Tuyên Quang
+Sầm Dương,Sơn Dương, Tuyên Quang
+Lâm Xuyên,Sơn Dương, Tuyên Quang
+Phố Mới,TP Lào Cai, Lào Cai
+Ngải Thầu,Bát Xát, Lào Cai
+Cốc San,Bát Xát, Lào Cai
+Mản Thẩn,Si Ma Cai, Lào Cai
+Lùng Sui,Si Ma Cai, Lào Cai
+Cán Hồ,Si Ma Cai, Lào Cai
+Quan Thần Sán,Si Ma Cai, Lào Cai
+Lử Thẩn,Si Ma Cai, Lào Cai
+Bản Già,Bắc Hà, Lào Cai
+Lầu Thí Ngài,Bắc Hà, Lào Cai
+Long Phúc,Bảo Yên, Lào Cai
+Long Khánh,Bảo Yên, Lào Cai
+Bản Khoang,Sa Pa, Lào Cai
+Tả Giàng Phình,Sa Pa, Lào Cai
+San Sả Hồ,Sa Pa, Lào Cai
+Bản Phùng,Sa Pa, Lào Cai
+Hầu Thào,Sa Pa, Lào Cai
+Lao Chải,Sa Pa, Lào Cai
+Thanh Kim,Sa Pa, Lào Cai
+Suối Thầu,Sa Pa, Lào Cai
+Sử Pán,Sa Pa, Lào Cai
+Thanh Phú,Sa Pa, Lào Cai
+Nậm Sài,Sa Pa, Lào Cai
+Nậm Cang,Sa Pa, Lào Cai
+Văn Sơn,Văn Bàn, Lào Cai
+Tà Lèng,TP Điện Biên Phủ, Điện Biên
+Nà Tấu,Điện Biên, Điện Biên
+Nà Nhạn,Điện Biên, Điện Biên
+Mường Phăng,Điện Biên, Điện Biên
+Pá Khoang,Điện Biên, Điện Biên
+Nậm Loỏng,TP Lai Châu, Lai Châu
+Sùng Phài,Tam Đường, Lai Châu
+Bun Tở,Mường Tè, Lai Châu
+Bun Nưa,Mường Tè, Lai Châu
+Sì Lờ Lầu,Phong Thổ, Lai Châu
+Ma Li Chải,Phong Thổ, Lai Châu
+Phỏng Lái,Thuận Châu, Sơn La
+Phỏng Lập,Thuận Châu, Sơn La
+Nong Lay,Thuận Châu, Sơn La
+Thôn Mòn,Thuận Châu, Sơn La
+Tòng Lệnh,Thuận Châu, Sơn La
+Tòng Cọ,Thuận Châu, Sơn La
+Muội Nọi,Thuận Châu, Sơn La
+Xín Vàng,Bắc Yên, Sơn La
+Bắc Ngà,Bắc Yên, Sơn La
+Phiêng Kôn,Bắc Yên, Sơn La
+Mương Tranh,Mai Sơn, Sơn La
+Nà Ngựu,Sông Mã, Sơn La
+Xốp Cộp,Sốp Cộp, Sơn La
+Văn Tiến,TP Yên Bái, Yên Bái
+Phúc Lộc,TP Yên Bái, Yên Bái
+Yên Hưng,Văn Yên, Yên Bái
+Hoàng Thắng,Văn Yên, Yên Bái
+Minh Tiến,Trấn Yên, Yên Bái
+Thị trấn NT Nghĩa Lộ,Văn Chấn,Tỉnh Yên Bái
+TT NT Nghĩa Lộ,Văn Chấn, Yên Bái
+Sơn A,Văn Chấn, Yên Bái
+Phù Nham,Văn Chấn, Yên Bái
+Thanh Lương,Văn Chấn, Yên Bái
+Hạnh Sơn,Văn Chấn, Yên Bái
+Phúc Sơn,Văn Chấn, Yên Bái
+Thạch Lương,Văn Chấn, Yên Bái
+Văn Lãng,Yên Bình, Yên Bái
+Tích Cốc,Yên Bình, Yên Bái
+Chăm Mát,TP Hòa Bình, Hoà Bình
+Thái Thịnh,TP Hòa Bình, Hoà Bình
+Đồng Nghê,Đà Bắc, Hoà Bình
+Suối Nánh,Đà Bắc, Hoà Bình
+Mường Tuổng,Đà Bắc, Hoà Bình
+Hào Lý,Đà Bắc, Hoà Bình
+Tu Lý,Đà Bắc, Hoà Bình
+Thị trấn Kỳ Sơn,Kỳ Sơn,Tỉnh Hoà Bình
+TT Kỳ Sơn,Kỳ Sơn, Hoà Bình
+Kỳ Sơn, Hoà Bình
+Hợp Thịnh,Kỳ Sơn, Hoà Bình
+Phú Minh,Kỳ Sơn, Hoà Bình
+Hợp Thành,Kỳ Sơn, Hoà Bình
+Phúc Tiến,Kỳ Sơn, Hoà Bình
+Dân Hòa,Kỳ Sơn, Hoà Bình
+Mông Hóa,Kỳ Sơn, Hoà Bình
+Dân Hạ,Kỳ Sơn, Hoà Bình
+Độc Lập,Kỳ Sơn, Hoà Bình
+Yên Quang,Kỳ Sơn, Hoà Bình
+Trường Sơn,Lương Sơn, Hoà Bình
+Cao Răm,Lương Sơn, Hoà Bình
+Hợp Hòa,Lương Sơn, Hoà Bình
+Thành Lập,Lương Sơn, Hoà Bình
+Tiến Sơn,Lương Sơn, Hoà Bình
+Trung Sơn,Lương Sơn, Hoà Bình
+Tân Thành,Lương Sơn, Hoà Bình
+Hợp Châu,Lương Sơn, Hoà Bình
+Long Sơn,Lương Sơn, Hoà Bình
+Cao Thắng,Lương Sơn, Hoà Bình
+Thanh Lương,Lương Sơn, Hoà Bình
+Hợp Thanh,Lương Sơn, Hoà Bình
+ Bắc Sơn,Kim Bôi, Hoà Bình
+Hùng Tiến,Kim Bôi, Hoà Bình
+Nật Sơn,Kim Bôi, Hoà Bình
+Sơn Thủy,Kim Bôi, Hoà Bình
+Thượng Bì,Kim Bôi, Hoà Bình
+Lập Chiệng,Kim Bôi, Hoà Bình
+Hạ Bì,Kim Bôi, Hoà Bình
+Trung Bì,Kim Bôi, Hoà Bình
+Kim Sơn,Kim Bôi, Hoà Bình
+Hợp Đồng,Kim Bôi, Hoà Bình
+Thượng Tiến,Kim Bôi, Hoà Bình
+Kim Tiến,Kim Bôi, Hoà Bình
+Kim Bình,Kim Bôi, Hoà Bình
+Hợp Kim,Kim Bôi, Hoà Bình
+Kim Truy,Kim Bôi, Hoà Bình
+Đông Phong,Cao Phong, Hoà Bình
+Xuân Phong,Cao Phong, Hoà Bình
+Tân Phong,Cao Phong, Hoà Bình
+Yên Lập,Cao Phong, Hoà Bình
+Yên Thượng,Cao Phong, Hoà Bình
+Thị trấn Mường Khến,Tân Lạc,Tỉnh Hoà Bình
+TT Mường Khến,Tân Lạc, Hoà Bình
+Ngòi Hoa,Tân Lạc, Hoà Bình
+Trung Hòa,Tân Lạc, Hoà Bình
+Quy Hậu,Tân Lạc, Hoà Bình
+Địch Giáo,Tân Lạc, Hoà Bình
+Tuân Lộ,Tân Lạc, Hoà Bình
+Lũng Vân,Tân Lạc, Hoà Bình
+Bắc Sơn,Tân Lạc, Hoà Bình
+Quy Mỹ,Tân Lạc, Hoà Bình
+Do Nhân,Tân Lạc, Hoà Bình
+Nam Sơn,Tân Lạc, Hoà Bình
+Tân Dân,Mai Châu, Hoà Bình
+Tân Mai,Mai Châu, Hoà Bình
+Phúc Sạn,Mai Châu, Hoà Bình
+Ba Khan,Mai Châu, Hoà Bình
+Tân Sơn,Mai Châu, Hoà Bình
+Đồng Bảng,Mai Châu, Hoà Bình
+Piềng Vế,Mai Châu, Hoà Bình
+Nà Mèo,Mai Châu, Hoà Bình
+Thung Khe,Mai Châu, Hoà Bình
+Nong Luông,Mai Châu, Hoà Bình
+Pù Pin,Mai Châu, Hoà Bình
+Phú Lương,Lạc Sơn, Hoà Bình
+Phúc Tuy,Lạc Sơn, Hoà Bình
+Chí Thiện,Lạc Sơn, Hoà Bình
+Bình Cảng,Lạc Sơn, Hoà Bình
+Bình Chân,Lạc Sơn, Hoà Bình
+Liên Vũ,Lạc Sơn, Hoà Bình
+Vũ Lâm,Lạc Sơn, Hoà Bình
+Lạc Hưng,Yên Thủy, Hoà Bình
+Yên Lạc,Yên Thủy, Hoà Bình
+Thị trấn Thanh Hà,Lạc Thủy,Tỉnh Hoà Bình
+TT Thanh Hà,Lạc Thủy, Hoà Bình
+Thanh Nông,Lạc Thủy, Hoà Bình
+Phú Lão,Lạc Thủy, Hoà Bình
+Cố Nghĩa,Lạc Thủy, Hoà Bình
+Lạc Long,Lạc Thủy, Hoà Bình
+Liên Hòa,Lạc Thủy, Hoà Bình
+Đồng Môn,Lạc Thủy, Hoà Bình
+An Lạc,Lạc Thủy, Hoà Bình
+Lương Châu,TP Sông Công, Thái Nguyên
+Vinh Sơn,TP Sông Công, Thái Nguyên
+Kim Sơn,Định Hóa, Thái Nguyên
+Bắc Ái,Tràng Định, Lạng Sơn
+Tô Hiệu,Bình Gia, Lạng Sơn
+Tân Việt,Văn Lãng, Lạng Sơn
+Trùng Quán,Văn Lãng, Lạng Sơn
+An Hùng,Văn Lãng, Lạng Sơn
+Tân Lang,Văn Lãng, Lạng Sơn
+Nam La,Văn Lãng, Lạng Sơn
+Song Giáp,Cao Lộc, Lạng Sơn
+Phú Mỹ,Văn Quan, Lạng Sơn
+Việt Yên,Văn Quan, Lạng Sơn
+Song Giang,Văn Quan, Lạng Sơn
+Vân Mộng,Văn Quan, Lạng Sơn
+Vĩnh Lại,Văn Quan, Lạng Sơn
+Văn An,Văn Quan, Lạng Sơn
+Đại An,Văn Quan, Lạng Sơn
+Chu Túc,Văn Quan, Lạng Sơn
+Xuân Mai,Văn Quan, Lạng Sơn
+Tràng Sơn,Văn Quan, Lạng Sơn
+Quỳnh Sơn,Bắc Sơn, Lạng Sơn
+Hữu Vĩnh,Bắc Sơn, Lạng Sơn
+Thiện Kỵ,Hữu Lũng, Lạng Sơn
+Tân Lập,Hữu Lũng, Lạng Sơn
+Đô Lương,Hữu Lũng, Lạng Sơn
+Quang Lang,Chi Lăng, Lạng Sơn
+Bằng Khánh,Lộc Bình, Lạng Sơn
+Xuân Lễ,Lộc Bình, Lạng Sơn
+Xuân Mãn,Lộc Bình, Lạng Sơn
+Vân Mộng,Lộc Bình, Lạng Sơn
+Như Khuê,Lộc Bình, Lạng Sơn
+Lục Thôn,Lộc Bình, Lạng Sơn
+Xuân Tình,Lộc Bình, Lạng Sơn
+Hiệp Hạ,Lộc Bình, Lạng Sơn
+Nhượng Bạn,Lộc Bình, Lạng Sơn
+Quan Bản,Lộc Bình, Lạng Sơn
+Minh Phát,Lộc Bình, Lạng Sơn
+Điền Công,TP Uông Bí, Quảng Ninh
+Tình Húc,Bình Liêu, Quảng Ninh
+Đại Thành,Tiên Yên, Quảng Ninh
+Quảng Lợi,Đầm Hà, Quảng Ninh
+Quảng Thắng,Hải Hà, Quảng Ninh
+Quảng Trung,Hải Hà, Quảng Ninh
+Phú Hải,Hải Hà, Quảng Ninh
+Quảng Điền,Hải Hà, Quảng Ninh
+Tiến Tới,Hải Hà, Quảng Ninh
+Thị trấn Trới,Hoành Bồ,Tỉnh Quảng Ninh
+TT Trới,Hoành Bồ, Quảng Ninh
+Hoành Bồ, Quảng Ninh
+Kỳ Thượng,Hoành Bồ, Quảng Ninh
+Đồng Sơn,Hoành Bồ, Quảng Ninh
+Tân Dân,Hoành Bồ, Quảng Ninh
+Đồng Lâm,Hoành Bồ, Quảng Ninh
+Hòa Bình,Hoành Bồ, Quảng Ninh
+Vũ Oai,Hoành Bồ, Quảng Ninh
+Dân Chủ,Hoành Bồ, Quảng Ninh
+Quảng La,Hoành Bồ, Quảng Ninh
+Bằng Cả,Hoành Bồ, Quảng Ninh
+Thống Nhất,Hoành Bồ, Quảng Ninh
+Sơn Dương,Hoành Bồ, Quảng Ninh
+Lê Lợi,Hoành Bồ, Quảng Ninh
+Thị trấn Cầu Gồ,Yên Thế,Tỉnh Bắc Giang
+TT Cầu Gồ,Yên Thế, Bắc Giang
+Tân Thịnh,Lạng Giang, Bắc Giang
+Phi Mô,Lạng Giang, Bắc Giang
+Thị trấn Lục Nam,Lục Nam,Tỉnh Bắc Giang
+TT Lục Nam,Lục Nam, Bắc Giang
+Tiên Hưng,Lục Nam, Bắc Giang
+Nghĩa Hồ,Lục Ngạn, Bắc Giang
+Thị trấn Thanh Sơn,Sơn Động,Tỉnh Bắc Giang
+TT Thanh Sơn,Sơn Động, Bắc Giang
+Thạch Sơn,Sơn Động, Bắc Giang
+Quế Sơn,Sơn Động, Bắc Giang
+Phúc Thắng,Sơn Động, Bắc Giang
+Chiên Sơn,Sơn Động, Bắc Giang
+Vĩnh Khương,Sơn Động, Bắc Giang
+An Lập,Sơn Động, Bắc Giang
+Bồng Am,Sơn Động, Bắc Giang
+Tuấn Mậu,Sơn Động, Bắc Giang
+Thị trấn Neo,Yên Dũng,Tỉnh Bắc Giang
+TT Neo,Yên Dũng, Bắc Giang
+Thị trấn Tân Dân,Yên Dũng,Tỉnh Bắc Giang
+TT Tân Dân,Yên Dũng, Bắc Giang
+Nham Sơn,Yên Dũng, Bắc Giang
+Thắng Cương,Yên Dũng, Bắc Giang
+Thị trấn  Bích Động,Việt Yên,Tỉnh Bắc Giang
+TT  Bích Động,Việt Yên, Bắc Giang
+Bích Sơn,Việt Yên, Bắc Giang
+Hoàng Ninh,Việt Yên, Bắc Giang
+Đức Thắng,Hiệp Hòa, Bắc Giang
+Tân Đức,TP Việt Trì, Phú Thọ
+Trường Thịnh,Thị xã Phú Thọ,Tỉnh Phú Thọ
+Trường Thịnh,TX Phú Thọ, Phú Thọ
+Đông Khê,Đoan Hùng, Phú Thọ
+Nghinh Xuyên,Đoan Hùng, Phú Thọ
+Hùng Quan,Đoan Hùng, Phú Thọ
+Phương Trung,Đoan Hùng, Phú Thọ
+Quế Lâm,Đoan Hùng, Phú Thọ
+Phong Phú,Đoan Hùng, Phú Thọ
+Hữu Đô,Đoan Hùng, Phú Thọ
+Đại Nghĩa,Đoan Hùng, Phú Thọ
+Phú Thứ,Đoan Hùng, Phú Thọ
+Hậu Bổng,Hạ Hoà, Phú Thọ
+Đan Hà,Hạ Hoà, Phú Thọ
+Lệnh Khanh,Hạ Hoà, Phú Thọ
+Phụ Khánh,Hạ Hoà, Phú Thọ
+Liên Phương,Hạ Hoà, Phú Thọ
+Động Lâm,Hạ Hoà, Phú Thọ
+Lâm Lợi,Hạ Hoà, Phú Thọ
+Quân Khê,Hạ Hoà, Phú Thọ
+Y Sơn,Hạ Hoà, Phú Thọ
+Cáo Điền,Hạ Hoà, Phú Thọ
+Chuế Lưu,Hạ Hoà, Phú Thọ
+Chính Công,Hạ Hoà, Phú Thọ
+Mai Tùng,Hạ Hoà, Phú Thọ
+Vụ Cầu,Hạ Hoà, Phú Thọ
+Thanh Vân,Thanh Ba, Phú Thọ
+Thái Ninh,Thanh Ba, Phú Thọ
+Năng Yên,Thanh Ba, Phú Thọ
+Yển Khê,Thanh Ba, Phú Thọ
+Quảng Nạp,Thanh Ba, Phú Thọ
+Vũ Yển,Thanh Ba, Phú Thọ
+Yên Nội,Thanh Ba, Phú Thọ
+Phương Lĩnh,Thanh Ba, Phú Thọ
+Thanh Xá,Thanh Ba, Phú Thọ
+Bình Bộ,Phù Ninh, Phú Thọ
+Tử Đà,Phù Ninh, Phú Thọ
+Vĩnh Phú,Phù Ninh, Phú Thọ
+Thị trấn Sông Thao,Cẩm Khê,Tỉnh Phú Thọ
+TT Sông Thao,Cẩm Khê, Phú Thọ
+Phương Xá,Cẩm Khê, Phú Thọ
+Đồng Cam,Cẩm Khê, Phú Thọ
+Phùng Xá,Cẩm Khê, Phú Thọ
+Sơn Nga,Cẩm Khê, Phú Thọ
+Sai Nga,Cẩm Khê, Phú Thọ
+Thanh Nga,Cẩm Khê, Phú Thọ
+Tình Cương,Cẩm Khê, Phú Thọ
+Hiền Đa,Cẩm Khê, Phú Thọ
+Cát Trù,Cẩm Khê, Phú Thọ
+Vực Trường,Tam Nông, Phú Thọ
+Hương Nha,Tam Nông, Phú Thọ
+Xuân Quang,Tam Nông, Phú Thọ
+Tứ Mỹ,Tam Nông, Phú Thọ
+Văn Lương,Tam Nông, Phú Thọ
+Hùng Đô,Tam Nông, Phú Thọ
+Phương Thịnh,Tam Nông, Phú Thọ
+Tam Cường,Tam Nông, Phú Thọ
+Cổ Tiết,Tam Nông, Phú Thọ
+Hồng Đà,Tam Nông, Phú Thọ
+Dậu Dương,Tam Nông, Phú Thọ
+Thượng Nông,Tam Nông, Phú Thọ
+Hợp Hải,Lâm Thao, Phú Thọ
+Sơn Dương,Lâm Thao, Phú Thọ
+Kinh Kệ,Lâm Thao, Phú Thọ
+Đồng Luận,Thanh Thuỷ, Phú Thọ
+Trung Thịnh,Thanh Thuỷ, Phú Thọ
+Trung Nghĩa,Thanh Thuỷ, Phú Thọ
+Phượng Mao,Thanh Thuỷ, Phú Thọ
+Yến Mao,Thanh Thuỷ, Phú Thọ
+Tân Cương,Vĩnh Tường, Vĩnh Phúc
+Phú Thịnh,Vĩnh Tường, Vĩnh Phúc
+An Châu,TP Hải Dương, Hải Dương
+Thượng Đạt,TP Hải Dương, Hải Dương
+Kênh Giang,Thị xã Chí Linh,Tỉnh Hải Dương
+Kênh Giang,TX Chí Linh, Hải Dương
+Thị trấn Kinh Môn,Kinh Môn,Tỉnh Hải Dương
+TT Kinh Môn,Kinh Môn, Hải Dương
+Phúc Thành B,Kinh Môn, Hải Dương
+Thái Sơn,Kinh Môn, Hải Dương
+Quang Trung,Kinh Môn, Hải Dương
+Phạm Mệnh,Kinh Môn, Hải Dương
+Việt Hưng,Kim Thành, Hải Dương
+Tuấn Hưng,Kim Thành, Hải Dương
+Kim Lương,Kim Thành, Hải Dương
+Kim Khê,Kim Thành, Hải Dương
+Cẩm La,Kim Thành, Hải Dương
+Đồng Gia,Kim Thành, Hải Dương
+Quyết Thắng,Thanh Hà, Hải Dương
+Tiền Tiến,Thanh Hà, Hải Dương
+An Lương,Thanh Hà, Hải Dương
+Phượng Hoàng,Thanh Hà, Hải Dương
+Hợp Đức,Thanh Hà, Hải Dương
+Trường Thành,Thanh Hà, Hải Dương
+Thanh Bính,Thanh Hà, Hải Dương
+Thị trấn Cẩm Giàng,Cẩm Giàng,Tỉnh Hải Dương
+TT Cẩm Giàng,Cẩm Giàng, Hải Dương
+Cẩm Sơn,Cẩm Giàng, Hải Dương
+Cẩm Định,Cẩm Giàng, Hải Dương
+Kim Giang,Cẩm Giàng, Hải Dương
+Hưng Thịnh,Bình Giang, Hải Dương
+Vĩnh Tuy,Bình Giang, Hải Dương
+Tráng Liệt,Bình Giang, Hải Dương
+Cổ Bi,Bình Giang, Hải Dương
+Liên Hồng,Gia Lộc, Hải Dương
+Trùng Khánh,Gia Lộc, Hải Dương
+Gia Xuyên,Gia Lộc, Hải Dương
+Gia Hòa,Gia Lộc, Hải Dương
+Phương Hưng,Gia Lộc, Hải Dương
+Ngọc Sơn,Tứ Kỳ, Hải Dương
+Kỳ Sơn,Tứ Kỳ, Hải Dương
+Đại Đồng,Tứ Kỳ, Hải Dương
+Tứ Xuyên,Tứ Kỳ, Hải Dương
+Đông Kỳ,Tứ Kỳ, Hải Dương
+Tây Kỳ,Tứ Kỳ, Hải Dương
+Quyết Thắng,Ninh Giang, Hải Dương
+Ninh Hòa,Ninh Giang, Hải Dương
+Ninh Thành,Ninh Giang, Hải Dương
+Hoàng Hanh,Ninh Giang, Hải Dương
+Quang Hưng,Ninh Giang, Hải Dương
+Hồng Thái,Ninh Giang, Hải Dương
+Hưng Thái,Ninh Giang, Hải Dương
+Văn Giang,Ninh Giang, Hải Dương
+Hùng Sơn,Thanh Miện, Hải Dương
+Diên Hồng,Thanh Miện, Hải Dương
+Tiền Phong,Thanh Miện, Hải Dương
+Quang Trung,Hồng Bàng,TP Hải Phòng
+Phạm Hồng Thái,Hồng Bàng,TP Hải Phòng
+Lương Khánh Thiện,Ngô Quyền,TP Hải Phòng
+Ngọc Hải,Đồ Sơn,TP Hải Phòng
+Vạn Sơn,Đồ Sơn,TP Hải Phòng
+Tiên Tiến,Tiên Lãng,TP Hải Phòng
+Tiên Hưng,Tiên Lãng,TP Hải Phòng
+Minh Phương,Tiên Lữ, Hưng Yên
+Quỳnh Sơn,Quỳnh Phụ, Thái Bình
+Quỳnh Châu,Quỳnh Phụ, Thái Bình
+Đông Hà,Đông Hưng, Thái Bình
+Đông Giang,Đông Hưng, Thái Bình
+Hoa Lư,Đông Hưng, Thái Bình
+Minh Châu,Đông Hưng, Thái Bình
+Hồng Châu,Đông Hưng, Thái Bình
+Bạch Đằng,Đông Hưng, Thái Bình
+Hoa Nam,Đông Hưng, Thái Bình
+Đông Phong,Đông Hưng, Thái Bình
+Đông Lĩnh,Đông Hưng, Thái Bình
+Đông Huy,Đông Hưng, Thái Bình
+Đồng Phú,Đông Hưng, Thái Bình
+Thụy Tân,Thái Thụy, Thái Bình
+Hồng Quỳnh,Thái Thụy, Thái Bình
+Thụy Dũng,Thái Thụy, Thái Bình
+Thụy Hồng,Thái Thụy, Thái Bình
+Thụy An,Thái Thụy, Thái Bình
+Thụy Dương,Thái Thụy, Thái Bình
+Thụy Phúc,Thái Thụy, Thái Bình
+Thụy Lương,Thái Thụy, Thái Bình
+Thụy Hà,Thái Thụy, Thái Bình
+Thái Thủy,Thái Thụy, Thái Bình
+Thái Dương,Thái Thụy, Thái Bình
+Thái Hòa,Thái Thụy, Thái Bình
+Thái Sơn,Thái Thụy, Thái Bình
+Thái Hồng,Thái Thụy, Thái Bình
+Thái An,Thái Thụy, Thái Bình
+Thái Hà,Thái Thụy, Thái Bình
+Thái Tân,Thái Thụy, Thái Bình
+Thái Thuần,Thái Thụy, Thái Bình
+Thái Học,Thái Thụy, Thái Bình
+Thái Thành,Thái Thụy, Thái Bình
+Đông Hải,Tiền Hải, Thái Bình
+Tây An,Tiền Hải, Thái Bình
+Tây Sơn,Tiền Hải, Thái Bình
+Thị trấn Thanh Nê,Kiến Xương,Tỉnh Thái Bình
+TT Thanh Nê,Kiến Xương, Thái Bình
+Vũ Tây,Kiến Xương, Thái Bình
+Vũ Sơn,Kiến Xương, Thái Bình
+Quyết Tiến,Kiến Xương, Thái Bình
+An Bồi,Kiến Xương, Thái Bình
+Minh Hưng,Kiến Xương, Thái Bình
+Quang Hưng,Kiến Xương, Thái Bình
+Lam Hà,TP Phủ Lý, Hà Nam
+Đọi Sơn,Duy Tiên, Hà Nam
+Châu Sơn,Duy Tiên, Hà Nam
+Tiền Phong,Duy Tiên, Hà Nam
+Thanh Bình,Thanh Liêm, Hà Nam
+Thanh Lưu,Thanh Liêm, Hà Nam
+An Mỹ,Bình Lục, Hà Nam
+Mỹ Thọ,Bình Lục, Hà Nam
+Nhân Đạo,Lý Nhân, Hà Nam
+Đồng Lý,Lý Nhân, Hà Nam
+Nhân Hưng,Lý Nhân, Hà Nam
+Yên Xá,Ý Yên, Nam Định
+Nghĩa Thắng,Nghĩa Hưng, Nam Định
+Nghĩa Phúc,Nghĩa Hưng, Nam Định
+Trực Phú,Trực Ninh, Nam Định
+Hải Toàn,Hải Hậu, Nam Định
+Xuân Thiện,Kim Sơn, Ninh Bình
+Chính Tâm,Kim Sơn, Ninh Bình
+Yên Mật,Kim Sơn, Ninh Bình
+Hoằng Lý,TP Thanh Hóa, Thanh Hóa
+Hoằng Long,TP Thanh Hóa, Thanh Hóa
+Hoằng Anh,TP Thanh Hóa, Thanh Hóa
+An Hoạch,TP Thanh Hóa, Thanh Hóa
+Đông Hưng,TP Thanh Hóa, Thanh Hóa
+Hà Lan,Thị xã Bỉm Sơn,Tỉnh Thanh Hóa
+Hà Lan,TX Bỉm Sơn, Thanh Hóa
+Tén Tằn,Mường Lát, Thanh Hóa
+Thị trấn Quan Hóa,Quan Hóa,Tỉnh Thanh Hóa
+TT Quan Hóa,Quan Hóa, Thanh Hóa
+Thanh Xuân,Quan Hóa, Thanh Hóa
+Xuân Phú,Quan Hóa, Thanh Hóa
+Lâm Sa,Bá Thước, Thanh Hóa
+Tân Lập,Bá Thước, Thanh Hóa
+Thị trấn Quan Sơn,Quan Sơn,Tỉnh Thanh Hóa
+TT Quan Sơn,Quan Sơn, Thanh Hóa
+Quang Hiến,Lang Chánh, Thanh Hóa
+Ngọc Khê,Ngọc Lặc, Thanh Hóa
+Thị trấn Cẩm Thủy,Cẩm Thủy,Tỉnh Thanh Hóa
+TT Cẩm Thủy,Cẩm Thủy, Thanh Hóa
+Phúc Do,Cẩm Thủy, Thanh Hóa
+Cẩm Sơn,Cẩm Thủy, Thanh Hóa
+Cẩm Phong,Cẩm Thủy, Thanh Hóa
+Thạch Tân,Thạch Thành, Thanh Hóa
+Thành Vân,Thạch Thành, Thanh Hóa
+Thành Kim,Thạch Thành, Thanh Hóa
+Hà Vân,Hà Trung, Thanh Hóa
+Hà Yên,Hà Trung, Thanh Hóa
+Hà Thanh,Hà Trung, Thanh Hóa
+Hà Dương,Hà Trung, Thanh Hóa
+Hà Phú,Hà Trung, Thanh Hóa
+Hà Phong,Hà Trung, Thanh Hóa
+Hà Ninh,Hà Trung, Thanh Hóa
+Hà Lâm,Hà Trung, Thanh Hóa
+Hà Toại,Hà Trung, Thanh Hóa
+Vĩnh Thành,Vĩnh Lộc, Thanh Hóa
+Vĩnh Minh,Vĩnh Lộc, Thanh Hóa
+Vĩnh Khang,Vĩnh Lộc, Thanh Hóa
+Vĩnh Tân,Vĩnh Lộc, Thanh Hóa
+Vĩnh Ninh,Vĩnh Lộc, Thanh Hóa
+Yên Giang,Yên Định, Thanh Hóa
+Yên Bái,Yên Định, Thanh Hóa
+Định Tường,Yên Định, Thanh Hóa
+Xuân Khánh,Thọ Xuân, Thanh Hóa
+Thọ Nguyên,Thọ Xuân, Thanh Hóa
+Xuân Thành,Thọ Xuân, Thanh Hóa
+Hạnh Phúc,Thọ Xuân, Thanh Hóa
+Xuân Quang,Thọ Xuân, Thanh Hóa
+Xuân Sơn,Thọ Xuân, Thanh Hóa
+Xuân Thắng,Thọ Xuân, Thanh Hóa
+Xuân Lam,Thọ Xuân, Thanh Hóa
+Thọ Minh,Thọ Xuân, Thanh Hóa
+Xuân Châu,Thọ Xuân, Thanh Hóa
+Phú Yên,Thọ Xuân, Thanh Hóa
+Xuân Yên,Thọ Xuân, Thanh Hóa
+Thọ Thắng,Thọ Xuân, Thanh Hóa
+Xuân Tân,Thọ Xuân, Thanh Hóa
+Xuân Vinh,Thọ Xuân, Thanh Hóa
+Thọ Trường,Thọ Xuân, Thanh Hóa
+Xuân Cẩm,Thường Xuân, Thanh Hóa
+Minh Dân,Triệu Sơn, Thanh Hóa
+Minh Châu,Triệu Sơn, Thanh Hóa
+Tân Ninh,Triệu Sơn, Thanh Hóa
+Thị trấn Vạn Hà,Thiệu Hóa,Tỉnh Thanh Hóa
+TT Vạn Hà,Thiệu Hóa, Thanh Hóa
+Thiệu Minh,Thiệu Hóa, Thanh Hóa
+Thiệu Tâm,Thiệu Hóa, Thanh Hóa
+Thiệu Đô,Thiệu Hóa, Thanh Hóa
+Thiệu Châu,Thiệu Hóa, Thanh Hóa
+Thiệu Tân,Thiệu Hóa, Thanh Hóa
+Hoằng Khánh,Hoằng Hóa, Thanh Hóa
+Hoằng Lương,Hoằng Hóa, Thanh Hóa
+Hoằng Khê,Hoằng Hóa, Thanh Hóa
+Hoằng Minh,Hoằng Hóa, Thanh Hóa
+Hoằng Phúc,Hoằng Hóa, Thanh Hóa
+Hoằng Vinh,Hoằng Hóa, Thanh Hóa
+Châu Lộc,Hậu Lộc, Thanh Hóa
+Văn Lộc,Hậu Lộc, Thanh Hóa
+Lộc Tân,Hậu Lộc, Thanh Hóa
+Thịnh Lộc,Hậu Lộc, Thanh Hóa
+Nga Lĩnh,Nga Sơn, Thanh Hóa
+Nga Nhân,Nga Sơn, Thanh Hóa
+Nga Hưng,Nga Sơn, Thanh Hóa
+Nga Mỹ,Nga Sơn, Thanh Hóa
+Xuân Quỳ,Như Xuân, Thanh Hóa
+Yên Lễ,Như Xuân, Thanh Hóa
+Xuân Thọ,Như Thanh, Thanh Hóa
+Hải Vân,Như Thanh, Thanh Hóa
+Phúc Đường,Như Thanh, Thanh Hóa
+Trung Ý,Nông Cống, Thanh Hóa
+Tế Tân,Nông Cống, Thanh Hóa
+Công Bình,Nông Cống, Thanh Hóa
+Đông Anh,Đông Sơn, Thanh Hóa
+Thị trấn Quảng Xương,Quảng Xương,Tỉnh Thanh Hóa
+TT Quảng Xương,Quảng Xương, Thanh Hóa
+Quảng Tân,Quảng Xương, Thanh Hóa
+Quảng Phong,Quảng Xương, Thanh Hóa
+Quảng Lĩnh,Quảng Xương, Thanh Hóa
+Quảng Vọng,Quảng Xương, Thanh Hóa
+Quảng Lợi,Quảng Xương, Thanh Hóa
+Thị trấn Tĩnh Gia,Tĩnh Gia,Tỉnh Thanh Hóa
+TT Tĩnh Gia,Tĩnh Gia, Thanh Hóa
+Tĩnh Gia, Thanh Hóa
+Hải Châu,Tĩnh Gia, Thanh Hóa
+Thanh Thủy,Tĩnh Gia, Thanh Hóa
+Thanh Sơn,Tĩnh Gia, Thanh Hóa
+Triêu Dương,Tĩnh Gia, Thanh Hóa
+Hải Ninh,Tĩnh Gia, Thanh Hóa
+Anh Sơn,Tĩnh Gia, Thanh Hóa
+Ngọc Lĩnh,Tĩnh Gia, Thanh Hóa
+Hải An,Tĩnh Gia, Thanh Hóa
+Hùng Sơn,Tĩnh Gia, Thanh Hóa
+Các Sơn,Tĩnh Gia, Thanh Hóa
+Tân Dân,Tĩnh Gia, Thanh Hóa
+Hải Lĩnh,Tĩnh Gia, Thanh Hóa
+Định Hải,Tĩnh Gia, Thanh Hóa
+Phú Sơn,Tĩnh Gia, Thanh Hóa
+Ninh Hải,Tĩnh Gia, Thanh Hóa
+Nguyên Bình,Tĩnh Gia, Thanh Hóa
+Hải Nhân,Tĩnh Gia, Thanh Hóa
+Hải Hòa,Tĩnh Gia, Thanh Hóa
+Bình Minh,Tĩnh Gia, Thanh Hóa
+Hải Thanh,Tĩnh Gia, Thanh Hóa
+Phú Lâm,Tĩnh Gia, Thanh Hóa
+Xuân Lâm,Tĩnh Gia, Thanh Hóa
+Trúc Lâm,Tĩnh Gia, Thanh Hóa
+Hải Bình,Tĩnh Gia, Thanh Hóa
+Tân Trường,Tĩnh Gia, Thanh Hóa
+Tùng Lâm,Tĩnh Gia, Thanh Hóa
+Tĩnh Hải,Tĩnh Gia, Thanh Hóa
+Mai Lâm,Tĩnh Gia, Thanh Hóa
+Trường Lâm,Tĩnh Gia, Thanh Hóa
+Hải Yến,Tĩnh Gia, Thanh Hóa
+Hải Thượng,Tĩnh Gia, Thanh Hóa
+Nghi Sơn,Tĩnh Gia, Thanh Hóa
+Hải Hà,Tĩnh Gia, Thanh Hóa
+Nghĩa Hòa,Thị xã Thái Hoà,Tỉnh Nghệ An
+Nghĩa Hòa,TX Thái Hoà, Nghệ An
+Quế Sơn,Quế Phong, Nghệ An
+Thị trấn Hòa Bình,Tương Dương,Tỉnh Nghệ An
+TT Hòa Bình,Tương Dương, Nghệ An
+Nghĩa Tân,Nghĩa Đàn, Nghệ An
+Nghĩa Thắng,Nghĩa Đàn, Nghệ An
+Nghĩa Liên,Nghĩa Đàn, Nghệ An
+Quỳnh Diện,Quỳnh Lưu, Nghệ An
+Diễn Minh,Diễn Châu, Nghệ An
+Diễn Bình,Diễn Châu, Nghệ An
+Diễn Thắng,Diễn Châu, Nghệ An
+Thanh Hưng,Thanh Chương, Nghệ An
+Thanh Tường,Thanh Chương, Nghệ An
+Thanh Văn,Thanh Chương, Nghệ An
+Nghi Hợp,Nghi Lộc, Nghệ An
+Nghi Khánh,Nghi Lộc, Nghệ An
+Vân Diên,Nam Đàn, Nghệ An
+Nam Thượng,Nam Đàn, Nghệ An
+Nam Tân,Nam Đàn, Nghệ An
+Nam Lộc,Nam Đàn, Nghệ An
+Nam Phúc,Nam Đàn, Nghệ An
+Nam Cường,Nam Đàn, Nghệ An
+Nam Trung,Nam Đàn, Nghệ An
+Hưng Thắng,Hưng Nguyên, Nghệ An
+Hưng Long,Hưng Nguyên, Nghệ An
+Hưng Tiến,Hưng Nguyên, Nghệ An
+Hưng Xá,Hưng Nguyên, Nghệ An
+Hưng Châu,Hưng Nguyên, Nghệ An
+Hưng Xuân,Hưng Nguyên, Nghệ An
+Hưng Nhân,Hưng Nguyên, Nghệ An
+Hưng Phú,Hưng Nguyên, Nghệ An
+Hưng Khánh,Hưng Nguyên, Nghệ An
+Hưng Lam,Hưng Nguyên, Nghệ An
+Thạch Môn,TP Hà Tĩnh, Hà Tĩnh
+Thạch Đồng,TP Hà Tĩnh, Hà Tĩnh
+Sơn Thịnh,Hương Sơn, Hà Tĩnh
+Sơn An,Hương Sơn, Hà Tĩnh
+Sơn Hòa,Hương Sơn, Hà Tĩnh
+Sơn Tân,Hương Sơn, Hà Tĩnh
+Sơn Mỹ,Hương Sơn, Hà Tĩnh
+Sơn Hà,Hương Sơn, Hà Tĩnh
+Sơn Quang,Hương Sơn, Hà Tĩnh
+Sơn Diệm,Hương Sơn, Hà Tĩnh
+Sơn Thủy,Hương Sơn, Hà Tĩnh
+Sơn Phúc,Hương Sơn, Hà Tĩnh
+Sơn Mai,Hương Sơn, Hà Tĩnh
+Đức Quang,Đức Thọ, Hà Tĩnh
+Đức Vĩnh,Đức Thọ, Hà Tĩnh
+Đức Châu,Đức Thọ, Hà Tĩnh
+Đức Tùng,Đức Thọ, Hà Tĩnh
+Đức La,Đức Thọ, Hà Tĩnh
+Đức Nhân,Đức Thọ, Hà Tĩnh
+Bùi Xá,Đức Thọ, Hà Tĩnh
+Đức Thịnh,Đức Thọ, Hà Tĩnh
+Đức Yên,Đức Thọ, Hà Tĩnh
+Đức Thủy,Đức Thọ, Hà Tĩnh
+Thái Yên,Đức Thọ, Hà Tĩnh
+Trung Lễ,Đức Thọ, Hà Tĩnh
+Đức Hòa,Đức Thọ, Hà Tĩnh
+Đức Long,Đức Thọ, Hà Tĩnh
+Đức Lâm,Đức Thọ, Hà Tĩnh
+Đức Thanh,Đức Thọ, Hà Tĩnh
+Đức Dũng,Đức Thọ, Hà Tĩnh
+Đức Lập,Đức Thọ, Hà Tĩnh
+Đức An,Đức Thọ, Hà Tĩnh
+Đức Lạc,Đức Thọ, Hà Tĩnh
+Sơn Thọ,Vũ Quang, Hà Tĩnh
+Hương Điền,Vũ Quang, Hà Tĩnh
+Hương Thọ,Vũ Quang, Hà Tĩnh
+Hương Quang,Vũ Quang, Hà Tĩnh
+Thị trấn Nghi Xuân,Nghi Xuân,Tỉnh Hà Tĩnh
+TT Nghi Xuân,Nghi Xuân, Hà Tĩnh
+Xuân Trường,Nghi Xuân, Hà Tĩnh
+Xuân Đan,Nghi Xuân, Hà Tĩnh
+Kim Lộc,Can Lộc, Hà Tĩnh
+Song Lộc,Can Lộc, Hà Tĩnh
+Trường Lộc,Can Lộc, Hà Tĩnh
+Yên Lộc,Can Lộc, Hà Tĩnh
+Khánh Lộc,Can Lộc, Hà Tĩnh
+Vĩnh Lộc,Can Lộc, Hà Tĩnh
+Tiến Lộc,Can Lộc, Hà Tĩnh
+Phương Mỹ,Hương Khê, Hà Tĩnh
+Phương Điền,Hương Khê, Hà Tĩnh
+Thạch Bàn,Thạch Hà, Hà Tĩnh
+Thạch Đỉnh,Thạch Hà, Hà Tĩnh
+Phù Việt,Thạch Hà, Hà Tĩnh
+Việt Xuyên,Thạch Hà, Hà Tĩnh
+Thạch Tiến,Thạch Hà, Hà Tĩnh
+Thạch Thanh,Thạch Hà, Hà Tĩnh
+Thạch Vĩnh,Thạch Hà, Hà Tĩnh
+Thạch Lưu,Thạch Hà, Hà Tĩnh
+Bắc Sơn,Thạch Hà, Hà Tĩnh
+Thạch Tân,Thạch Hà, Hà Tĩnh
+Thạch Lâm,Thạch Hà, Hà Tĩnh
+Thạch Hương,Thạch Hà, Hà Tĩnh
+Nam Hương,Thạch Hà, Hà Tĩnh
+Thạch Điền,Thạch Hà, Hà Tĩnh
+Cẩm Hòa,Cẩm Xuyên, Hà Tĩnh
+Cẩm Yên,Cẩm Xuyên, Hà Tĩnh
+Cẩm Nam,Cẩm Xuyên, Hà Tĩnh
+Cẩm Huy,Cẩm Xuyên, Hà Tĩnh
+Cẩm Thăng,Cẩm Xuyên, Hà Tĩnh
+Cẩm Phúc,Cẩm Xuyên, Hà Tĩnh
+Kỳ Hợp,Kỳ Anh, Hà Tĩnh
+Kỳ Lâm,Kỳ Anh, Hà Tĩnh
+An Lộc,Lộc Hà, Hà Tĩnh
+Bình Lộc,Lộc Hà, Hà Tĩnh
+Thạch Bằng,Lộc Hà, Hà Tĩnh
+Sông Trí,Thị xã Kỳ Anh,Tỉnh Hà Tĩnh
+Sông Trí,TX Kỳ Anh, Hà Tĩnh
+Kỳ Hưng,Thị xã Kỳ Anh,Tỉnh Hà Tĩnh
+Kỳ Hưng,TX Kỳ Anh, Hà Tĩnh
+Đồng Mỹ,Thành Phố Đồng Hới, Quảng Bình
+Hải Đình,Thành Phố Đồng Hới, Quảng Bình
+Quy Hóa,Minh Hóa, Quảng Bình
+Nam Hóa,Tuyên Hóa, Quảng Bình
+Quảng Liên,Quảng Trạch, Quảng Bình
+Quảng Trường,Quảng Trạch, Quảng Bình
+Hải Trạch,Bố Trạch, Quảng Bình
+Phú Trạch,Bố Trạch, Quảng Bình
+Sơn Trạch,Bố Trạch, Quảng Bình
+Hoàn Trạch,Bố Trạch, Quảng Bình
+Ngư Thủy Trung,Lệ Thủy, Quảng Bình
+Ngư Thủy Nam,Lệ Thủy, Quảng Bình
+Văn Thủy,Lệ Thủy, Quảng Bình
+Vĩnh Trung,Vĩnh Linh, Quảng Trị
+Vĩnh Kim,Vĩnh Linh, Quảng Trị
+Vĩnh Thạch,Vĩnh Linh, Quảng Trị
+Vĩnh Nam,Vĩnh Linh, Quảng Trị
+Vĩnh Hiền,Vĩnh Linh, Quảng Trị
+Vĩnh Thành,Vĩnh Linh, Quảng Trị
+Vĩnh Tân,Vĩnh Linh, Quảng Trị
+A Xing,Hướng Hóa, Quảng Trị
+A Túc,Hướng Hóa, Quảng Trị
+Gio Phong,Gio Linh, Quảng Trị
+Vĩnh Trường,Gio Linh, Quảng Trị
+Gio Bình,Gio Linh, Quảng Trị
+Gio Thành,Gio Linh, Quảng Trị
+Linh Thượng,Gio Linh, Quảng Trị
+Gio Hòa,Gio Linh, Quảng Trị
+Hải Phúc,Đa Krông, Quảng Trị
+Cam An,Cam Lộ, Quảng Trị
+Cam Thanh,Cam Lộ, Quảng Trị
+Triệu Đông,Triệu Phong, Quảng Trị
+Thị trấn Hải Lăng,Hải Lăng,Tỉnh Quảng Trị
+TT Hải Lăng,Hải Lăng, Quảng Trị
+Hải Xuân,Hải Lăng, Quảng Trị
+Hải Vĩnh,Hải Lăng, Quảng Trị
+Hải Thiện,Hải Lăng, Quảng Trị
+Hải Thành,Hải Lăng, Quảng Trị
+Hải Hòa,Hải Lăng, Quảng Trị
+Hải Tân,Hải Lăng, Quảng Trị
+Hải Thọ,Hải Lăng, Quảng Trị
+Vinh Phú,Phú Vang, Thừa Thiên Huế
+Vinh Thái,Phú Vang, Thừa Thiên Huế
+Bình Điền,Thị xã Hương Trà,Tỉnh Thừa Thiên Huế
+Bình Điền,TX Hương Trà, Thừa Thiên Huế
+Hồng Tiến,Thị xã Hương Trà,Tỉnh Thừa Thiên Huế
+Hồng Tiến,TX Hương Trà, Thừa Thiên Huế
+Hồng Trung,A Lưới, Thừa Thiên Huế
+Bắc Sơn,A Lưới, Thừa Thiên Huế
+Hồng Quảng,A Lưới, Thừa Thiên Huế
+Nhâm,A Lưới, Thừa Thiên Huế
+Hương Lâm,A Lưới, Thừa Thiên Huế
+A Đớt,A Lưới, Thừa Thiên Huế
+Vinh Hải,Phú Lộc, Thừa Thiên Huế
+Vinh Giang,Phú Lộc, Thừa Thiên Huế
+Hương Hòa,Nam Đông, Thừa Thiên Huế
+Hương Giang,Nam Đông, Thừa Thiên Huế
+Quế Cường,Quế Sơn, Quảng Nam
+Phú Thọ,Quế Sơn, Quảng Nam
+Thị trấn Tân An,Hiệp Đức,Tỉnh Quảng Nam
+TT Tân An,Hiệp Đức, Quảng Nam
+Quế Bình,Hiệp Đức, Quảng Nam
+Quế Ninh,Nông Sơn, Quảng Nam
+Quế Phước,Nông Sơn, Quảng Nam
+Bình Thới,Bình Sơn, Quảng Ngãi
+Bình Thanh Tây,Bình Sơn, Quảng Ngãi
+Bình Phú,Bình Sơn, Quảng Ngãi
+Bình Thanh Đông,Bình Sơn, Quảng Ngãi
+Bình Tân,Bình Sơn, Quảng Ngãi
+Trà Thanh,Tây Trà, Quảng Ngãi
+Tây Trà, Quảng Ngãi
+Trà Khê,Tây Trà, Quảng Ngãi
+Trà Quân,Tây Trà, Quảng Ngãi
+Trà Phong,Tây Trà, Quảng Ngãi
+Trà Lãnh,Tây Trà, Quảng Ngãi
+Trà Nham,Tây Trà, Quảng Ngãi
+Trà Xinh,Tây Trà, Quảng Ngãi
+Trà Thọ,Tây Trà, Quảng Ngãi
+Trà Trung,Tây Trà, Quảng Ngãi
+Nghĩa Thọ,Tư Nghĩa, Quảng Ngãi
+Thị trấn Đức Phổ,Đức Phổ,Tỉnh Quảng Ngãi
+TT Đức Phổ,Đức Phổ, Quảng Ngãi
+Ba Chùa,Ba Tơ, Quảng Ngãi
+An Vĩnh,Lý Sơn, Quảng Ngãi
+An Hải,Lý Sơn, Quảng Ngãi
+An Bình,Lý Sơn, Quảng Ngãi
+Nhơn Bình,TP Qui Nhơn, Bình Định
+TP Qui Nhơn, Bình Định
+Nhơn Phú,TP Qui Nhơn, Bình Định
+Đống Đa,TP Qui Nhơn, Bình Định
+Trần Quang Diệu,TP Qui Nhơn, Bình Định
+Hải Cảng,TP Qui Nhơn, Bình Định
+Quang Trung,TP Qui Nhơn, Bình Định
+Thị Nại,TP Qui Nhơn, Bình Định
+Lê Hồng Phong,TP Qui Nhơn, Bình Định
+Trần Hưng Đạo,TP Qui Nhơn, Bình Định
+Ngô Mây,TP Qui Nhơn, Bình Định
+Lý Thường Kiệt,TP Qui Nhơn, Bình Định
+Lê Lợi,TP Qui Nhơn, Bình Định
+Trần Phú,TP Qui Nhơn, Bình Định
+Bùi Thị Xuân,TP Qui Nhơn, Bình Định
+Nguyễn Văn Cừ,TP Qui Nhơn, Bình Định
+Ghềnh Ráng,TP Qui Nhơn, Bình Định
+Nhơn Lý,TP Qui Nhơn, Bình Định
+Nhơn Hội,TP Qui Nhơn, Bình Định
+Nhơn Hải,TP Qui Nhơn, Bình Định
+Nhơn Châu,TP Qui Nhơn, Bình Định
+Phước Mỹ,TP Qui Nhơn, Bình Định
+Thị trấn  Tam Quan,Hoài Nhơn,Tỉnh Bình Định
+TT  Tam Quan,Hoài Nhơn, Bình Định
+Dak Mang,Hoài Ân, Bình Định
+Xuân Hòa,Thị xã Sông Cầu,Tỉnh Phú Yên
+Xuân Hòa,TX Sông Cầu, Phú Yên
+An Hải,Tuy An, Phú Yên
+An Hòa,Tuy An, Phú Yên
+Diên Bình,Diên Khánh, Khánh Hòa
+Diên Lộc,Diên Khánh, Khánh Hòa
+Hòa Phú,Tuy Phong, Bình Thuận
+Đức Tân,Tánh Linh, Bình Thuận
+Đức Chính,Đức Linh, Bình Thuận
+Đắk Plô,Đắk Glei, Kon Tum
+Thị trấn Plei Cần,Ngọc Hồi,Tỉnh Kon Tum
+TT Plei Cần,Ngọc Hồi, Kon Tum
+Pờ Y,Ngọc Hồi, Kon Tum
+Đắk Long,Kon Plông, Kon Tum
+Ngọk Lây,Tu Mơ Rông, Kon Tum
+Ngok Yêu,Tu Mơ Rông, Kon Tum
+Đắk Tơ Kan,Tu Mơ Rông, Kon Tum
+Ia Dal,Ia H' Drai, Kon Tum
+Chư HDrông,TP Pleiku, Gia Lai
+Chư Jôr,Chư Păh, Gia Lai
+Hà Ra,Mang Yang, Gia Lai
+Dlê Yang,Ea H'leo, Đắk Lắk
+Hương Lâm,Đạ Tẻh, Lâm Đồng
+Hà Đông,Đạ Tẻh, Lâm Đồng
+Mỹ Lâm,Cát Tiên, Lâm Đồng
+Tư Nghĩa,Cát Tiên, Lâm Đồng
+X.Phước Cát 1,Cát Tiên, Lâm Đồng
+Thị trấn Hòa Thành,Hòa Thành,Tỉnh Tây Ninh
+TT Hòa Thành,Hòa Thành, Tây Ninh
+Phước Lưu,Trảng Bàng, Tây Ninh
+Bình Thạnh,Trảng Bàng, Tây Ninh
+An Hoà,TP Biên Hòa, Đồng Nai
+Xuân Thạnh,Thống Nhất, Đồng Nai
+Suối Trầu,Long Thành, Đồng Nai
+Thị trấn Phú Mỹ,Tân Thành,Tỉnh Bà Rịa - Vũng Tàu
+TT Phú Mỹ,Tân Thành, Bà Rịa - Vũng Tàu
+Tân Thành, Bà Rịa - Vũng Tàu
+Tân Hoà,Tân Thành, Bà Rịa - Vũng Tàu
+Tân Hải,Tân Thành, Bà Rịa - Vũng Tàu
+Phước Hoà,Tân Thành, Bà Rịa - Vũng Tàu
+Tân Phước,Tân Thành, Bà Rịa - Vũng Tàu
+Mỹ Xuân,Tân Thành, Bà Rịa - Vũng Tàu
+Sông Xoài,Tân Thành, Bà Rịa - Vũng Tàu
+Hắc Dịch,Tân Thành, Bà Rịa - Vũng Tàu
+Châu Pha,Tân Thành, Bà Rịa - Vũng Tàu
+Tóc Tiên,Tân Thành, Bà Rịa - Vũng Tàu
+Long Thành,Thủ Thừa, Long An
+Tân Lập,Thủ Thừa, Long An
+Mỹ Bình,Tân Trụ, Long An
+An Nhựt Tân,Tân Trụ, Long An
+Tân Kim,Cần Giuộc, Long An
+Trường Bình,Cần Giuộc, Long An
+P.1,TP Bến Tre, Bến Tre
+P.3,TP Bến Tre, Bến Tre
+P.2,TP Bến Tre, Bến Tre
+Mỹ Thành,TP Bến Tre, Bến Tre
+Giao Hòa,Châu Thành, Bến Tre
+Bình Khánh Đông,Mỏ Cày Nam, Bến Tre
+Bình Khánh Tây,Mỏ Cày Nam, Bến Tre
+Phong Mỹ,Giồng Trôm, Bến Tre
+Phước Tuy,Ba Tri, Bến Tre
+Phú Ngãi,Ba Tri, Bến Tre
+Chánh Hội,Mang Thít, Vĩnh Long
+Thành Đông,Bình Tân, Vĩnh Long
+Thường Thới Hậu B,Hồng Ngự, Đồng Tháp
+Hòn Thơm,Phú Quốc, Kiên Giang
+An Hội,Ninh Kiều,TP Cần Thơ
+An Lạc,Ninh Kiều,TP Cần Thơ
+Phú An,Châu Thành, Hậu Giang
+Việt Khái,Phú Tân, Cà Mau

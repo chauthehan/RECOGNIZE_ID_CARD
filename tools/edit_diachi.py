@@ -1,6 +1,6 @@
 
-with open('diachi.txt', 'r') as infile:
-    with open('new_diachi.txt', 'w') as outfile:
+with open('diachi_diff.txt', 'r') as infile:
+    with open('test_diachi.txt', 'w') as outfile:
         for i in infile.readlines():
             #outfile.write(i)
             #x = i
