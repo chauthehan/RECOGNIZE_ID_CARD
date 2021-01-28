@@ -1,9 +1,10 @@
 from tools.utils import *
 from difflib import SequenceMatcher
 
-def find_name_text(list_text_box2, obj_id, birth_box,obj_cmnd, detector):
+def find_name_text(list_text_box2, obj_id, obj_birth,obj_cmnd, detector, copy_img):
     # if the box has more than 2 consecutive upper character, than it must be the box name
     
+    birth_box = obj_birth.two_points
     dic_name = {}
     obj_name = None
     #print('OBJID', obj_id.key)
@@ -35,8 +36,21 @@ def find_name_text(list_text_box2, obj_id, birth_box,obj_cmnd, detector):
         #name appears on 2 lines
         name = lst_name[1] + ' ' + lst_name[0]
         obj_name = dic_name[lst_name[1]]
+    
+    # if name box couldn't be detected, we'll draw a box text around name region
+    if name.find(' ') == -1 and name.find('-') == -1:
+        w = birth_box[2]-birth_box[0]
+        point1 = [int(obj_id.four_points[3][0][0]+w*1/7), obj_id.four_points[3][0][1]]
+        point2 = [int(obj_id.four_points[2][0][0]+w*2/3), int(obj_id.four_points[2][0][1])]
+        point3 = [int(obj_id.four_points[2][0][0]+w*2/3), int(obj_birth.four_points[1][0][1]-w/4)]
+        point4 = [int(obj_id.four_points[3][0][0]+w*1/5), int(obj_birth.four_points[0][0][1]-w/4)]
 
-    #print('Name0: ', name)
+        box = [[point1], [point2], [point3], [point4]]
+        img = four_point_transform(copy_img, box)
+        pil_img = Image.fromarray(img)
+   
+        name = detector.predict(pil_img)
+
     # Case: <name> ho ten
     pos = -1
     name = finalize(name)
@@ -83,7 +97,7 @@ def find_name_text(list_text_box2, obj_id, birth_box,obj_cmnd, detector):
             key_name = key_name[pos+1:]      
         
     key_name = normalize_name(key_name)
-    
+    key_name = finalize(key_name)
     #print('Name2: ', key_name)
     return key_name, obj_name
 
@@ -150,11 +164,17 @@ def find_id_text(list_text_box2, detector):
         pil_img = Image.fromarray(img)
 
         key_id = detector.predict(pil_img)
-    key_id = remove_char(key_id)
-    print('after key id found: ', key_id)
+
+    if len(key_id)==9 and key_id.find('/') != -1:
+        key_id = key_id.replace('/', '7')
+
+    print('after key id found: ', key_id)    
+    key_id = remove_char(key_id)   
 
     key_id = key_id[-9:]
     #if obj_id1 is not None:
+
+    key_id = finalize(key_id)
 
     return key_id, obj_id
 
@@ -204,14 +224,16 @@ def find_id_text_cc(list_text_box2, detector):
             pil_img = Image.fromarray(img)
             key_id = detector.predict(pil_img)
             key_id = remove_char(key_id)
-    
+    key_id = finalize(key_id)
     return key_id, obj_id
 
 def find_birth_text(list_text_box2, obj_id):
+    
     birth_size = 0
     key_birth = ''
     obj_birth = None 
     #birth_box = []
+    print('obj_id', obj_id.key)
     for obj in list_text_box2:
         if obj != obj_id:
             key = obj.key
@@ -238,6 +260,8 @@ def find_birth_text(list_text_box2, obj_id):
                 obj_birth = obj
                 k = remove_accent(key)
                 k = remove_char_birth(k)
+                if k.find('/') != -1:
+                    k = k.replace('/', '7')
                 key_birth = k
                 birth_box = obj.two_points
                 # get the size of birth box
@@ -247,7 +271,8 @@ def find_birth_text(list_text_box2, obj_id):
         count = count_char_in_key(key_no_accent)                
         if count > 5:
             birth_size = birth_size*2/3
-
+    
+    key_birth = finalize(key_birth)
     return key_birth, birth_size, obj_birth
 
 def remove_wrong_box(list_text_box2, obj_id, obj_birth, birth_size, obj_cmnd):
@@ -332,159 +357,6 @@ def delete_box_processed(list_text_box2, birth_box):
     return list_text_box2
 
 def find_hometown_address_text(list_text_box2):
-    hometown = ''
-    nguyenquan = ''
-    address = ''
-    keys_above_dkhk = []
-
-    maxx = 0
-    for obj in list_text_box2:
-        key = obj.key
-        key_no_accent = remove_accent(key)
-        key_no_accent = str.lower(key_no_accent)
-    
-        if score_nguyenquan(key_no_accent)>maxx:
-            maxx = score_nguyenquan(key_no_accent)               
-            nguyenquan = key
-            box_nguyenquan = obj.two_points
-            obj_nguyenquan = obj
-    #print('Score nguyen quan: ', maxx)
-    # delete box left of nguyenquan
-    remove_obj = []
-    for obj in list_text_box2:
-        #print(obj.key,' ',obj.two_points)
-        if obj.two_points[2] < box_nguyenquan[0]:
-            
-            remove_obj.append(obj)   
-
-    if remove_obj != []:
-        for obj in remove_obj:
-            list_text_box2.remove(obj)      
-
-    # remove box 'sinh ngay'
-    sinhngay = None
-    for obj in list_text_box2:
-        key = obj.key
-        if obj.two_points[2] > box_nguyenquan[0] and obj.two_points[2]<box_nguyenquan[2] and obj.two_points[1]<box_nguyenquan[1]:
-            sinhngay = obj
-    
-    if sinhngay is not None:
-        #print('SINHNGAY', sinhngay.key)
-        list_text_box2.remove(sinhngay)
-
-    maxx = 0
-
-    for obj in list_text_box2:
-        key = obj.key
-        # if box has at least 3 word in Noi DKHK thuong tru, 
-        # than it must be address box
-        key_no_accent = remove_accent(key)            
-        if score_dkhk(key_no_accent)>maxx:                
-            maxx = score_dkhk(key_no_accent)
-            obj_dkhk = obj
-    #rint('Score dkhk: ',maxx)
-    obj_nearest_hometown = None
-
-    nguyenquan2 = ''
-    if len(nguyenquan[12:]) > 3: 
-        nguyenquan2 = nguyenquan[12:]
-        #nearest_hometown = nguyenquan
-    else:
-        obj_nearest_hometown = box_nearest(obj_nguyenquan, list_text_box2)
-        nguyenquan2 = obj_nearest_hometown.key
-    
-    #print('nearesthometown', nearest_hometown)
-    #print('nguyeqnan', obj_nguyenquan.key)
-    #print('DKHK', obj_dkhk.key)
-    #print('nearest', nguyenquan2)
-
-    hometown = hometown + nguyenquan2
-    #print('HOMETONW', hometown)
-    if obj_nearest_hometown is not None:
-        list_text_box2.remove(obj_nearest_hometown)
-    if nguyenquan2 != obj_nguyenquan.key:
-        list_text_box2.remove(obj_nguyenquan)
-    
-    #print('20: ', dkhk[20:])
-    dkhk = obj_dkhk.key
-    nearest_address_raw = ''
-    if len(dkhk[20:]) > 2:
-        
-        nearest_address = dkhk[20:]
-        nearest_address_raw = dkhk
-        obj_nearest_address_raw = obj_dkhk
-    else:
-        obj_nearest_address_raw = box_nearest(obj_dkhk, list_text_box2)
-        nearest_address = obj_nearest_address_raw.key
-        nearest_address_raw = nearest_address
-    
-    address = address + nearest_address
-
-
-    #print('nearest address raw', nearest_address_raw)
-    for obj in list_text_box2:
-        if obj.two_points[1]<obj_dkhk.two_points[1] and obj.key != nearest_address_raw:
-            keys_above_dkhk.append(obj)
-
-    if len(keys_above_dkhk) != 0:
-        hometown2 = sort_key_left2right(keys_above_dkhk)
-
-        #print('After sort', hometown2)
-        hometown = hometown + ' '+hometown2
-            
-    for obj in keys_above_dkhk:
-        list_text_box2.remove(obj)
-    if obj_nearest_address_raw in list_text_box2:
-        list_text_box2.remove(obj_nearest_address_raw)
-
-    if nearest_address_raw != dkhk and obj_dkhk in list_text_box2:
-        list_text_box2.remove(obj_dkhk)
-
-    #print('-----------------------')
-    
-    #print('LISTTESTBOX2')
-    #for i in list_text_box2:
-        #print(i.key)
-    if len(list_text_box2) != 0:
-        address2 = sort_key_left2right(list_text_box2)
-        address = address + ' ' + address2
-
-    hometown = change_PhuongQuan_to_PQ(hometown)
-    address = change_PhuongQuan_to_PQ(address)
-
-    #print('Hometown', hometown)
-    #print('Address', address)
-
-    hometown1 = mapping(hometown)
-    address1 = mapping(address)
-
-    # check whether it's Ho Chi Minh region
-    pos = 0
-    if hometown1.find('TP Hồ Chí Minh') != -1:
-        for i in range(len(hometown)-1):
-            if (hometown[i]=='P' and hometown[i+1] in '0123456789') or (hometown[i]=='P' and hometown[i+2] in '0123456789'):
-                pos = i
-                #print(pos)
-        hometown = hometown[pos:]
-    if pos != 0:
-        hometown1 = mapping(hometown)    
-    pos = 0
-    if address1.find('TP Hồ Chí Minh') != -1:
-        for i in range(len(address)-1):
-            if (address[i]=='P' and address[i+1] in '0123456789') or (address[i]=='P' and address[i+2] in '0123456789'):
-                pos = i
-                #print(pos)
-        address = address[pos:]
-    
-    if pos != 0:
-        address1 = mapping(address)
-
-    #print('homewon1', hometown)
-    #print('address1', address)  
-
-    return hometown1, address1
-
-def find_hometown_address_text_1(list_text_box2):
     nguyenquan = ''
     dkhk = ''
 
@@ -611,6 +483,8 @@ def find_hometown_address_text_1(list_text_box2):
         print('Nguyen quan: ', nguyenquan)
         print('DKHK: ', dkhk)
         nguyenquan1, dkhk1 = normalize_hometown_address(nguyenquan, dkhk)
+        nguyenquan1 = finalize(nguyenquan1)
+        dkhk1 = finalize(dkhk1)
         return nguyenquan1, dkhk1
 
     box_top = obj_top.two_points
@@ -659,8 +533,10 @@ def find_hometown_address_text_1(list_text_box2):
     
     print('Nguyen quan: ', nguyenquan)
     print('DKHK: ', dkhk)    
-    nguyenquan1, dkhk1 = normalize_hometown_address(nguyenquan, dkhk)    
-    return nguyenquan1, dkhk1        
+    nguyenquan1, dkhk1 = normalize_hometown_address(nguyenquan, dkhk)
+    nguyenquan = finalize(nguyenquan1)
+    dkhk = finalize(dkhk1)  
+    return nguyenquan, dkhk
 
 def find_box_Quoctich_Dantoc(list_text_box2):
     maxx = 0
@@ -702,7 +578,7 @@ def find_birth_text_cc(list_text_box2, obj_quoctich, img):
     
     #print('KEYBIRTH', key_birth)
     key_birth = process_birth(key_birth)
-
+    key_birth = finalize(key_birth)
     return key_birth, obj_birth
 
 def find_cogiatriden(list_text_box2):
@@ -758,7 +634,7 @@ def find_name_text_cc(list_text_box2, obj_quoctich, VietNamdantoc, obj_id, img):
             
     key_name = name[pos+1:]
     key_name = normalize_name(key_name)
-
+    key_name = finalize(key_name)
     return key_name#, obj_name
         
 def find_key_expired(list_text_box2, obj_birth):
@@ -773,7 +649,8 @@ def find_key_expired(list_text_box2, obj_birth):
                 key_ex = remove_char(key)
                 key_ex = process_birth(key_ex)
                 obj_ex = obj
-    
+
+    key_ex = finalize(key_ex)
     return key_ex, obj_ex
 
 def find_sex(list_text_box2):
@@ -803,6 +680,10 @@ def find_sex(list_text_box2):
 
         elif key_no_accent.find('Nu') != -1:
             return 'Nữ', obj_Gioitinh, obj_nam_or_nu
+        elif key_no_accent.find('a') != -1:
+            return 'Nam', obj_Gioitinh, obj_nam_or_nu
+        elif key_no_accent.find('u') != -1:
+            return 'Nu', obj_Gioitinh, obj_nam_or_nu
         
         elif box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2) is not None:
             obj_nam_or_nu = box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2)
@@ -815,7 +696,7 @@ def find_sex(list_text_box2):
             
             if sex != '':
                 return sex, obj_Gioitinh, obj_nam_or_nu
-            
+        
     return sex, obj_Gioitinh, obj_nam_or_nu
 
 def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut):
@@ -876,6 +757,8 @@ def find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc):
     for obj in list_text_box2:        
         if remove_accent(obj.key).find('Viet Nam')  != -1:
             return obj
+        if remove_accent(obj.key) == 'Kinh':
+            return obj
     #else:
     if obj_quoctich_dantoc is not None:
         key = obj_quoctich_dantoc.key
@@ -888,19 +771,21 @@ def find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc):
             if len(key) < 12:
                 for obj in list_text_box2:
                     #print('find vietnam', obj.key)
-                    if obj.two_points[0] > obj_quoctich_dantoc.two_points[2]:
+                    if obj.two_points[0] > obj_quoctich_dantoc.two_points[2] and len(key)<10:
                         return obj
             else:
                 return None
         else:
             if len(key) < 10:
                 for obj in list_text_box2:
-                    if obj.two_points[0] > obj_quoctich_dantoc.two_points[2]:
+                    if obj.two_points[0] > obj_quoctich_dantoc.two_points[2] and len(key)<10:
                         return obj
             else:
-                return None            
+                return None
 
-def find_hometown_address_text_cc_1(list_text_box2):
+    return None       
+
+def find_hometown_address_text_cc(list_text_box2):
     quequan = ''
     ntt = ''
 
@@ -1000,6 +885,9 @@ def find_hometown_address_text_cc_1(list_text_box2):
         print('Que quan: ', quequan)
         print('Noi thuong tru: ', ntt)
         quequan1, ntt1 = normalize_hometown_address(quequan, ntt)
+        quequan1 = finalize(quequan1)
+        ntt1 = finalize(ntt1)
+        
         return quequan1, ntt1
 
     box_top = obj_top.two_points
@@ -1049,151 +937,10 @@ def find_hometown_address_text_cc_1(list_text_box2):
     print('Noi thuong tru: ', ntt)
     quequan1, ntt1 = normalize_hometown_address(quequan, ntt)
 
-    return quequan1, ntt1
-
-def find_hometown_address_text_cc(list_text_box2):
-    hometown = ''
-    quequan = ''
-    address = ''
-    keys_above_noithuongtru = []
+    quequan = finalize(quequan1)
+    ntt = finalize(ntt1)
+    return quequan, ntt
     
-    maxx = 0
-    for obj in list_text_box2:
-        key = obj.key
-        key = key[:9]
-        key = remove_accent(key)
-        ratio = SequenceMatcher(a=key, b='Que quan:').ratio()
-        if ratio > maxx:
-            maxx = ratio
-            obj_quequan = obj
-            box_quequan = obj.two_points
-            quequan=obj.key
-            #print(key)
-        
-    #print('NGUYENQUAN', nguyenquan)
-    #print('KEY QYE QUAN', obj_quequan.key)
-
-    # delete box left of nguyenquan
-    remove_obj = []
-    for obj in list_text_box2:
-        #print(obj.key,' ',obj.two_points)
-        if obj.two_points[2] < box_quequan[0]:
-            
-            remove_obj.append(obj)   
-
-    if remove_obj != []:
-        for obj in remove_obj:
-            list_text_box2.remove(obj)      
-
-    maxx = 0
-
-    for obj in list_text_box2:
-        key = obj.key
-        # if box has at least 3 word in Noi DKHK thuong tru, 
-        # than it must be address box
-        key_no_accent = remove_accent(key)            
-        if score_Noithuongtru(key_no_accent)>maxx:                
-            maxx = score_Noithuongtru(key_no_accent)
-            obj_Noithuongtru = obj
-        #print('Score noi thuong tru: ', maxx)
-    #print('NOITHUONGTRU', obj_Noithuongtru.key)
-    obj_nearest_hometown = None
-
-    quequan2 = ''
-    if len(quequan[12:]) > 3: 
-        quequan2 = quequan[9:]
-        #nearest_hometown = quequan
-    else:
-        obj_nearest_hometown = box_nearest(obj_quequan, list_text_box2)
-        quequan2 = obj_nearest_hometown.key
-    
-    #print('nearesthometown', nearest_hometown)
-    # print('QUE QUAN', obj_quequan.key)
-    # print('GAN QUE QUAN', quequan2)
-
-    hometown = hometown + quequan2
-    #print('HOMETONW', hometown)
-    if obj_nearest_hometown is not None:
-        list_text_box2.remove(obj_nearest_hometown)
-    if quequan2 != obj_quequan.key:
-        list_text_box2.remove(obj_quequan)
-    
-    #print('20: ', dkhk[20:])
-    noithuongtru = obj_Noithuongtru.key
-    nearest_address_raw = ''
-    if len(noithuongtru[15:]) > 2:
-        
-        nearest_address = noithuongtru[15:]
-        nearest_address_raw = noithuongtru
-        obj_nearest_address_raw = obj_Noithuongtru
-    else:
-        obj_nearest_address_raw = box_nearest(obj_Noithuongtru, list_text_box2)
-        #print('nearest address', obj_nearest_address_raw.key)
-        nearest_address = obj_nearest_address_raw.key
-        nearest_address_raw = nearest_address
-    
-    address = address + nearest_address
-    #print('nearest', nearest_address_raw)
-    for obj in list_text_box2:
-        if obj.two_points[1]<obj_Noithuongtru.two_points[1] and obj.key != nearest_address_raw:
-            keys_above_noithuongtru.append(obj)
-
-    if len(keys_above_noithuongtru) != 0:
-        hometown2 = sort_key_left2right(keys_above_noithuongtru)
-        hometown = hometown + ' '+hometown2
-            
-    for obj in keys_above_noithuongtru:
-        list_text_box2.remove(obj)
-
-    if obj_nearest_address_raw in list_text_box2:
-        list_text_box2.remove(obj_nearest_address_raw)
-
-    if nearest_address_raw != noithuongtru:
-        list_text_box2.remove(obj_Noithuongtru)
-
-    #print('-----------------------')
-    #print('DIC', dic)
-
-    if len(list_text_box2) != 0:
-        address2 = sort_key_left2right(list_text_box2)
-        address = address + ' ' + address2
-    
-    # doi Phuong thanh P. va Quan thanh Q.
-    hometown = change_PhuongQuan_to_PQ(hometown)
-    address = change_PhuongQuan_to_PQ(address)
-
-    print('Hometown', hometown)
-    print('Address', address)
-
-    hometown1 = mapping(hometown)
-    address1 = mapping(address)
-
-    # check whether it's Ho Chi Minh region
-    pos = 0
-    if hometown1.find('TP Hồ Chí Minh') != -1:
-        for i in range(len(hometown)-1):
-            if (hometown[i]=='P' and hometown[i+1] in '0123456789') or (hometown[i]=='P' and hometown[i+2] in '0123456789'):
-                pos = i
-                #print(pos)
-        hometown = hometown[pos:]
-    if pos != 0:
-        hometown1 = mapping(hometown)    
-    pos = 0
-    if address1.find('TP Hồ Chí Minh') != -1:
-        for i in range(len(address)-1):
-            if (address[i]=='P' and address[i+1] in '0123456789') or (address[i]=='P' and address[i+2] in '0123456789'):
-                pos = i
-                #print(pos)
-        address = address[pos:]
-    
-    if pos != 0:
-        address1 = mapping(address)
-
-    #print('homewon1', hometown)
-    #print('address1', address)  
-
-    return hometown1, address1
-
 def find_ngaythangnamsinh(list_text_box2):
     maxx = 0
     for obj in list_text_box2:
@@ -1234,5 +981,4 @@ def find_gioitinh_base_vietnam(list_text_box2, VietNamdantoc, obj_quoctich_danto
         return 'Nữ'
     
     return  ''
-
-        
+  

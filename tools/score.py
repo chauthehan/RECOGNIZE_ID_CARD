@@ -115,3 +115,4 @@ def score_Noithuongtru(key):
             s = s+3
     return s
 
+#def score_cmnd(text_no_accent)

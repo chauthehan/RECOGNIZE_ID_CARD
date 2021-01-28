@@ -187,24 +187,28 @@ def main():
     # Detect box text
 
     #for i in range(9, 400):
-    for i in range(278, 550):
+    for i in range(557, 620):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
         if not os.path.exists(img_path):
             continue
-        #img_path = '/home/han/Documents/cmnd/recognize_id_card/hardcore/125.png'
-        logger.info("Begining detect id card..")
-    #img_path = config['Global'].get('infer_img')
-        dt_boxes, copy_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
+        #img_path = '/home/han/Documents/cmnd/recognize_id_card/akhoa.jpg'
+      
+        #print('pass')
 
+        # i = -1
+        # while True:
+        #     i += 1
+        #     try:
+        logger.info("Begining detect id card..")
+        dt_boxes, ori_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
         logger.info("Detect success!")
 
         logger.info("Begining ocr..")
-        
-        #print('pass')
-        list_text_box1 = OCR_text(1, dt_boxes, copy_img, detector)        
-        
+        #cv2.imshow('', ori_img)
+        #cv2.waitKey(0)
+        list_text_box1 = OCR_text(1, dt_boxes, ori_img, detector)
         final_dic = {
             'Id': '',
             'Name': '',
@@ -220,9 +224,9 @@ def main():
             
         # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
         if score>=1:
-            #print('[INFO] This is a Citizenship card!')
+            print('[INFO] This is a Citizenship card!')
 
-            type_cut = cut_roi_cc(list_text_box1, copy_img)
+            type_cut = cut_roi_cc(list_text_box1, ori_img)
             dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
 
             # OCR again         
@@ -266,12 +270,12 @@ def main():
             for obj in list_text_box2:
                 print('left', obj.key)
             # find hometown and address
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc_1(list_text_box2)
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
 
             print('Final dic: ', final_dic)
         else:
-            #print('[INFO] This is a Identification Card!')
-            cut_roi(list_text_box1, copy_img)
+            print('[INFO] This is a Identification Card!')
+            cut_roi(list_text_box1, ori_img)
 
             dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
             
@@ -294,7 +298,7 @@ def main():
             
             # Find name text
             
-            final_dic['Name'], obj_name = find_name_text(list_text_box2, obj_id, obj_birth.two_points, obj_cmnd, detector)
+            final_dic['Name'], obj_name = find_name_text(list_text_box2, obj_id, obj_birth, obj_cmnd, detector, copy_img)
             
             if (final_dic['Id'] == remove_char(final_dic['Birth']) or len(final_dic['Id'])<9) and obj_name is not None:
                 final_dic['Id'] = draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd)
@@ -307,17 +311,31 @@ def main():
             for obj in list_text_box2:
                 print('left', obj.key)
             
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_1(list_text_box2)  
-            
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+        
+            #    break
+            # except:
+            #     if i == 0:
+            #         ori_img = imutils.rotate_bound(ori_img, -90)
+            #         cv2.imwrite('{}.jpg'.format(i), ori_img)
+            #         img_path = '{}.jpg'.format(i)
+            #     elif i ==1:
+            #         ori_img = imutils.rotate_bound(ori_img, 180)
+            #         cv2.imwrite('{}.jpg'.format(i), ori_img)
+            #         img_path = '{}.jpg'.format(i)
+            #     elif i ==2:
+            #         ori_img = imutils.rotate_bound(ori_img, 90)
+            #         cv2.imwrite('{}.jpg'.format(i), ori_img)
+            #         img_path = '{}.jpg'.format(i)                                       
     #----------------------------------------------
         print('-------------------------------------')
-        print('Id number: ', finalize(final_dic['Id']))
-        print('Name: ', finalize(final_dic['Name']))
-        print('Sex: ', finalize(final_dic['Sex']))
-        print('Date of birth: ', finalize(final_dic['Birth']))
-        print('Hometown: ', finalize(final_dic['Hometown']))    
-        print('Address: ', finalize(final_dic['Address']))
-        print('Date of expired: ', finalize(final_dic['Date of expired']))
+        print('Id number: ', final_dic['Id'])
+        print('Name: ', final_dic['Name'])
+        print('Sex: ', final_dic['Sex'])
+        print('Date of birth: ', final_dic['Birth'])
+        print('Hometown: ', final_dic['Hometown'])
+        print('Address: ', final_dic['Address'])
+        print('Date of expired: ', final_dic['Date of expired'])
         
         logger.info('Done recognizing!')
         print('-------------------------------------')

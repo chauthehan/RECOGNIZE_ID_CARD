@@ -81,7 +81,10 @@ def four_point_transform(image, box):
     return warped
 
 def crop_image(I, box):
+    # Go over the points in the image if thay are out side of the emclosing rectangle put zero
+    # if not check if thay are inside the polygon or not
 
+    # Now we can crop again just the envloping rectangle
     box[0][0][0] = max(box[0][0][0] - 5, 0)
     box[0][0][1] = max(box[0][0][1] - 2, 0)
     box[1][0][0] = min(box[1][0][0] + 5, I.shape[1])
@@ -110,14 +113,10 @@ def crop_image(I, box):
         if y > maxY:
             maxY = y
 
-    # Go over the points in the image if thay are out side of the emclosing rectangle put zero
-    # if not check if thay are inside the polygon or not
-
-    # Now we can crop again just the envloping rectangle
-
     return [minX, minY, maxX, maxY]
 
 def remove_accent(str1):
+    # Remove accent in text
     new_str = ''
     for i in str1:
         if i in ['á', 'à', 'ạ', 'ã', 'ả', 'ắ', 'ằ', 'ẳ', 'ẵ', 'ặ', 'ă', 'â', 'ấ', 'ầ', 'ẩ', 'ẫ', 'ậ']:
@@ -151,11 +150,9 @@ def remove_accent(str1):
         else:
             new_str = new_str + i
     return new_str
-        
-def Key(x):
-    return x[0]
 
 def box_nearest(obj, list_text_box2):
+    # Function to find the nearest box on the right of a specified box
     count = 0
     sum_corner = 0
     c = 0
@@ -203,6 +200,7 @@ def box_nearest(obj, list_text_box2):
     return return_obj
 
 def remove_char(key):
+    # Get only numbers in a string
     id = ''
     for i in key:
         if i>='0' and i<='9':
@@ -211,6 +209,7 @@ def remove_char(key):
 
 def remove_low_char(key):
 
+    # remove lower characters in a tring
     mark_pos = 0
     key_no_mark = remove_accent(key)
     for i, char in enumerate(key_no_mark):
@@ -222,6 +221,7 @@ def remove_low_char(key):
         return key[mark_pos:]
 
 def remove_char_birth(key):
+    # Remove alphabet characters in birth text 
     id = ''
     for i in key:
         if not (i>='a' and i<='z' or (i>='A' and i<='Z')):
@@ -229,7 +229,7 @@ def remove_char_birth(key):
     return id    
 
 def process_birth(key):
-    
+    # convert 11021900 => 11-02-1900
     birth = ''
     for char in key:
         if char>='0' and char<='9':
@@ -243,9 +243,9 @@ def process_birth(key):
 
         if birth[0] == '7':
             birth = birth[:0] + '1' +birth[1:]
-        if int(birth[2]) > 3 and int(birth[2])!=7:
+        if int(birth[0]) > 3 and int(birth[2])!=7:
             birth = birth[:0] + '0' +birth[1:]
-            
+       
     final_birth = ''
     i = -1
     while True:
@@ -258,6 +258,7 @@ def process_birth(key):
     return final_birth
         
 def finalize(key):
+    # Clean text to get the final result
     if key == '':
         return ''
     key_no_mark = remove_accent(key)
@@ -301,6 +302,7 @@ def finalize(key):
     return key 
 
 def count_num_in_key(key):
+    # Count the amount of number character in a string
     count = 0
     # check = False
     for i in key:
@@ -309,6 +311,7 @@ def count_num_in_key(key):
     return count
 
 def count_upper_consecutive(key):
+    # Count the amount of consecutive upper characters in a string
     count = 0
     count_max = 0
     i = 0
@@ -328,6 +331,7 @@ def count_upper_consecutive(key):
         i = i + 1
 
 def count_lower(key):
+    # count the amount of lower characters in a string
     count = 0
     count_max = 0
     i = 0
@@ -393,12 +397,14 @@ def cut_roi(list_text_box, copy_img):
 
     max1 = 0
     max2 = 0
+    max3 = 0
 
     for obj in list_text_box:
         text = obj.key
         text_no_accent = remove_accent(text)
         sc_dkhk = score_dkhk(text_no_accent)
-        sc_conghoa = score_conghoa(text_no_accent)      
+        sc_conghoa = score_conghoa(text_no_accent)
+        sc_cmnd = SequenceMatcher(a=text_no_accent, b='GIAY CHUNG MINH NHAN DAN').ratio()
 
         #print(key,' ' ,sc_dkhk)
         #print(key,' ', sc_conghoa)  
@@ -409,16 +415,30 @@ def cut_roi(list_text_box, copy_img):
             #print('1', key)
         if sc_conghoa > max2:
             max2 = sc_conghoa
+            obj_conghoa = obj
             box_conghoa = obj.four_points
             #print('2', key)
+        if sc_cmnd > max3:
+            max3 = sc_cmnd
+            box_cmnd = obj.four_points
 
-    width_conghoa = box_conghoa[1][0][0] - box_conghoa[0][0][0]
-    height_conghoa = box_conghoa[3][0][1] - box_conghoa[0][0][1]
+    if obj_conghoa.key[-2:] == 'AM':
+        width = box_conghoa[1][0][0] - box_conghoa[0][0][0]
+        height = box_conghoa[3][0][1] - box_conghoa[0][0][1]
+        topleft = [max(int(box_conghoa[0][0][0] - width/3),0), max(int(box_conghoa[0][0][1] - height/2),0)]
+        topright = [min(int(box_conghoa[1][0][0] + width/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height/2), 0)]
+        botleft = [max(int(box_dkhk[3][0][0] - width/3), 0), min(int(box_dkhk[3][0][1] + height*2.5), copy_img.shape[0])]
+        botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
 
-    topleft = [max(int(box_conghoa[0][0][0] - width_conghoa/3),0), max(int(box_conghoa[0][0][1] - height_conghoa/2),0)]
-    topright = [min(int(box_conghoa[1][0][0] + width_conghoa/7), copy_img.shape[1]), max(int(box_conghoa[1][0][1] - height_conghoa/2), 0)]
-    botleft = [max(int(box_dkhk[3][0][0] - width_conghoa/3), 0), min(int(box_dkhk[3][0][1] + height_conghoa*2.5), copy_img.shape[0])]
-    botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+    else:
+        width = (box_cmnd[1][0][0] - box_cmnd[0][0][0])*1.05
+        height = (box_cmnd[3][0][1] - box_cmnd[0][0][1])*0.9
+
+        topleft = [max(int(box_cmnd[0][0][0] - width/3),0), max(int(box_cmnd[0][0][1] - height/2),0)]
+        topright = [min(int(box_cmnd[1][0][0] + width/7), copy_img.shape[1]), max(int(box_cmnd[1][0][1] - height/2), 0)]
+        botleft = [max(int(box_dkhk[3][0][0] - width/3), 0), min(int(box_dkhk[3][0][1] + height*2.5), copy_img.shape[0])]
+        botright = [min(int(botleft[0]+topright[0]-topleft[0]),copy_img.shape[1]), min(int(topright[1] + botleft[1]-topleft[1]), copy_img.shape[0])]
+
 
     #copy_img = cv2.circle(copy_img,(topleft[0], topleft[1]), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(topright[0], topright[1]), 5, (0,255,0), -1)
@@ -572,7 +592,7 @@ def cal_corner(list_text_box, box_rec):
         if obj.four_points[0][0][0] > box_rec[0] and obj.four_points[0][0][1]>box_rec[1] and obj.four_points[2][0][0]<box_rec[2] and obj.four_points[2][0][1]<box_rec[3] and len(obj.key)>=2:
             point1 = [obj.four_points[0][0][0], obj.four_points[0][0][1]] 
             point2 = [obj.four_points[1][0][0], obj.four_points[1][0][1]]
-            dis = math.sqrt((point2[0]-point1[0])**2+(point2[1]-point1[1])**2)
+            dis = distance(point1, point2)
             h = point2[1] - point1[1]
             sin = h/dis
             corner = -np.arcsin(sin)
@@ -642,6 +662,9 @@ def mapping(key):
                 maxx = ratio
                 res1 = i
 
+    print('ratio:',key,' ',maxx)    
+    if maxx < 0.5:
+        return key
     return res1      
 
 def score_of_cc_or_cmnd(list_test_box1):
@@ -659,12 +682,14 @@ def score_of_cc_or_cmnd(list_test_box1):
             score += 1
         if no_accent.find('Gioi tinh') != -1:
             score += 1
-        if no_accent.find('Noi thuong tru') != -1:
-            score += 1
+        #if no_accent.find('Noi thuong tru') != -1:
+        #    score += 1
         if no_accent.find('Co gia tri den') != -1:
             score += 1
         if no_accent.find('CAN CUOC CONG DAN') != -1:
             score +=1 
+        if no_accent.find('Quoc tich') != -1:
+            score +=1
     return score
 
 def change_format(key):
@@ -713,7 +738,7 @@ def normalize_name(key_name):
     if Ho_no_accent not in {'AN', 'ANH', 'AU', 'CAI', 'CHUNG', 'CO', 'CONG', 
     'CU', 'DAU', 'DOAN', 'DONG','DUONG', 'GIANG', 'HA', 'HAN', 'KHA', 'LA',
     'LIEU', 'LO', 'MA', 'MAU', 'ONG', 'PHI', 'PHU', 'QUANG', 'TONG', 'TRINH',
-    'UNG', 'KIEU', 'LY', 'NGO', 'CHU'}:
+    'UNG', 'KIEU', 'LY', 'NGO', 'CHU', 'LAI'}:
         #print('HO', Ho)
         with open('ho.txt', 'r') as f:
             maxx = 0
@@ -727,8 +752,18 @@ def normalize_name(key_name):
         f.close()
     
     pos2 = key_name[pos1+1:].find(' ')
+    pos3 = key_name.rfind(' ')
+    pos4 = key_name[:pos3].rfind(' ')
+    print(key_name[pos3+1:])
+    if remove_accent(key_name[pos3+1:])=='HUYEN':
+        key_name = key_name[:pos3+1] + 'HUYỀN'
+    if remove_accent(key_name[pos4+1:pos3])=='HONG':
+        key_name = key_name[:pos4+1]+'HỒNG '+key_name[pos3+1:]
     #print('AAAA', key_name[pos1+1:][:pos2])
-
+    
+    if Ho in {'NGỎ', 'NGÕ', 'NGÓ', 'NGÒ'}:
+        Ho = 'NGÔ'
+    
     if key_name[pos1+1:][:pos2] == 'THI':
         lot = 'THỊ'    
         key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
@@ -739,7 +774,6 @@ def normalize_name(key_name):
         key_name = Ho + ' ' + key_name[pos1+1:]
     
     key_name = key_name.replace('-', ' ')
-
     
     return key_name
 
