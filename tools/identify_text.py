@@ -336,10 +336,16 @@ def remove_wrong_box_cc(list_text_box2, obj_id):
         print(obj.key, ' ', obj.size)
         if obj.size < obj_id.size/14:
             #print('111111')
-            list_obj_remove.append(obj) 
+            list_obj_remove.append(obj)
+        
+        leng = len(obj.key)
+        num = count_num_in_key(obj.key)
+        if (num == leng or num ==leng-1) and leng<=5:
+            list_obj_remove.append(obj)
     
     for obj in list_obj_remove:
-        list_text_box2.remove(obj)
+        if obj in list_text_box2:
+            list_text_box2.remove(obj)
     
     return list_text_box2
 
@@ -375,6 +381,7 @@ def find_hometown_address_text(list_text_box2):
     for obj in list_text_box2:
         c = 0
         key = obj.key
+        key = remove_accent(key)
         for i in key:
             if i>='A' and i <= 'Y':
                 c += 1
@@ -382,7 +389,7 @@ def find_hometown_address_text(list_text_box2):
             list_obj_remove.append(obj)
 
     for obj in list_obj_remove:
-        print('remove upper: ', obj.key)
+        #print('remove upper: ', obj.key)
         list_text_box2.remove(obj)        
 
     maxx = 0
@@ -583,6 +590,7 @@ def find_birth_text_cc(list_text_box2, obj_quoctich, img):
 
 def find_cogiatriden(list_text_box2):
     maxx = 0
+    obj_ex = None
     for obj in list_text_box2:
         text = obj.key
         text_no_accent = remove_accent(text)
@@ -683,7 +691,7 @@ def find_sex(list_text_box2):
         elif key_no_accent.find('a') != -1:
             return 'Nam', obj_Gioitinh, obj_nam_or_nu
         elif key_no_accent.find('u') != -1:
-            return 'Nu', obj_Gioitinh, obj_nam_or_nu
+            return 'Nữ', obj_Gioitinh, obj_nam_or_nu
         
         elif box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2) is not None:
             obj_nam_or_nu = box_nearest_gioitinh_cc(obj_Gioitinh, list_text_box2)
@@ -700,10 +708,20 @@ def find_sex(list_text_box2):
     return sex, obj_Gioitinh, obj_nam_or_nu
 
 def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut):
+    return_address = ''
     if type_cut != 2:
         obj_cogiatriden = find_cogiatriden(list_text_box2)
+
+        # Xu ly truong hop 2 box co gia tri den va box dia chi cua noi thuong tru dinh nhau
+        if obj_cogiatriden is not None and len(obj_cogiatriden.key)>30:
+            return_address = obj_cogiatriden.key[26:]
+        elif obj_expired is not None and obj_expired != obj_cogiatriden and len(obj_expired.key)>13:
+            return_address = obj_expired.key[10:]
+
         print('[INFO_1] remove {}'.format(obj_cogiatriden.key))
-        list_text_box2.remove(obj_cogiatriden)
+        if obj_cogiatriden in list_text_box2:
+            list_text_box2.remove(obj_cogiatriden)
+        
         if obj_expired in list_text_box2:
             print('[INFO_2] remove {}'.format(obj_expired.key))
             list_text_box2.remove(obj_expired)
@@ -750,7 +768,7 @@ def delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quo
     if obj_ngaythangnamsinh in list_text_box2:
         list_text_box2.remove(obj_ngaythangnamsinh)
     
-    return list_text_box2
+    return list_text_box2, return_address
 
 def find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc):
     #if obj_quoctich_dantoc is None:
@@ -785,7 +803,8 @@ def find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc):
 
     return None       
 
-def find_hometown_address_text_cc(list_text_box2):
+def find_hometown_address_text_cc(list_text_box2, cogiatriden):
+
     quequan = ''
     ntt = ''
 
@@ -867,8 +886,11 @@ def find_hometown_address_text_cc(list_text_box2):
         if obj.two_points[1] > max_pos:
             max_pos = obj.two_points[1]
             obj_bot = obj    
-    
-    if obj_bot == obj_ntt:
+
+    # truong hop box expired dinh voi box ntt
+    if cogiatriden != '':
+        ntt = ntt + cogiatriden
+    elif obj_bot == obj_ntt:
         ntt = ntt + obj_bot.key[14:]
         obj_ntt = None
     else:
@@ -887,7 +909,7 @@ def find_hometown_address_text_cc(list_text_box2):
         quequan1, ntt1 = normalize_hometown_address(quequan, ntt)
         quequan1 = finalize(quequan1)
         ntt1 = finalize(ntt1)
-        
+
         return quequan1, ntt1
 
     box_top = obj_top.two_points

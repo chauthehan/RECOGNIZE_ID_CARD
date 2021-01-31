@@ -379,20 +379,6 @@ def remove_last_char(pred):
             pred = pred[:-1]
     return pred 
 
-def sort_key_left2right(lst):
-    string = ''
-
-    if len(lst) == 1:
-        for obj in lst:
-            string = obj.key
-    elif len(lst) ==2:
-        if lst[0].two_points[0] > lst[1].two_points[0]:
-            string = lst[1].key + ' ' +lst[0].key
-        else:
-            string = lst[0].key + ' ' +lst[1].key
-
-    return string
-
 def cut_roi(list_text_box, copy_img):
 
     max1 = 0
@@ -502,9 +488,6 @@ def OCR_text(i, dt_boxes, copy_img, detector):
         obj = textbox(pred, box_rec, box, size, 'box{}/{}.jpg'.format(i, j))
 
         list_text_box.append(obj)
-        # dic[pred] = box_rec
-        # dic_o[pred] = box
-        # dic_s[pred] = crop.shape[0] * crop.shape[1]
 
     return list_text_box
 
@@ -727,15 +710,10 @@ def normalize_name(key_name):
             break   
 
     #print(key_name)
-    if key_name.find('-') != -1:
-        pos1 = key_name.find('-')
-    else:
-        pos1 = key_name.find(' ')
+    key_name = key_name.replace('-', ' ')
+    s = key_name.split(' ')
     
-    Ho = key_name[:pos1]
-    Ho_no_accent = remove_accent(Ho)
-
-    if Ho_no_accent not in {'AN', 'ANH', 'AU', 'CAI', 'CHUNG', 'CO', 'CONG', 
+    if remove_accent(s[0]) not in {'AN', 'ANH', 'AU', 'CAI', 'CHUNG', 'CO', 'CONG', 
     'CU', 'DAU', 'DOAN', 'DONG','DUONG', 'GIANG', 'HA', 'HAN', 'KHA', 'LA',
     'LIEU', 'LO', 'MA', 'MAU', 'ONG', 'PHI', 'PHU', 'QUANG', 'TONG', 'TRINH',
     'UNG', 'KIEU', 'LY', 'NGO', 'CHU', 'LAI'}:
@@ -745,37 +723,42 @@ def normalize_name(key_name):
             for i in f.readlines():
                 name = remove_accent(i)
                 name = str.upper(name)
-                if name[:-1] == Ho_no_accent:
+                if name[:-1] == remove_accent(s[0]):
                     Ho = i       
                     Ho = str.upper(Ho)
-                    Ho = Ho[:-1]
+                    s[0] = Ho[:-1]
         f.close()
+
+
+    print('SSS', s)
+    for i in range(len(s)):
+        if remove_accent(s[i]) == 'HUYEN':
+            s[i] = 'HUYỀN'
+        if remove_accent(s[i]) == 'HONG':
+            s[i] = 'HỒNG'
+        if remove_accent(s[i]) == 'HOANG':
+            s[i] = 'HOÀNG'
+
+    if s[0] in {'NGỎ', 'NGÕ', 'NGÓ', 'NGÒ'}:
+        s[0] = 'NGÔ'
+    if remove_accent(s[0]) == 'TE':
+        s[0] = 'LÊ'
     
-    pos2 = key_name[pos1+1:].find(' ')
-    pos3 = key_name.rfind(' ')
-    pos4 = key_name[:pos3].rfind(' ')
-    print(key_name[pos3+1:])
-    if remove_accent(key_name[pos3+1:])=='HUYEN':
-        key_name = key_name[:pos3+1] + 'HUYỀN'
-    if remove_accent(key_name[pos4+1:pos3])=='HONG':
-        key_name = key_name[:pos4+1]+'HỒNG '+key_name[pos3+1:]
-    #print('AAAA', key_name[pos1+1:][:pos2])
+    for i in range(len(s)-1):
+        if s[i] == 'THI' and len(s)>=3:
+            s[i] = 'THỊ'
+        if s[i] == 'ĂĂ' and len(s) >=3:
+            s[i] = 'VĂN'
+        if remove_accent(s[i]) == 'TUAN':
+            s[i] = 'TUẤN'
+        if remove_accent(s[i]) == 'HOÀNG':
+            s[i] = 'HOÀNG'
     
-    if Ho in {'NGỎ', 'NGÕ', 'NGÓ', 'NGÒ'}:
-        Ho = 'NGÔ'
+    name = ''
+    for i in range(len(s)):
+        name = name + s[i] + ' '
     
-    if key_name[pos1+1:][:pos2] == 'THI':
-        lot = 'THỊ'    
-        key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
-    elif key_name[pos1+1:][:pos2] == 'ĂĂ':
-        lot = 'VĂN '
-        key_name = Ho + ' ' + lot + key_name[pos1+1:][pos2+1:]
-    else:
-        key_name = Ho + ' ' + key_name[pos1+1:]
-    
-    key_name = key_name.replace('-', ' ')
-    
-    return key_name
+    return name
 
 def draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd):
     

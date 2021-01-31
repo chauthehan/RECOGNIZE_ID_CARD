@@ -114,5 +114,3 @@ def score_Noithuongtru(key):
         if key.find(i) != -1:
             s = s+3
     return s
-
-#def score_cmnd(text_no_accent)

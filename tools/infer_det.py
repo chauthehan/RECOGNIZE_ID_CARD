@@ -17,7 +17,6 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
 import numpy as np
 from copy import deepcopy
 import json
@@ -187,13 +186,13 @@ def main():
     # Detect box text
 
     #for i in range(9, 400):
-    for i in range(557, 620):
+    for i in range(72, 620):
         img_path = 'test/' + str(i) + '.jpg'
         if not os.path.exists(img_path):
             img_path = 'test/' + str(i) + '.png'
         if not os.path.exists(img_path):
             continue
-        #img_path = '/home/han/Documents/cmnd/recognize_id_card/akhoa.jpg'
+        #img_path = '/home/han/Documents/cmnd/recognize_id_card/test/-1.jpg'
       
         #print('pass')
 
@@ -265,12 +264,12 @@ def main():
 
             # Delete box has been already  processed
 
-            list_text_box2 = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut)
+            list_text_box2, obj_cogiatriden = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut)
             
             for obj in list_text_box2:
                 print('left', obj.key)
             # find hometown and address
-            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2)
+            final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2, obj_cogiatriden)
 
             print('Final dic: ', final_dic)
         else:
@@ -312,8 +311,19 @@ def main():
                 print('left', obj.key)
             
             final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+        print('-------------------------------------')
+        print('Id number: ', final_dic['Id'])
+        print('Name: ', final_dic['Name'])
+        print('Sex: ', final_dic['Sex'])
+        print('Date of birth: ', final_dic['Birth'])
+        print('Hometown: ', final_dic['Hometown'])
+        print('Address: ', final_dic['Address'])
+        print('Date of expired: ', final_dic['Date of expired'])
         
-            #    break
+        logger.info('Done recognizing!')
+        print('-------------------------------------')
+            #     break 
+                
             # except:
             #     if i == 0:
             #         ori_img = imutils.rotate_bound(ori_img, -90)
@@ -326,19 +336,13 @@ def main():
             #     elif i ==2:
             #         ori_img = imutils.rotate_bound(ori_img, 90)
             #         cv2.imwrite('{}.jpg'.format(i), ori_img)
-            #         img_path = '{}.jpg'.format(i)                                       
+            #         img_path = '{}.jpg'.format(i)
+            #     else:
+            #         print('Cannot recognizing')
+            #         break
+                                             
     #----------------------------------------------
-        print('-------------------------------------')
-        print('Id number: ', final_dic['Id'])
-        print('Name: ', final_dic['Name'])
-        print('Sex: ', final_dic['Sex'])
-        print('Date of birth: ', final_dic['Birth'])
-        print('Hometown: ', final_dic['Hometown'])
-        print('Address: ', final_dic['Address'])
-        print('Date of expired: ', final_dic['Date of expired'])
-        
-        logger.info('Done recognizing!')
-        print('-------------------------------------')
+
 
 if __name__ == '__main__':
     enable_static_mode()
