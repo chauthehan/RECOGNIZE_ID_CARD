@@ -22,7 +22,7 @@ def find_name_text(list_text_box2, obj_id, obj_birth,obj_cmnd, detector, copy_im
                 continue
             else:
                 count = count_upper_consecutive(key_no_accent)
-            if count >= 2:
+            if count >= 4:
                 #print(obj.key, ' ', count)
                 dic_name[obj.key] = obj
     #print('name', dic_name)
@@ -620,8 +620,10 @@ def find_name_text_cc(list_text_box2, obj_quoctich, VietNamdantoc, obj_id, img):
                 continue
             else:
                 count = count_upper_consecutive(key_no_accent)
-            if count >= 2:
+                count_lower = count_char_in_key(key_no_accent)
+            if count >= 4 and count_lower < 10:
                 dic_name[obj.key] = obj
+                print('find name', obj.key,' ',count)
     print('name', dic_name)
     lst_name = []
     for key in dic_name:
@@ -813,7 +815,7 @@ def find_hometown_address_text_cc(list_text_box2, cogiatriden):
         key = obj.key
         key_no_accent = remove_accent(key)
         key_no_accent = str.lower(key_no_accent)
-    
+        print('Find address', obj.key,' ',score_Quequan(key_no_accent))
         if score_Quequan(key_no_accent)>maxx:
             maxx = score_Quequan(key_no_accent)               
             obj_quequan = obj

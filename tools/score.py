@@ -90,7 +90,7 @@ def score_Gioitinh(key):
     return s
 
 def score_Quequan(key):
-    key = key[:10]
+    key = key[:9]
     s = 0
     for i in {'Qu', 'ue', 'e ', ' q', 'qu', 'ua', 'an', 'n:'}:
         if key.find(i) != -1:
@@ -100,7 +100,7 @@ def score_Quequan(key):
             s = s+3
     for i in {'Que ', 'ue q', 'e qu', ' qua', 'quan', 'uan:'}:
         if key.find(i) != -1:
-            s = s+3
+            s = s+5
 
     return s 
 

@@ -39,8 +39,8 @@ def _term_group(sig_num, frame):
     os.killpg(os.getpgid(os.getpid()), signal.SIGKILL)
 
 
-signal.signal(signal.SIGTERM, _reader_quit)
-signal.signal(signal.SIGINT, _term_group)
+#signal.signal(signal.SIGTERM, _reader_quit)
+#signal.signal(signal.SIGINT, _term_group)
 
 
 def reader_main(config=None, mode=None):

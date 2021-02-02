@@ -690,7 +690,14 @@ def change_format(key):
             key = key[:pos_quan] + 'Q.' +key[pos_quan+5:]
     
     key = key.replace('Xã', '')
-    key = key.replace('Huyện', '')    
+    key = key.replace('Huyện', '')
+    key = key.replace('Thành phố', 'TP')
+    pos1 = key.find('P.')
+    pos2 = key.find('P. ')
+    if pos1 != -1 and key[pos1-1]!='T':
+        key = key[pos1:]
+    if pos2 != -1 and key[pos2-1]!='T':
+        key = key[pos2:]    
     return key
 
 def normalize_name(key_name):

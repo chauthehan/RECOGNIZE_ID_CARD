@@ -1194,7 +1194,7 @@ Xuân Dương,Na Rì, Bắc Kạn
 Liêm Thuỷ,Na Rì, Bắc Kạn
 Phan Thiết,TP Tuyên Quang, Tuyên Quang
 TP Tuyên Quang, Tuyên Quang
- Tuyên Quang
+Tuyên Quang
 Minh Xuân,TP Tuyên Quang, Tuyên Quang
 Tân Quang,TP Tuyên Quang, Tuyên Quang
 Tràng Đà,TP Tuyên Quang, Tuyên Quang

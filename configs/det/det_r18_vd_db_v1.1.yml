@@ -13,7 +13,7 @@ Global:
   reader_yml: ./configs/det/det_db_icdar15_reader.yml
   pretrain_weights: ./pretrain_models/ResNet18_vd_pretrained/
   save_res_path: ./output/det_r18_vd_db/predicts_db.txt
-  checkpoints:
+  checkpoints: "./output/det_db/best_accuracy"
   save_inference_dir:
   infer_img:
 
@@ -52,7 +52,7 @@ Optimizer:
 PostProcess:
   function: ppocr.postprocess.db_postprocess,DBPostProcess
   thresh: 0.3
-  box_thresh: 0.5
+  box_thresh: 0.1
   max_candidates: 1000
-  unclip_ratio: 1.6
+  unclip_ratio: 1.5
   
