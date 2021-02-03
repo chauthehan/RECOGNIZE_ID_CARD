@@ -9,6 +9,7 @@ from copy import deepcopy
 import streamlit as st
 import os
 import sys
+
 __dir__ = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(__dir__)
 sys.path.append(os.path.abspath(os.path.join(__dir__, '..')))
@@ -18,6 +19,7 @@ from ppocr.utils.utility import create_module
 import program
 from ppocr.data.reader_main import reader_main
 from tools.identify_text import *
+#from tools.utils import OCR_text
 import cv2
 
 from ppocr.utils.utility import initial_logger
@@ -30,14 +32,6 @@ import imutils
 
 from vietocr.tool.predictor import Predictor
 from vietocr.tool.config import Cfg
-
-class textbox:
-    def __init__(self, key, two_points, four_points, size, name_img):
-        self.key = key
-        self.two_points = two_points # describe text box by 2 points rectangle
-        self.four_points = four_points # describe text box by 4 points quadrilateral
-        self.size = size
-        self.name_img = name_img
 
 def draw_det_res(dt_boxes, config, img, img_name):
     if len(dt_boxes) > 0:
@@ -109,8 +103,7 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
     return dt_boxes, copy_img
 
 @st.cache(allow_output_mutation=True)
-def load_model():
-    enable_static_mode()
+def load_model():   
 
     config = program.load_config('configs/det/det_r18_vd_db_v1.1.yml')
     #program.merge_config(FLAGS.opt)
@@ -155,7 +148,10 @@ def load_model():
 
     return detector, exe, config, eval_prog, eval_fetch_list
 
+
+enable_static_mode()
 detector, exe, config, eval_prog, eval_fetch_list = load_model()
+
 # Detect box text
 st.header('TRÍCH XUẤT THÔNG TIN TRÊN CMND, THẺ CĂN CƯỚC')
 uploaded_file = None
@@ -174,22 +170,24 @@ if uploaded_file is not None:
     hsize = int((float(copy_img.size[1])*float(wpercent)))
     copy_img = copy_img.resize((500,hsize), Image.ANTIALIAS)
     st.image(copy_img)
-# for i in range(0, 620):
+# for i in range(11, 620):
 #     img_path = 'test/' + str(i) + '.jpg'
 #     if not os.path.exists(img_path):
 #         img_path = 'test/' + str(i) + '.png'
 #     if not os.path.exists(img_path):
 #         continue
-    i = -1
+
+    # #print('pass')
+    j = -1
     while True:
-        i += 1
+        j += 1
         try:
             logger.info("Begining detect id card..")
             #src_img = cv2.imread(img_name)
 
             dt_boxes, ori_img = paddle(img_path, config, exe, eval_prog, eval_fetch_list)
             
-            if i==0:
+            if j==0:
                 copy_img_rotate = ori_img.copy()
             logger.info("Detect success!")
 
@@ -212,7 +210,7 @@ if uploaded_file is not None:
                 
             # if 2 box appear to have 8 num, or 1 box has string 'CAN CUOC CONG DAN', than it mus be Citien card
             if score>=1:
-                print('[INFO] This is a Citizenship card!')
+                #print('[INFO] This is a Citizenship card!')
 
                 type_cut = cut_roi_cc(list_text_box1, ori_img)
                 dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
@@ -222,47 +220,70 @@ if uploaded_file is not None:
 
                 # Find Id text
                 final_dic['Id'], obj_id = find_id_text_cc(list_text_box2, detector)
-
                 # Find box 'Quoc tich'
-                obj_quoctich_dantoc = find_box_Quoctich_Dantoc(list_text_box2)
-                VietNamdantoc = find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc)
-
+                try:
+                    obj_quoctich_dantoc = find_box_Quoctich_Dantoc(list_text_box2)
+                except:
+                    pass
+                try:
+                    VietNamdantoc = find_VietNam_dantoc(list_text_box2, obj_quoctich_dantoc)
+                except:
+                    pass
                 #print('QUOCTIChDANTOC', obj_quoctich_dantoc.key)
 
                 # Find birth text
-                final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, copy_img)
-                
-                # Remove wrong box 
-                list_text_box2 = remove_wrong_box_cc(list_text_box2, obj_id)
+                try:
+                    final_dic['Birth'], obj_birth = find_birth_text_cc(list_text_box2, obj_quoctich_dantoc, copy_img)
+                except:
+                    pass
+                # Remove wrong box
 
+                try: 
+                    list_text_box2 = remove_wrong_box_cc(list_text_box2, obj_id)
+                except:
+                    pass
                 # Find name text
-                final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, VietNamdantoc, obj_id, copy_img)
-
+                try:
+                    final_dic['Name'] = find_name_text_cc(list_text_box2, obj_quoctich_dantoc, VietNamdantoc, obj_id, copy_img)
+                except:
+                    pass
                 
                 # Find date of expired
-                if type_cut == 2:
-                    final_dic['Date of expired'], obj_expired = '', None
-                else:
-                    final_dic['Date of expired'], obj_expired = find_key_expired(list_text_box2, obj_birth)
+                try:
+                    if type_cut == 2:
+                        final_dic['Date of expired'], obj_expired = '', None
+                    else:
+                        final_dic['Date of expired'], obj_expired = find_key_expired(list_text_box2, obj_birth)
+                except:
+                    pass
 
                 # Find sex
-                final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
+                try:
+                    final_dic['Sex'], obj_Gioitinh, obj_nam_or_nu = find_sex(list_text_box2)
+                except:
+                    pass
 
-                if VietNamdantoc is not None and obj_nam_or_nu is None and obj_Gioitinh is None:
-                    final_dic['Sex'] = find_gioitinh_base_vietnam(list_text_box2, VietNamdantoc, obj_quoctich_dantoc)
-
+                try:
+                    if VietNamdantoc is not None and obj_nam_or_nu is None and obj_Gioitinh is None:
+                        final_dic['Sex'] = find_gioitinh_base_vietnam(list_text_box2, VietNamdantoc, obj_quoctich_dantoc)
+                except:
+                    pass
                 # Delete box has been already  processed
 
-                list_text_box2, obj_cogiatriden = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut)
-                
-                for obj in list_text_box2:
-                    print('left', obj.key)
+                try:
+                    list_text_box2, obj_cogiatriden = delete_box_processed_cc(list_text_box2, obj_Gioitinh, obj_nam_or_nu, obj_quoctich_dantoc, obj_expired, obj_birth, VietNamdantoc, type_cut)
+                except:
+                    pass
+                #for obj in list_text_box2:
+                #    print('left', obj.key)
                 # find hometown and address
+                # try:
                 final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2, obj_cogiatriden)
-
-                print('Final dic: ', final_dic)
+                # except:
+                #     pass
+                #print('Final dic: ', final_dic)
             else:
-                print('[INFO] This is a Identification Card!')
+                #print('[INFO] This is a Identification Card!')
                 cut_roi(list_text_box1, ori_img)
 
                 dt_boxes, copy_img = paddle('out.jpg', config, exe, eval_prog, eval_fetch_list)  
@@ -277,29 +298,48 @@ if uploaded_file is not None:
                 if obj_id is not None:
                     box_id = obj_id.four_points
                 # Find birth text
-                final_dic['Birth'], birth_size, obj_birth  = find_birth_text(list_text_box2, obj_id)
-                
+                try:
+                    final_dic['Birth'], birth_size, obj_birth  = find_birth_text(list_text_box2, obj_id)
+                except:
+                    pass
                 # Find cmnd
-                obj_cmnd = find_cmnd(list_text_box2)
+                try:
+                    obj_cmnd = find_cmnd(list_text_box2)
+                except:
+                    pass
                 # Remove wrong box
-                list_text_box2 = remove_wrong_box(list_text_box2, obj_id, obj_birth, birth_size, obj_cmnd)
-                
+                try:
+                    list_text_box2 = remove_wrong_box(list_text_box2, obj_id, obj_birth, birth_size, obj_cmnd)
+                except:
+                    pass
                 # Find name text
                 
-                final_dic['Name'], obj_name = find_name_text(list_text_box2, obj_id, obj_birth, obj_cmnd, detector, copy_img)
-                
-                if (final_dic['Id'] == remove_char(final_dic['Birth']) or len(final_dic['Id'])<9) and obj_name is not None:
-                    final_dic['Id'] = draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd)
+                try:
+                    final_dic['Name'], obj_name = find_name_text(list_text_box2, obj_id, obj_birth, obj_cmnd, detector, copy_img)
+                except:
+                    pass
 
+                try:
+                    if (final_dic['Id'] == remove_char(final_dic['Birth']) or len(final_dic['Id'])<9) and obj_name is not None:
+                        final_dic['Id'] = draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd)
+                except:
+                    pass
                 # Delete box has been already processed
                 
-                list_text_box2 = delete_box_processed(list_text_box2, obj_birth.two_points)
-                
+                try:
+                    list_text_box2 = delete_box_processed(list_text_box2, obj_birth.two_points)
+                except:
+                    pass
                 # find hometown and address
-                for obj in list_text_box2:
-                    print('left', obj.key)
-                
-                final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+                #for obj in list_text_box2:
+                #    print('left', obj.key)
+                try:
+                    final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
+                except:
+                   pass            
+
+            if final_dic['Id'] == '':
+                a = 1/0
             print('-------------------------------------')
             print('Id number: ', final_dic['Id'])
             print('Name: ', final_dic['Name'])
@@ -322,18 +362,18 @@ if uploaded_file is not None:
             break 
             
         except:
-            if i == 0:
+            if j == 0:
                 ro_img = imutils.rotate_bound(copy_img_rotate, -90)
-                cv2.imwrite('{}.jpg'.format(i), ro_img)
-                img_path = '{}.jpg'.format(i)
-            elif i ==1:
+                cv2.imwrite('{}.jpg'.format(j), ro_img)
+                img_path = '{}.jpg'.format(j)
+            elif j ==1:
                 ro_img = imutils.rotate_bound(copy_img_rotate, 90)
-                cv2.imwrite('{}.jpg'.format(i), ro_img)
-                img_path = '{}.jpg'.format(i)
-            elif i ==2:
+                cv2.imwrite('{}.jpg'.format(j), ro_img)
+                img_path = '{}.jpg'.format(j)
+            elif j ==2:
                 ro_img = imutils.rotate_bound(copy_img_rotate, 180)
-                cv2.imwrite('{}.jpg'.format(i), ro_img)
-                img_path = '{}.jpg'.format(i)
+                cv2.imwrite('{}.jpg'.format(j), ro_img)
+                img_path = '{}.jpg'.format(j)
             else:
                 print('Cannot recognizing')
                 st.write('Cannot recognize id card information!')

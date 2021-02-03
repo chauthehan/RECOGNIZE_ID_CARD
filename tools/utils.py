@@ -4,9 +4,17 @@ import cv2
 import math 
 import imutils
 from PIL import Image
-from infer_det import textbox
+# from infer_det import textbox
 from difflib import SequenceMatcher
 from tools.score import *
+
+class textbox:
+    def __init__(self, key, two_points, four_points, size, name_img):
+        self.key = key
+        self.two_points = two_points # describe text box by 2 points rectangle
+        self.four_points = four_points # describe text box by 4 points quadrilateral
+        self.size = size
+        self.name_img = name_img
 
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered
@@ -384,6 +392,7 @@ def cut_roi(list_text_box, copy_img):
     max1 = 0
     max2 = 0
     max3 = 0
+    obj_conghoa = None
 
     for obj in list_text_box:
         text = obj.key
@@ -459,7 +468,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
     # dic = {}
     # dic_o = {}
     # dic_s = {}
-    print('---------------')
+    #print('---------------')
     list_text_box = []
 
     for j, box in enumerate(dt_boxes):
@@ -482,7 +491,7 @@ def OCR_text(i, dt_boxes, copy_img, detector):
                 if pred == text.key:
                     pred = pred + ' '
 
-        print(pred)    
+        #print(pred)    
         
         size = crop.shape[0] * crop.shape[1]
         obj = textbox(pred, box_rec, box, size, 'box{}/{}.jpg'.format(i, j))
@@ -607,7 +616,7 @@ def normalize_hometown_address(nguyenquan, dkhk):
     nguyenquan = change_format(nguyenquan)
     dkhk = change_format(dkhk)  
 
-    print('Change format:', nguyenquan,' ', dkhk)  
+    #print('Change format:', nguyenquan,' ', dkhk)  
 
     nguyenquan1 = mapping(nguyenquan)
     dkhk1 = mapping(dkhk)
@@ -645,7 +654,7 @@ def mapping(key):
                 maxx = ratio
                 res1 = i
 
-    print('ratio:',key,' ',maxx)    
+    #print('ratio:',key,' ',maxx)    
     if maxx < 0.5:
         return key
     return res1      
@@ -693,11 +702,16 @@ def change_format(key):
     key = key.replace('Huyện', '')
     key = key.replace('Thành phố', 'TP')
     pos1 = key.find('P.')
+    
+    if pos1 != -1 and pos1>0:
+        if key[pos1-1]!='T':
+            key = key[pos1:]
+
     pos2 = key.find('P. ')
-    if pos1 != -1 and key[pos1-1]!='T':
-        key = key[pos1:]
-    if pos2 != -1 and key[pos2-1]!='T':
-        key = key[pos2:]    
+    if pos2 != -1 and pos2>0:
+        print(pos2)
+        if key[pos2-1]!='T':
+            key = key[pos2:]    
     return key
 
 def normalize_name(key_name):
@@ -737,7 +751,7 @@ def normalize_name(key_name):
         f.close()
 
 
-    print('SSS', s)
+    #print('SSS', s)
     for i in range(len(s)):
         if remove_accent(s[i]) == 'HUYEN':
             s[i] = 'HUYỀN'
@@ -782,8 +796,8 @@ def draw_box_id(list_text_box2, box_id, obj_name, copy_img, detector, obj_cmnd):
     point4 = [int(point1[0]+ lean_w), int(obj_name.four_points[0][0][1]-h/7)]
     point3 = [int(point2[0]+ lean_w), int(obj_name.four_points[1][0][1]-h/7)]
 
-    print(copy_img.shape)
-    print(point1, ' ', point2,' ',point3,' ',point4)
+    #print(copy_img.shape)
+    #print(point1, ' ', point2,' ',point3,' ',point4)
     #copy_img = cv2.circle(copy_img,(int(point1[0]), int(point1[1])), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(int(point2[0]), int(point2[1])), 5, (0,255,0), -1)
     #copy_img = cv2.circle(copy_img,(int(point3[0]), int(point3[1])), 5, (0,255,0), -1)
