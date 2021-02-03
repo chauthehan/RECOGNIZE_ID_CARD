@@ -1,0 +1,12 @@
+streamlit==0.75.0
+imutils==0.5.3
+numpy==1.19.5
+opencv-python
+pillow==8.1.0
+vietocr==0.3.5
+paddlepaddle==2.0.0
+PyYAML==5.3.1
+argparse==1.1
+requests==2.25.1
+torch==1.7.1
+torchvision==0.8.2

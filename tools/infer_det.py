@@ -6,7 +6,6 @@ from imutils import paths
 import io 
 import numpy as np
 from copy import deepcopy
-import streamlit as st
 import os
 import sys
 
@@ -106,8 +105,6 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
 def load_model():   
 
     config = program.load_config('configs/det/det_r18_vd_db_v1.1.yml')
-    #program.merge_config(FLAGS.opt)
-    #logger.info(config)
 
     # check if set use_gpu=True in paddlepaddle cpu version
     use_gpu = config['Global']['use_gpu']
@@ -139,7 +136,7 @@ def load_model():
         raise Exception("{} not exists!".format(checkpoints))
 
     config_ocr = Cfg.load_config_from_name('vgg_seq2seq')
-    config_ocr['weights'] = './my_weights/best.pth'
+    config_ocr['weights'] = './my_weights/transformer.pth'
     config_ocr['cnn']['pretrained']=False
     config_ocr['device'] = 'cpu'
     config_ocr['predictor']['beamsearch']=False
@@ -277,10 +274,10 @@ if uploaded_file is not None:
                 #for obj in list_text_box2:
                 #    print('left', obj.key)
                 # find hometown and address
-                # try:
-                final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2, obj_cogiatriden)
-                # except:
-                #     pass
+                try:
+                    final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text_cc(list_text_box2, obj_cogiatriden)
+                except:
+                    pass
                 #print('Final dic: ', final_dic)
             else:
                 #print('[INFO] This is a Identification Card!')
