@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:18.04
 
 WORKDIR .
 
@@ -23,6 +23,9 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 COPY . .
+
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 RUN ls
 

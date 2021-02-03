@@ -10,3 +10,12 @@ argparse==1.1
 requests==2.25.1
 torch==1.7.1
 torchvision==0.8.2
+pyclipper==1.2.1
+shapely
+imgaug
+pyclipper
+lmdb
+tqdm
+numpy
+visualdl
+python-Levenshtein

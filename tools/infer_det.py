@@ -47,8 +47,11 @@ def draw_det_res(dt_boxes, config, img, img_name):
         #logger.info("The detected Image saved in {}".format(save_path))
 
 def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
+    
     config['Global']['infer_img'] = img_path
+    #logger.info('pass1')
     test_reader = reader_main(config=config, mode='test')
+    #logger.info('pass2')
     tackling_num = 0
     for data in test_reader():
         img_num = len(data)
@@ -61,7 +64,7 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
             img_list.append(data[ino][0])
             ratio_list.append(data[ino][1])
             img_name_list.append(data[ino][2])
-
+        #logger.info('pass3')
         img_list = np.concatenate(img_list, axis=0)
         logger.info("Getting text boxes..")
         outs = exe.run(eval_prog,\
@@ -104,7 +107,7 @@ def paddle(img_path, config, exe, eval_prog, eval_fetch_list):
 @st.cache(allow_output_mutation=True)
 def load_model():   
 
-    config = program.load_config('configs/det/det_r18_vd_db_v1.1.yml')
+    config = program.load_config('./configs/det/det_r18_vd_db_v1.1.yml')
 
     # check if set use_gpu=True in paddlepaddle cpu version
     use_gpu = config['Global']['use_gpu']
@@ -162,11 +165,12 @@ if uploaded_file is not None:
     #st.image(resize_img)
     img = img.convert('RGB')
     img.save('upload.jpg')
-    img_path = './upload.jpg'
+    img_path = 'upload.jpg'
     wpercent = (500/float(copy_img.size[0]))
     hsize = int((float(copy_img.size[1])*float(wpercent)))
     copy_img = copy_img.resize((500,hsize), Image.ANTIALIAS)
     st.image(copy_img)
+    #logger.info('pass')
 # for i in range(11, 620):
 #     img_path = 'test/' + str(i) + '.jpg'
 #     if not os.path.exists(img_path):
@@ -174,7 +178,8 @@ if uploaded_file is not None:
 #     if not os.path.exists(img_path):
 #         continue
 
-    # #print('pass')
+    #print('pass')
+    copy_img_rotate = None
     j = -1
     while True:
         j += 1
@@ -333,7 +338,7 @@ if uploaded_file is not None:
                 try:
                     final_dic['Hometown'], final_dic['Address'] = find_hometown_address_text(list_text_box2)  
                 except:
-                   pass            
+                    pass            
 
             if final_dic['Id'] == '':
                 a = 1/0
