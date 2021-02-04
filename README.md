@@ -41,7 +41,7 @@ streamlit run tools/infer_det.py
 
 Giao diện webapp hiện ra, chọn 1 file ảnh chứa ảnh cmnd hoặc thẻ căn cước công dân. Đợi 1 thời gian sẽ cho ra kết quả thông tin trên trên ảnh.
 
-![alt text](https://git.meditech.vn/chauthehan/recognize_id_card/tree/master/output/demo.png)
+![alt text](https://github.com/chauthehan/RECOGNIZE_ID_CARD/blob/master/output/demo.png)
 
 # Dùng docker
 Tải và cài đặt docker
