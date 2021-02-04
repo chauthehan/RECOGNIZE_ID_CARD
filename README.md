@@ -28,6 +28,8 @@ python-Levenshtein
 # Cách sử dụng:
 Tạo một môi trường sử dụng python 3.8
 
+Tải file transformerocr.pth để vào thư mục my_weights (file trong drive)
+
 Cài đặt thư viện:
 
 ```
