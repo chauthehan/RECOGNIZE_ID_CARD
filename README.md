@@ -52,10 +52,6 @@ Tạo image:
 sudo docker build -t [name image] .
 ```
 
-Link image đã được build:
-
-https://hub.docker.com/repository/docker/chauthehan/recogize_id_card
-
 Chạy image:
 
 ```
